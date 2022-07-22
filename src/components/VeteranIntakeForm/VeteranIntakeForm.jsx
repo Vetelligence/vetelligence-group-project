@@ -37,10 +37,15 @@ return (
         <br></br>
         <form>
         <TextField id="outlined-basic" label="First Name" variant="outlined" />
+        <br></br>
         <TextField id="outlined-basic" label="Last Name" variant="outlined" />
+        <br></br>
         <TextField id="outlined-basic" label="E-mail" variant="outlined" />
+        <br></br>
         <TextField id="outlined-basic" label="City" variant="outlined" />
+        <br></br>
         <TextField id="outlined-basic" label="State" variant="outlined" />
+        <br></br>
         <TextField id="outlined-basic" label="Discharged Date" variant="outlined" />
         
         <FormControl fullWidth>
