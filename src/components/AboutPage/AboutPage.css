@@ -1,0 +1,15 @@
+p {
+    color: rgb(149, 149, 149)
+}
+
+.mission {
+    background-color: #6C63FE;
+    border-radius: 20px;
+    padding: 2%;
+    margin: 0%;
+    text-align: center;
+}
+
+.missionText {
+    color: #fff
+}
