@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './LandingPage.css';
 
 // CUSTOM COMPONENTS
@@ -23,17 +24,23 @@ function LandingPage() {
             I am a:
           </h2>
 
-          <p className="mainPageButton">
-            Service Member
-          </p>
+          <Link className="linkMainPage" to="/veteran">
+            <p className="mainPageButton">
+              Service Member
+            </p>
+          </Link>
 
-          <p className="mainPageButton">
-            Employer / Recruiter
-          </p>
+          <Link className="linkMainPage" to="/employer">
+            <p className="mainPageButton">
+              Employer / Recruiter
+            </p>
+          </Link>
 
-          <p className="mainPageButton">
-            About Vetelligence
-          </p>
+          <Link className="linkMainPage" to="/about">
+            <p className="mainPageButton">
+              About Vetelligence
+            </p>
+          </Link>
         </div>
         {/* <div className="grid-col grid-col_4">
           <RegisterForm />

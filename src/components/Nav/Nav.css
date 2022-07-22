@@ -3,7 +3,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   margin: 0 0 30px;
   background-color: #6C63FE;
   overflow: hidden;
@@ -13,12 +12,9 @@
   text-decoration: none;
 }
 
-.nav-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #f2f2f2;
-  padding-left: 10px;
-  margin: 20%;
+img {
+  padding-left: 0px;
+  margin: 2%
 }
 
 .navLink {
@@ -38,5 +34,5 @@
 }
 
 .navLink:hover {
-  background-color: #008183;
+  background-color: #47429f;
 }
