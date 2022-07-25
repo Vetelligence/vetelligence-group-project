@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
@@ -9,103 +10,116 @@ import Select from '@mui/material/Select';
 
 
 
-function VeteranIntakeForm(){
+function VeteranIntakeForm() {
+  const dispatch = useDispatch();
+  const mosData = useSelector(store => store.intake.mosForBranch)
+  const [intakeData, setIntakeData] = useState({
+    userType: 'veteran',
+    branch: '',
+    rank: '',
+    mos: ''
+  });
 
-const [branch, setBranch] = React.useState('');
-const [MOS, setMOS ] = React.useState('');
-const [rank, setRank ] = React.useState('');
+  function handleChange(event) {
+    setIntakeData({
+      ...intakeData,
+      [event.target.name]: event.target.value,
+    })
+  }
 
+  function handleBranch(event) {
+    setIntakeData({
+      ...intakeData,
+      [event.target.name]: event.target.value,
+    })
 
-const handleChange = (event) => {
-    setBranch(event.target.value)
-    }
+    dispatch({
+      type: 'FETCH_MOS',
+      payload: { branch: event.target.value }
+    })
+  }
 
-const handleChange2 = (event) => {
-    setRank(event.target.value)
-    }
-    
-const handleChange3 = (event) => {
-    setMOS(event.target.value)
-    }
+  function submit(event) {
+    event.preventDefault();
+    console.log(intakeData);
 
-return (
+    dispatch({
+      type:'REGISTER' ,
+      payload: intakeData
+    })
+
+  }
+
+  return (
     <>
 
-        <Button variant="outlined">Back</Button>
+      <Button variant="outlined">Back</Button>
+      <br></br>
+
+      <br></br>
+      <form onSubmit={submit}>
+      <TextField onChange={handleChange} id="outlined-basic" name="password" label="First Name" variant="outlined" />
+      <TextField onChange={handleChange} id="outlined-basic" name="username" label="First Name" variant="outlined" />
+
+        <TextField onChange={handleChange} id="outlined-basic" name="firstName" label="First Name" variant="outlined" />
         <br></br>
+        <TextField onChange={handleChange} id="outlined-basic" name="lastName" label="Last Name" variant="outlined" />
+        <br></br>
+        <TextField onChange={handleChange} id="outlined-basic" name="email" label="E-mail" variant="outlined" />
+        <br></br>
+        <TextField onChange={handleChange} id="outlined-basic" name="phone" label="Phone" variant="outlined" />
+        <br></br>
+        <TextField onChange={handleChange} id="outlined-basic" name="city" label="City" variant="outlined" />
+        <br></br>
+        <TextField onChange={handleChange} id="outlined-basic" name="state" label="State" variant="outlined" />
+        <br></br>
+        <TextField onChange={handleChange} id="outlined-basic" name="dischargeDate" label="Discharge Date" variant="outlined" />
         
-        <br></br>
-        <form>
-        <TextField id="outlined-basic" label="First Name" variant="outlined" />
-        <br></br>
-        <TextField id="outlined-basic" label="Last Name" variant="outlined" />
-        <br></br>
-        <TextField id="outlined-basic" label="E-mail" variant="outlined" />
-        <br></br>
-        <TextField id="outlined-basic" label="City" variant="outlined" />
-        <br></br>
-        <TextField id="outlined-basic" label="State" variant="outlined" />
-        <br></br>
-        <TextField id="outlined-basic" label="Discharged Date" variant="outlined" />
-        
+
         <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Branch</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={branch}
-          label="branch"
-          onChange={handleChange}
-        >
-          <MenuItem value={'Coast Guard'}>Coast Guard</MenuItem>
-          <MenuItem value={'Marines'}>Marines</MenuItem>
-          <MenuItem value={'Navy'}>Navy</MenuItem>
-          <MenuItem value={'Army'}>Army</MenuItem>
-          <MenuItem value={'Air Force'}>Air Force</MenuItem>
-        </Select>
-      </FormControl>
+          <InputLabel id="demo-simple-select-label">Branch</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={intakeData.branch}
+            label="branch"
+            name="branch"
+            onChange={handleBranch}
+          >
+            <MenuItem value={'Coast Guard'}>Coast Guard</MenuItem>
+            <MenuItem value={'Marine Corps'}>Marine Corps</MenuItem>
+            <MenuItem value={'Navy'}>Navy</MenuItem>
+            <MenuItem value={'Army'}>Army</MenuItem>
+            <MenuItem value={'Air Force'}>Air Force</MenuItem>
+          </Select>
+        </FormControl>
 
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Rank</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={rank}
-          label="Rank"
-          onChange={handleChange2}
-        >
-          <MenuItem value={'General Officer'}>General Officer</MenuItem>
-          <MenuItem value={'Lieutenant'}>Lieutenant</MenuItem>
-          <MenuItem value={'Major'}>Navy</MenuItem>
-          <MenuItem value={'Captain'}>Army</MenuItem>
-          <MenuItem value={'Corporal'}>Air Force</MenuItem>
-        </Select>
-      </FormControl>
 
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">MOS</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={MOS}
-          label="MOS"
-          onChange={handleChange3}
-        >
-          <MenuItem value={'11B Infantry'}>11B Infantry</MenuItem>
-          <MenuItem value={'12B Engineer'}>12B Engineer</MenuItem>
-          <MenuItem value={'13J Mechanic'}>13J Mechanic</MenuItem>
-          <MenuItem value={'15P Aviation Operation Specialist'}>15P Aviation Operation Specialist</MenuItem>
-          <MenuItem value={'36B Financial Management Technician'}>36B Financial Management Technician</MenuItem>
-        </Select>
-      </FormControl>
 
-      <Button variant="contained" color="primary" type="Submit">
-            Submit
+
+        {intakeData.branch && <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">MOS</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={intakeData.mos}
+            label="MOS"
+            name="mos"
+            onChange={handleChange}
+          >
+           { mosData.map(mos => <MenuItem key={mos.id} value={mos.id}> {mos.mos} - {mos.name}</MenuItem>)} 
+
+          </Select>
+        </FormControl>
+        }
+
+        <Button variant="contained" color="primary" type="Submit">
+          Submit
         </Button>
       </form>
 
     </>
-)
+  )
 
 
 

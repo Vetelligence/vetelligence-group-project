@@ -19,6 +19,9 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import VeteranPage from '../VeteranPage/VeteranPage';
+import EmployerPage from '../EmployerPage/EmployerPage';
+import EmployerJobInput from '../EmployerJobInput/EmployerJobInput';
 
 import './App.css';
 import VeteranIntakeForm from '../VeteranIntakeForm/VeteranIntakeForm';
@@ -43,6 +46,31 @@ function App() {
           <Redirect exact from="/" to="/home" />
 
           {/* Visiting localhost:3000/about will show the about page. */}
+
+          <Route
+            // shows AboutPage at all times (logged in or not)
+            exact
+            path="/veteran"
+          >
+            <VeteranPage />
+          </Route>
+
+          <Route
+            // shows EmployerPage at all times
+            exact
+            path="/employer"
+          >
+            <EmployerPage />
+          </Route>
+
+          <Route
+            // shows EmployerPage at all times
+            exact
+            path="/jobInput"
+          >
+            <EmployerJobInput />
+          </Route>
+
           <Route
             // shows AboutPage at all times (logged in or not)
             exact
