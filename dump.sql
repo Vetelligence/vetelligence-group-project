@@ -99,9 +99,9 @@ COPY public.skills (id, skill_name) FROM stdin;
 36	resourcefulness
 4	respond
 46	responsibility
-24	s
 25	stress
-31	1
+31	supervise
+24	stress management
 \.
 
 
