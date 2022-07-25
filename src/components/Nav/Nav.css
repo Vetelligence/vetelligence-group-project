@@ -12,9 +12,11 @@
   text-decoration: none;
 }
 
-img {
+.titleImg {
   padding-left: 0px;
-  margin: 2%
+  margin: 2%;
+  height: 30%;
+  width: 86%;
 }
 
 .navLink {

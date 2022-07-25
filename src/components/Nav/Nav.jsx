@@ -10,7 +10,7 @@ function Nav() {
   return (
     <div className="nav">
       <Link to="/home">
-        <img src="./images/Vetelligence-03.svg" height="100px" width="300px"/>
+        <img src="./images/Vetelligence-03.svg" className="titleImg"/>
       </Link>
       <div>
         {/* If no user is logged in, show these links */}

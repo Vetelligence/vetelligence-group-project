@@ -14,10 +14,9 @@ h4 {
 
 img {
     display: flex;
-    margin: 0 auto;
     width: 20%;
     height: 10%;
-    align-items: left;
+    margin-left: 0;
 }
 
 .mission {
