@@ -1,5 +1,4 @@
 import React from 'react';
-import EmojiFlagsIcon from '@mui/icons-material/EmojiFlags';
 import './AboutPage.css';
 
 

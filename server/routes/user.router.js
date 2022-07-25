@@ -21,11 +21,29 @@ router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
 
-  const queryText = `INSERT INTO "user" (username, password)
-    VALUES ($1, $2) RETURNING id`;
+  const queryText = `INSERT INTO "user" (username, password, state, city, user_type, first_name, last_name, email, phone_number)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`;
   pool
-    .query(queryText, [username, password])
-    .then(() => res.sendStatus(201))
+    .query(queryText, [username, password, req.body.state, req.body.city, req.body.userType, req.body.firstName, req.body.lastName, req.body.email, req.body.phoneNumber])
+    .then((result) => {
+     switch (req.body.userType){
+      case 'veteran':
+        {const vetQuery = `
+          INSERT INTO "veterans" (user_id , mos_id)
+          VALUES ($1, $2)
+        `
+        pool.query(vetQuery, [result.rows[0].id, req.body.mos]);}
+        break;
+      
+      case 'employer':
+        {const employerQuery = `
+        INSERT INTO "employers" (user_id , company)
+        VALUES ($1, $2)
+      `
+      pool.query(employerQuery, [result.rows[0].id, req.body.company]);}
+      break;
+     }
+      res.sendStatus(201)})
     .catch((err) => {
       console.log('User registration failed: ', err);
       res.sendStatus(500);
