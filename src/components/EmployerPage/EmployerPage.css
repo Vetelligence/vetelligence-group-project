@@ -1,0 +1,105 @@
+body {
+    background-color: #6C63FE;
+}
+
+.employerView {
+    margin-top: 15%;
+}
+
+.profileData {
+    background-color: #fff;
+    width: 78%;
+    margin: 0%;
+    margin-top: -14%;
+    margin-left: 6%;
+    margin-bottom: 10%;
+    border-radius: 10px;
+    padding: 5%;
+    text-align: left;
+}
+
+.jobsData {
+    background-color: #fff;
+    width: 78%;
+    margin: 0%;
+    margin-left: 6%;
+    margin-bottom: 10%;
+    border-radius: 10px;
+    padding: 5%;
+    text-align: center;
+}
+
+.employeeData {
+    background-color: #fff;
+    width: 78%;
+    margin: 0%;
+    margin-left: 6%;
+    margin-bottom: 10%;
+    border-radius: 10px;
+    padding: 5%;
+    text-align: center;
+}
+
+.jobsDataText {
+    margin: 1px;
+    text-align: left;
+}
+
+.jobCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    background-color: gray;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.jobCardText {
+    color: #fff;
+    padding: 2px;
+}
+
+.addJobBtn {
+    display: flex;
+    background-color: gray;
+    color: #fff;
+    border-color: #fff;
+    border-radius: 5px;
+    margin-left: 75%;
+    margin-top: -25px;
+    margin-bottom: 4%;
+}
+
+.employeeDataText {
+    margin: 1px;
+    text-align: left;
+}
+
+.employeeCard {
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    background-color: gray;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.topCard {
+    display: flex;
+    margin: 0;
+    align-items: center;
+    font-size: 14px;
+}
+
+.middleCard {
+    display: block;
+    margin: 0;
+    align-items: center;
+    font-size: 14px;
+}
+
+.employeeCardText {
+    margin: 0;
+    color: #fff;
+}
