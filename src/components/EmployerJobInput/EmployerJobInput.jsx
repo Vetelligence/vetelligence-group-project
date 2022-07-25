@@ -1,14 +1,21 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import { useState } from 'react';
 import './EmployerJobInput.css';
 
 
 function EmployerJobInput() {
+    const [jobInputData, setJobInputData] = useState({name: '', description: '', city: '', state: '', company: '', skills: []});
+    const [skills, setSkills] = useState('');
 
-  return (
+    const handleChange = () => {
+        console.log('changes being made', jobInputData);
+    }
+
+    return (
     <div>
         <p>Job Input Form</p>
         <form>
@@ -23,21 +30,26 @@ function EmployerJobInput() {
                 <br></br>
                 <TextField id="outlined-basic" label="Company Name" variant="outlined" />
             </div>
-            <div className="checkBoxes">
-                <FormControlLabel
-                    control={
-                        <Checkbox
-                            color="default"
-                            inputProps={{ 'aria-label': 'checkbox with default color' }}
-                        />
-                    }
-                    label="Admin"
-                />
+            <div className="dropdown">
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={jobInputData.name}
+                    label="Job Name"
+                    name="name"
+                    onChange={handleChange}
+                >
+                    <MenuItem value={'admin'}>Admin</MenuItem>
+                    <MenuItem value={'communication'}>Communication</MenuItem>
+                    <MenuItem value={'language'}>Language</MenuItem>
+                    <MenuItem value={'teamwork'}>Teamwork</MenuItem>
+                    <MenuItem value={'problem solving'}>Problem Solving</MenuItem>
+                </Select>
             </div>
-        <Button variant="contained" color="primary" type="Submit">
+            <Button variant="contained" color="primary" type="Submit">
                 Submit
-        </Button>
-      </form>
+            </Button>
+        </form>
     </div>
   )
 }
