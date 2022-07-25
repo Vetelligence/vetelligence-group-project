@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
 import VeteranIntakeForm from '../VeteranIntakeForm/VeteranIntakeForm';
+import EmployerIntakeForm from '../EmployerIntakeForm/EmployerIntakeForm';
 
 
 function App() {
@@ -115,6 +116,12 @@ function App() {
           <Route exact path="/veteran-intake">
             <VeteranIntakeForm />
           </Route>
+
+          <Route exact path="/employer-intake">
+            <EmployerIntakeForm />
+          </Route>
+
+
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
