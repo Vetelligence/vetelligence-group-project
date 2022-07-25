@@ -1,7 +1,7 @@
 import React from 'react';
 import EditIcon from '@material-ui/icons/Edit';
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './EmployerPage.css';
 
 // CUSTOM COMPONENTS
@@ -27,7 +27,7 @@ function EmployerPage() {
           <p className="jobCardText">Build amazing apps with emerging technologies.</p>
         </div>
       </div>
-      <button className="addJobBtn">Add Job</button>
+      <Link to="/jobInput"><button className="addJobBtn">Add Job</button></Link>
       <div className="employeeData">
         <p className="employeeDataText">Current Matched Candidates:</p>
         <div className="employeeCard">
@@ -41,7 +41,7 @@ function EmployerPage() {
             <p className="employeeCardText">Email: j.snuffy@gmail.com</p>
           </div>
           <select className="employeeStatus">
-            <option value="matched">Matched / Pending</option>
+            <option value="matched">Pending</option>
             <option value="selectedForInterview">Selected to Interview</option>
             <option value="Interviewed">Interviewed</option>
             <option value="Hired">Hired</option>

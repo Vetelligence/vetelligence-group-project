@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import VeteranPage from '../VeteranPage/VeteranPage';
 import EmployerPage from '../EmployerPage/EmployerPage';
+import EmployerJobInput from '../EmployerJobInput/EmployerJobInput';
 
 import './App.css';
 import VeteranIntakeForm from '../VeteranIntakeForm/VeteranIntakeForm';
@@ -59,6 +60,14 @@ function App() {
             path="/employer"
           >
             <EmployerPage />
+          </Route>
+
+          <Route
+            // shows EmployerPage at all times
+            exact
+            path="/jobInput"
+          >
+            <EmployerJobInput />
           </Route>
 
           <Route
