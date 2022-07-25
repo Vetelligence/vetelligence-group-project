@@ -23,6 +23,8 @@ import VeteranPage from '../VeteranPage/VeteranPage';
 import EmployerPage from '../EmployerPage/EmployerPage';
 
 import './App.css';
+import VeteranIntakeForm from '../VeteranIntakeForm/VeteranIntakeForm';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -127,6 +129,10 @@ function App() {
               // Otherwise, show the Landing page
               <LandingPage />
             }
+          </Route>
+          
+          <Route exact path="/veteran-intake">
+            <VeteranIntakeForm />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
