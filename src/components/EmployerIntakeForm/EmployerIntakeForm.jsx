@@ -27,6 +27,7 @@ function EmployerIntakeForm(){
     const [state, setState] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [userType, setUserType] = useState('employer');
 
     const handleSubmit = (evt) => {
         const employerInfo = {
@@ -38,13 +39,14 @@ function EmployerIntakeForm(){
             city: city,
             state: state,
             username: username,
-            password, password,
+            password: password,
+            userType: userType,
         }
 
         evt.preventDefault();
 
         dispatch({
-            type: "SET_EMPLOYER_INFO",
+            type: 'REGISTER',
             payload: employerInfo
         })
 
@@ -59,23 +61,23 @@ function EmployerIntakeForm(){
 
         <form onSubmit={handleSubmit}>
 
-        <TextField id="outlined-basic" label="First Name" variant="outlined" onChange={evt => {setFirstName(evt.target.value)}}/>
+        <TextField label="First Name" variant="outlined" onChange={evt => {setFirstName(evt.target.value)}}/>
         <br></br>
-        <TextField id="outlined-basic" label="Last Name" variant="outlined" onChange={evt => {setLastName(evt.target.value)}}/>
+        <TextField  label="Last Name" variant="outlined" onChange={evt => {setLastName(evt.target.value)}}/>
         <br></br>
-        <TextField id="outlined-basic" label="Company" variant="outlined" onChange={evt => {setCompany(evt.target.value)}}/>
+        <TextField  label="Company" variant="outlined" onChange={evt => {setCompany(evt.target.value)}}/>
         <br></br>
-        <TextField id="outlined-basic" label="E-mail" variant="outlined" onChange={evt => {setEmail(evt.target.value)}}/>
+        <TextField  label="E-mail" variant="outlined" onChange={evt => {setEmail(evt.target.value)}}/>
         <br></br>
-        <TextField id="outlined-basic" label="Phone Number" variant="outlined" onChange={evt => {setPhoneNumber(evt.target.value)}}/>
+        <TextField  label="Phone Number" variant="outlined" onChange={evt => {setPhoneNumber(evt.target.value)}}/>
         <br></br>
-        <TextField id="outlined-basic" label="City" variant="outlined" onChange={evt => {setCity(evt.target.value)}}/>
+        <TextField  label="City" variant="outlined" onChange={evt => {setCity(evt.target.value)}}/>
         <br></br>
-        <TextField id="outlined-basic" label="State" variant="outlined" onChange={evt => {setState(evt.target.value)}}/>
+        <TextField  label="State" variant="outlined" onChange={evt => {setState(evt.target.value)}}/>
         <br></br>
-        <TextField id="outlined-basic" label="Username" variant="outlined" onChange={evt => {setUsername(evt.target.value)}}/>
+        <TextField  label="Username" variant="outlined" onChange={evt => {setUsername(evt.target.value)}}/>
         <br></br>
-        <TextField id="outlined-basic" label="Password" variant="outlined" onChange={evt => {setPassword(evt.target.value)}}/>
+        <TextField  label="Password" variant="outlined" type="password" onChange={evt => {setPassword(evt.target.value)}}/>
         <br></br>
 
         <Button variant="contained" color="primary" type="submit">

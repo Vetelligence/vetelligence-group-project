@@ -37,7 +37,7 @@ router.post('/register', (req, res, next) => {
       
       case 'employer':
         {const employerQuery = `
-        INSERT INTO "employers" (user_id , company)
+        INSERT INTO "employer" (user_id , company)
         VALUES ($1, $2)
       `
       pool.query(employerQuery, [result.rows[0].id, req.body.company]);}
