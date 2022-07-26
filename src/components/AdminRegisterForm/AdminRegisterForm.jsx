@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 function RegisterForm() {
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
-  const [userInfo, setUserInfo] = useState({userType: 'admin'})
+  const [userInfo, setUserInfo] = useState({username: '', password: '', email: '', phoneNumber: '', city: '', state: '', firstName: '', lastName: '', userType: 'admin'})
 
   const registerUser = (event) => {
     event.preventDefault();
