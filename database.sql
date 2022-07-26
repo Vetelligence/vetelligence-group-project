@@ -6,7 +6,7 @@
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+    "password" VARCHAR (1000) NOT NULL,
     state VARCHAR(255) NOT NULL,
     city VARCHAR(255) NOT NULL,
     user_type VARCHAR(255) NOT NULL,
@@ -26,7 +26,10 @@ CREATE TABLE employer(
 CREATE TABLE jobs(
     id SERIAL PRIMARY KEY,
     job_name VARCHAR(1024) NOT NULL,
-    employer_id INT REFERENCES "user"
+    employer_id INT REFERENCES "user",
+    job_description VARCHAR,
+    city VARCHAR,
+    state VARCHAR
 );
 
 
