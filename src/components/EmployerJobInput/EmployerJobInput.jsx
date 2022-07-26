@@ -12,35 +12,71 @@ function EmployerJobInput() {
     const [skills, setSkills] = useState('');
 
     const handleChange = (evt) => {
-        console.log('changes being made');
-
+        console.log('changes being made', skills);
         setSkills([...skills, evt.target.value]);
     }
 
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+        console.log("submitting something", jobInputData);
+        dispatch({
+            type: 'ADD_JOB',
+            payload: {
+                jobInputData
+            }
+        });
+        setJobInputData({name: '', description: '', city: '', state: '', company: '', skills: []});
+    }
+
     return (
-    <div> 
+    <div className="jobInputBody"> 
         <p>Helpful hints: <br></br> You will need the job title, job description, the city and state the job is located, the company name, and 5 skills associated with the job (these are chosen from a drop down). Just pick the closest 5 options from the drop down, they don't need to be exact.</p>  
         <div>
             <p>Job Input Form</p>
-            <form>
-                <div className="inputFields">
-                    <TextField id="outlined-basic" label="Job Title" variant="outlined" value={jobInputData.name}/>
-                    <br></br>
-                    <TextField id="outlined-basic" label="Job Description" variant="outlined" value={jobInputData.description}/>
-                    <br></br>
-                    <TextField id="outlined-basic" label="City" variant="outlined" value={jobInputData.city}/>
-                    <br></br>
-                    <TextField id="outlined-basic" label="State" variant="outlined" value={jobInputData.state}/>
-                    <br></br>
-                    <TextField id="outlined-basic" label="Company Name" variant="outlined" value={jobInputData.company}/>
+            <form className="jobInput">
+                <div className="jobInputFields">
+                    <TextField
+                        id="outlined-basic"
+                        label="Job Title"
+                        variant="outlined"
+                        value={jobInputData.name}
+                        onChange={(evt) => setJobInputData({...jobInputData, name: evt.target.value})}
+                    />
+                    <TextField
+                        id="outlined-basic"
+                        label="Job Description"
+                        variant="outlined"
+                        value={jobInputData.description}
+                        onChange={(evt) => setJobInputData({...jobInputData, description: evt.target.value})}
+                    />
+                    <TextField
+                        id="outlined-basic"
+                        label="City"
+                        variant="outlined"
+                        value={jobInputData.city}
+                        onChange={(evt) => setJobInputData({...jobInputData, city: evt.target.value})}    
+                    />
+                    <TextField
+                        id="outlined-basic"
+                        label="State"
+                        variant="outlined"
+                        value={jobInputData.state}
+                        onChange={(evt) => setJobInputData({...jobInputData, state: evt.target.value})}
+                    />
+                    <TextField
+                        id="outlined-basic"
+                        label="Company Name"
+                        variant="outlined"
+                        value={jobInputData.company}
+                        onChange={(evt) => setJobInputData({...jobInputData, company: evt.target.value})}
+                    />
                 </div>
                 <div className="dropdown">
                     <Select
                         labelId="demo-basic-select-label"
                         id="demo-basic-select"
                         value={jobInputData.skills}
-                        label="Job Name"
-                        name="name"
+                        label="Skills"
                         onChange={handleChange}
                     >
                         <MenuItem value={'Adapt'}>Adapt</MenuItem>
@@ -57,7 +93,7 @@ function EmployerJobInput() {
                         <MenuItem value={'Conflict Management'}>Conflict Management</MenuItem>
                         <MenuItem value={'Consultative'}>Consultative</MenuItem>
                         <MenuItem value={'Cooperation'}>Cooperation</MenuItem>
-                        <MenuItem value={'Coordinates Activities of SubordinateUnits'}>Coordinates Activities of Subordinate Units</MenuItem>
+                        <MenuItem value={'Coordinates Activities of Subordinate Units'}>Coordinates Activities of Subordinate Units</MenuItem>
                         <MenuItem value={'Counseling'}>Counseling</MenuItem>
                         <MenuItem value={'Counterintelligence'}>Counterintelligence</MenuItem>
                         <MenuItem value={'Creative Thinking'}>Creative Thinking</MenuItem>
@@ -110,7 +146,7 @@ function EmployerJobInput() {
                         <br></br>5 {skills[4]}
                     </p>
                 </div>
-                <Button variant="contained" color="primary" type="Submit">
+                <Button variant="contained" color="primary" type="Submit" onSubmit={handleSubmit}>
                     Submit
                 </Button>
             </form>
