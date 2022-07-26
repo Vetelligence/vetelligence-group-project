@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './VeteranPage.css';
 
 // CUSTOM COMPONENTS
-import RegisterForm from '../RegisterForm/RegisterForm';
+import RegisterForm from '../AdminRegisterForm/AdminRegisterForm';
 
 function VeteranPage() {
 
