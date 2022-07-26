@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 function RegisterForm() {
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
-  const [userInfo, setUserInfo] = useState({})
+  const [userInfo, setUserInfo] = useState({userType: 'admin'})
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -72,7 +69,7 @@ function RegisterForm() {
             type="text"
             name="email"
             label="Email"
-            value={userInfo.firstName}
+            value={userInfo.email}
             required
             onChange={(event) => setUserInfo({...userInfo, email: event.target.value})}
           />
@@ -82,7 +79,7 @@ function RegisterForm() {
             type="text"
             name="phoneNumber"
             label="Phone Number"
-            value={userInfo.lastName}
+            value={userInfo.phoneNumber}
             required
             onChange={(event) => setUserInfo({...userInfo, phoneNumber: event.target.value})}
           />
