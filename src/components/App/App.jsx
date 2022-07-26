@@ -26,7 +26,7 @@ import EmployerJobInput from '../EmployerJobInput/EmployerJobInput';
 import './App.css';
 import VeteranIntakeForm from '../VeteranIntakeForm/VeteranIntakeForm';
 import EmployerIntakeForm from '../EmployerIntakeForm/EmployerIntakeForm';
-
+import VeteranLandingPage from '../VeteranLandingPage/VeteranLandPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -147,6 +147,10 @@ function App() {
 
           <Route exact path="/employer-intake">
             <EmployerIntakeForm />
+          </Route>
+
+          <Route exact path="/veteran-landing">
+            <VeteranLandingPage />
           </Route>
 
 
