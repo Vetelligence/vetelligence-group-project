@@ -10,9 +10,15 @@ function VeteranPage() {
 
 
   return (
+    <>
     <div>
         <h4>Welcome, Veterans!</h4>
+    
+
+
+      <Link to="/veteran-intake"> <h4>Sign Up</h4></Link>
     </div>
+    </>
   );
 }
 
