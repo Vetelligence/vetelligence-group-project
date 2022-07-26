@@ -24,19 +24,19 @@ function VeteranIntakeForm() {
     setIntakeData({
       ...intakeData,
       [event.target.name]: event.target.value,
-    })
+    });
   }
 
   function handleBranch(event) {
     setIntakeData({
       ...intakeData,
       [event.target.name]: event.target.value,
-    })
+    });
 
     dispatch({
       type: 'FETCH_MOS',
       payload: { branch: event.target.value }
-    })
+    });
   }
 
   function submit(event) {
@@ -44,9 +44,16 @@ function VeteranIntakeForm() {
     console.log(intakeData);
 
     dispatch({
-      type:'REGISTER' ,
+      type: 'REGISTER',
       payload: intakeData
-    })
+    });
+
+    setIntakeData({
+      userType: 'veteran',
+      branch: '',
+      rank: '',
+      mos: ''
+    });
 
   }
 
@@ -58,9 +65,10 @@ function VeteranIntakeForm() {
 
       <br></br>
       <form onSubmit={submit}>
-      <TextField onChange={handleChange} id="outlined-basic" name="password" label="First Name" variant="outlined" />
-      <TextField onChange={handleChange} id="outlined-basic" name="username" label="First Name" variant="outlined" />
-
+        <TextField onChange={handleChange} id="outlined-basic" name="username" label="Username" variant="outlined" />
+        <br></br>
+        <TextField onChange={handleChange} id="outlined-basic" name="password" label="Password" variant="outlined" />
+        <br></br>
         <TextField onChange={handleChange} id="outlined-basic" name="firstName" label="First Name" variant="outlined" />
         <br></br>
         <TextField onChange={handleChange} id="outlined-basic" name="lastName" label="Last Name" variant="outlined" />
@@ -74,7 +82,7 @@ function VeteranIntakeForm() {
         <TextField onChange={handleChange} id="outlined-basic" name="state" label="State" variant="outlined" />
         <br></br>
         <TextField onChange={handleChange} id="outlined-basic" name="dischargeDate" label="Discharge Date" variant="outlined" />
-        
+
 
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Branch</InputLabel>
@@ -107,7 +115,7 @@ function VeteranIntakeForm() {
             name="mos"
             onChange={handleChange}
           >
-           { mosData.map(mos => <MenuItem key={mos.id} value={mos.id}> {mos.mos} - {mos.name}</MenuItem>)} 
+            {mosData.map(mos => <MenuItem key={mos.id} value={mos.id}> {mos.mos} - {mos.name}</MenuItem>)}
 
           </Select>
         </FormControl>

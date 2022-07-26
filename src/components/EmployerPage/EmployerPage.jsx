@@ -1,5 +1,5 @@
 import React from 'react';
-import EditIcon from '@material-ui/icons/Edit';
+// import EditIcon from '@material-ui/icons/Edit';
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 import { Link } from 'react-router-dom';
 import './EmployerPage.css';
@@ -21,7 +21,7 @@ function EmployerPage() {
       <div className="jobsData">
         <p className="jobsDataText">Current Jobs:</p>
         <div className="jobCard">
-          <EditIcon/>
+          {/* <EditIcon/> */}
           <CancelPresentationIcon/>
           <p className="jobCardText">Software Engineer</p>
           <p className="jobCardText">Build amazing apps with emerging technologies.</p>
