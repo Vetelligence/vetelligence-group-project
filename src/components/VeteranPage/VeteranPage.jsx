@@ -23,7 +23,7 @@ function VeteranPage() {
 
       <Link to="/veteran-intake"> <h4>Sign Up</h4></Link>
     </div>
-    </>
+    
 
     <div className="accordionBackground">
         <Accordion>
@@ -69,7 +69,7 @@ function VeteranPage() {
           </AccordionDetails>
         </Accordion>
       </div>
-
+</>
   );
 }
 
