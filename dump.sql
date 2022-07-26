@@ -91,7 +91,7 @@ COPY public.skills (id, skill_name) FROM stdin;
 56	formulate
 34	improvise
 53	intelligence
-9	Liason
+9	Liaison
 7	Maintains Liason
 39	negotiation
 47	reliability
