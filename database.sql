@@ -6,27 +6,30 @@
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+    "password" VARCHAR (1000) NOT NULL,
     state VARCHAR(255) NOT NULL,
     city VARCHAR(255) NOT NULL,
     user_type VARCHAR(255) NOT NULL,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     email VARCHAR(255),
-    phone_number INT
+    phone_number VARCHAR
 );
 
 CREATE TABLE employer(
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES "user",
     company VARCHAR(1024) NOT NULL,
-    status VARCHAR
+    status VARCHAR DEFAULT 'Pending'
 );
 
 CREATE TABLE jobs(
     id SERIAL PRIMARY KEY,
     job_name VARCHAR(1024) NOT NULL,
-    employer_id INT REFERENCES "user"
+    employer_id INT REFERENCES "user",
+    job_description VARCHAR,
+    city VARCHAR,
+    state VARCHAR
 );
 
 
@@ -60,7 +63,7 @@ CREATE TABLE veterans(
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES "user",
     mos_id INT REFERENCES mos,
-    status VARCHAR(255)
+    status VARCHAR(255) DEFAULT 'Pending'
 );
 
 CREATE TABLE user_jobs(
