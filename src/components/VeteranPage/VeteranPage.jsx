@@ -19,7 +19,7 @@ function VeteranPage() {
     <div>
         <h4>Welcome, Veterans!</h4>
     
-
+        <br></br>
 
       <Link to="/veteran-intake"> <h4>Sign Up</h4></Link>
     </div>

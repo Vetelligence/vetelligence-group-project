@@ -25,19 +25,15 @@ function VeteranIntakeForm() {
       ...intakeData,
       [event.target.name]: event.target.value,
     });
+
+    if (event.target.name === 'branch') {
+      dispatch({
+        type: 'FETCH_MOS',
+        payload: { branch: event.target.value }
+      });
+    }
   }
 
-  function handleBranch(event) {
-    setIntakeData({
-      ...intakeData,
-      [event.target.name]: event.target.value,
-    });
-
-    dispatch({
-      type: 'FETCH_MOS',
-      payload: { branch: event.target.value }
-    });
-  }
 
   function submit(event) {
     event.preventDefault();
@@ -92,7 +88,7 @@ function VeteranIntakeForm() {
             value={intakeData.branch}
             label="branch"
             name="branch"
-            onChange={handleBranch}
+            onChange={handleChange}
           >
             <MenuItem value={'Coast Guard'}>Coast Guard</MenuItem>
             <MenuItem value={'Marine Corps'}>Marine Corps</MenuItem>

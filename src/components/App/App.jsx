@@ -26,6 +26,7 @@ import EmployerJobInput from '../EmployerJobInput/EmployerJobInput';
 import './App.css';
 import VeteranIntakeForm from '../VeteranIntakeForm/VeteranIntakeForm';
 import EmployerIntakeForm from '../EmployerIntakeForm/EmployerIntakeForm';
+import AdminLandingPage from '../AdminLandingPage.js/AdminLandingPage';
 
 
 function App() {
