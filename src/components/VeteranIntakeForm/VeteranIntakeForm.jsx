@@ -25,19 +25,15 @@ function VeteranIntakeForm() {
       ...intakeData,
       [event.target.name]: event.target.value,
     });
+
+    if (event.target.name === 'branch') {
+      dispatch({
+        type: 'FETCH_MOS',
+        payload: { branch: event.target.value }
+      });
+    }
   }
 
-  function handleBranch(event) {
-    setIntakeData({
-      ...intakeData,
-      [event.target.name]: event.target.value,
-    });
-
-    dispatch({
-      type: 'FETCH_MOS',
-      payload: { branch: event.target.value }
-    });
-  }
 
   function submit(event) {
     event.preventDefault();
@@ -65,23 +61,22 @@ function VeteranIntakeForm() {
 
       <br></br>
       <form onSubmit={submit}>
-        <TextField onChange={handleChange} id="outlined-basic" name="username" label="Username" variant="outlined" />
+        <TextField onChange={handleChange}  name="username" label="Username" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} id="outlined-basic" name="password" label="Password" variant="outlined" />
+        <TextField onChange={handleChange}  name="password" label="Password" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} id="outlined-basic" name="firstName" label="First Name" variant="outlined" />
+        <TextField onChange={handleChange}  name="firstName" label="First Name" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} id="outlined-basic" name="lastName" label="Last Name" variant="outlined" />
+        <TextField onChange={handleChange}  name="lastName" label="Last Name" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} id="outlined-basic" name="email" label="E-mail" variant="outlined" />
+        <TextField onChange={handleChange}  name="email" label="E-mail" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} id="outlined-basic" name="phone" label="Phone" variant="outlined" />
+        <TextField onChange={handleChange}  name="phone" label="Phone" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} id="outlined-basic" name="city" label="City" variant="outlined" />
+        <TextField onChange={handleChange}  name="city" label="City" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} id="outlined-basic" name="state" label="State" variant="outlined" />
+        <TextField onChange={handleChange}  name="state" label="State" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} id="outlined-basic" name="dischargeDate" label="Discharge Date" variant="outlined" />
 
 
         <FormControl fullWidth>
@@ -92,7 +87,7 @@ function VeteranIntakeForm() {
             value={intakeData.branch}
             label="branch"
             name="branch"
-            onChange={handleBranch}
+            onChange={handleChange}
           >
             <MenuItem value={'Coast Guard'}>Coast Guard</MenuItem>
             <MenuItem value={'Marine Corps'}>Marine Corps</MenuItem>

@@ -24,6 +24,8 @@ import EmployerPage from '../EmployerPage/EmployerPage';
 import EmployerJobInput from '../EmployerJobInput/EmployerJobInput';
 import VeteranIntakeForm from '../VeteranIntakeForm/VeteranIntakeForm';
 import EmployerIntakeForm from '../EmployerIntakeForm/EmployerIntakeForm';
+import AdminLandingPage from '../AdminLandingPage.js/AdminLandingPage';
+
 import VeteranLandingPage from '../VeteranLandingPage/VeteranLandPage';
 import './App.css';
 
