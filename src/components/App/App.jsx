@@ -54,13 +54,21 @@ function App() {
             <VeteranPage />
           </Route>
 
-          <Route
-            // shows EmployerPage at all times
+          <ProtectedRoute
+            // shows EmployerPage if logged in
             exact
-            path="/employer/id"
+            path="/employer/:id"
           >
+            {/* {user.user_type === 'Employer' ?
+              // If the user is already logged in, 
+              // redirect to the /employer/:id page
+              <Redirect to="/employer/:id" />
+              :
+              // Otherwise, show the login page
+              <LoginPage />
+            } */}
             <EmployerPage />
-          </Route>
+          </ProtectedRoute>
 
           <Route
             // shows EmployerPage at all times
