@@ -32,10 +32,10 @@ function* fetchSkills(action){
     }
 }
 
-function* employerSaga() {
+function* jobSaga() {
     yield takeLatest('FETCH_JOB', fetchJob);
     yield takeLatest('ADD_JOB', addJob);
     yield takeLatest('FETCH_SKILLS', fetchSkills);
   }
 
-export default employerSaga;
+export default jobSaga;
