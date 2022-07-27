@@ -1,27 +1,29 @@
 import React from 'react';
-// import EditIcon from '@material-ui/icons/Edit';
+import EditIcon from '@material-ui/icons/Edit';
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import './EmployerPage.css';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../AdminRegisterForm/AdminRegisterForm';
 
 function EmployerPage() {
-
+  const user = useSelector((store) => store.user);
+  const job = useSelector((store) => store.job);
 
   return (
     <div className="employerView">
       <div className="profileData">
-        <p>Joe Somebody</p>
-        <p>j.somebody@company.net</p>
-        <p>123-456-7890</p>
-        <p>123 Street Rd, Suite #3, Minneapolis, MN 55123</p>
+        <p>{user.first_name} {user.last_name}</p>
+        <p>{user.phone_number}</p>
+        <p>{user.email}</p>
+        <p>{user.city}, {user.state}</p>
       </div>
       <div className="jobsData">
         <p className="jobsDataText">Current Jobs:</p>
         <div className="jobCard">
-          {/* <EditIcon/> */}
+          <EditIcon/>
           <CancelPresentationIcon/>
           <p className="jobCardText">Software Engineer</p>
           <p className="jobCardText">Build amazing apps with emerging technologies.</p>
