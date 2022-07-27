@@ -58,50 +58,50 @@ COPY public.skills (id, skill_name) FROM stdin;
 18	Decisive
 19	Organizational
 20	Logistic
-22	planning
+22	Planning
 23	Preparation
 28	Conflict management
 29	Leadership
-32	management
-33	coordinates activities of subordinate units
+32	Management
+33	Coordinates activities of subordinate units
 35	Creativity
 37	Persuasion
 38	Openness to criticism
 40	Compromise
-43	consultative
+43	Consultative
 45	Dependability(Responsibility + Reliability)
 48	Listening
 49	Motivation 
 50	Encourage
 2	Community relations
-55	analyze
-27	adapt
-26	adaptability
-51	assessment
+55	Analyze
+27	Adapt
+26	Adaptability
+51	Assessment
 6	Collaboration
-30	commands
+30	Commands
 8	Conduct liaison
-5	cooperation
-42	counseling
-52	counterintelligence
-44	creative thinking
-21	designing
-57	engineering
-54	evaluate
-56	formulate
-34	improvise
-53	intelligence
-9	Liason
+5	Cooperation
+42	Counseling
+52	Counterintelligence
+44	Creative thinking
+21	Designing
+57	Engineering
+54	Evaluate
+56	Formulate
+34	Improvise
+53	Intelligence
+9	Liaison
 7	Maintains Liason
-39	negotiation
-47	reliability
-41	resolution
-36	resourcefulness
-4	respond
-46	responsibility
-25	stress
-31	supervise
-24	stress management
+39	Negotiation
+47	Reliability
+41	Resolution
+36	Resourcefulness
+4	Respond
+46	Responsibility
+25	Stress
+31	Supervise
+24	Stress management
 \.
 
 

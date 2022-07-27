@@ -22,12 +22,12 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import VeteranPage from '../VeteranPage/VeteranPage';
 import EmployerPage from '../EmployerPage/EmployerPage';
 import EmployerJobInput from '../EmployerJobInput/EmployerJobInput';
-
-import './App.css';
 import VeteranIntakeForm from '../VeteranIntakeForm/VeteranIntakeForm';
 import EmployerIntakeForm from '../EmployerIntakeForm/EmployerIntakeForm';
 import AdminLandingPage from '../AdminLandingPage.js/AdminLandingPage';
 
+import VeteranLandingPage from '../VeteranLandingPage/VeteranLandPage';
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -59,9 +59,17 @@ function App() {
           <Route
             // shows EmployerPage at all times
             exact
-            path="/employer"
+            path="/employer/id"
           >
             <EmployerPage />
+          </Route>
+
+          <Route
+            // shows EmployerPage at all times
+            exact
+            path="/employer"
+          >
+            <EmployerIntakeForm/>
           </Route>
 
           <Route
@@ -148,6 +156,10 @@ function App() {
 
           <Route exact path="/employer-intake">
             <EmployerIntakeForm />
+          </Route>
+
+          <Route exact path="/veteran-landing">
+            <VeteranLandingPage />
           </Route>
 
 
