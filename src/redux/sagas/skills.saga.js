@@ -4,7 +4,7 @@ import axios from 'axios';
 //GET for skills
 function*  fetchSkills (action) {
     try{
-      const response = yield axios.get('/api/skills/'+ action.payload.skills);
+      const response = yield axios.get('/api/skills');
         console.log(response.data);
         yield put ({
             type: 'SET_SKILLS',

@@ -4,18 +4,29 @@ import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import './EmployerJobInput.css';
 
 
 function EmployerJobInput() {
+    const dispatch = useDispatch();
+    const skills = useSelector((store) => store.skills);
     const [jobInputData, setJobInputData] = useState({name: '', description: '', city: '', state: '', company: '', skills: []});
-    const [skills, setSkills] = useState('');
+    const [newSkills, setNewSkills] = useState('');
 
     const handleChange = (evt) => {
         console.log('changes being made');
 
-        setSkills([...skills, evt.target.value]);
+        setNewSkills([...newSkills, evt.target.value]);
     }
+
+    useEffect(() => {
+        dispatch({
+            type: 'FETCH_SKILLS'
+        });
+    }, []);
 
     return (
     <div> 
@@ -38,76 +49,20 @@ function EmployerJobInput() {
                     <Select
                         labelId="demo-basic-select-label"
                         id="demo-basic-select"
-                        value={jobInputData.skills}
-                        label="Job Name"
-                        name="name"
+                        value={newSkills}
                         onChange={handleChange}
                     >
-                        <MenuItem value={'Adapt'}>Adapt</MenuItem>
-                        <MenuItem value={'Adaptability'}>Adaptability</MenuItem>
-                        <MenuItem value={'Admin'}>Admin</MenuItem>
-                        <MenuItem value={'Analyze'}>Analyze</MenuItem>
-                        <MenuItem value={'Assessment'}>Assessment</MenuItem>
-                        <MenuItem value={'Collaboration'}>Collaboration</MenuItem>
-                        <MenuItem value={'Commands'}>Commands</MenuItem>
-                        <MenuItem value={'Communication'}>Communication</MenuItem>
-                        <MenuItem value={'Community Relations'}>Community Relations</MenuItem>
-                        <MenuItem value={'Compromise'}>Compromise</MenuItem>
-                        <MenuItem value={'Conduct Liaison'}>Conduct Liaison</MenuItem>
-                        <MenuItem value={'Conflict Management'}>Conflict Management</MenuItem>
-                        <MenuItem value={'Consultative'}>Consultative</MenuItem>
-                        <MenuItem value={'Cooperation'}>Cooperation</MenuItem>
-                        <MenuItem value={'Coordinates Activities of SubordinateUnits'}>Coordinates Activities of Subordinate Units</MenuItem>
-                        <MenuItem value={'Counseling'}>Counseling</MenuItem>
-                        <MenuItem value={'Counterintelligence'}>Counterintelligence</MenuItem>
-                        <MenuItem value={'Creative Thinking'}>Creative Thinking</MenuItem>
-                        <MenuItem value={'Creativity'}>Creativity</MenuItem>
-                        <MenuItem value={'Critical Thinking'}>Critical Thinking</MenuItem>
-                        <MenuItem value={'Decision'}>Decision</MenuItem>
-                        <MenuItem value={'Decision Making'}>Decision Making</MenuItem>
-                        <MenuItem value={'Decision-Making'}>Decision-Making</MenuItem>
-                        <MenuItem value={'Dependability'}>Dependability</MenuItem>
-                        <MenuItem value={'Designing'}>Designing</MenuItem>
-                        <MenuItem value={'Encourage'}>Encourage</MenuItem>
-                        <MenuItem value={'Engineering'}>Engineering</MenuItem>
-                        <MenuItem value={'Evaluate'}>Evaluate</MenuItem>
-                        <MenuItem value={'Formulate'}>Formulate</MenuItem>
-                        <MenuItem value={'Improvise'}>Improvise</MenuItem>
-                        <MenuItem value={'Intelligence'}>Intelligence</MenuItem>
-                        <MenuItem value={'Language'}>Language</MenuItem>
-                        <MenuItem value={'Leadership'}>Leadership</MenuItem>
-                        <MenuItem value={'Liaison'}>Liaison</MenuItem>
-                        <MenuItem value={'Listening'}>Listening</MenuItem>
-                        <MenuItem value={'Logistic'}>Logistic</MenuItem>
-                        <MenuItem value={'Maintains Liaison'}>Maintains Liaison</MenuItem>
-                        <MenuItem value={'Management'}>Management</MenuItem>
-                        <MenuItem value={'Motivation'}>Motivation</MenuItem>
-                        <MenuItem value={'Negotiation'}>Negotiation</MenuItem>
-                        <MenuItem value={'Openness to Criticism'}>Openness to Criticism</MenuItem>
-                        <MenuItem value={'Organizational'}>Organizational</MenuItem>
-                        <MenuItem value={'Persuasion'}>Persuasion</MenuItem>
-                        <MenuItem value={'Planning'}>Planning</MenuItem>
-                        <MenuItem value={'Preparation'}>Preparation</MenuItem>
-                        <MenuItem value={'Problem Solving'}>Problem Solving</MenuItem>
-                        <MenuItem value={'Reliability'}>Reliability</MenuItem>
-                        <MenuItem value={'Resolution'}>Resolution</MenuItem>
-                        <MenuItem value={'Resourcefulness'}>Resourcefulness</MenuItem>
-                        <MenuItem value={'Respond'}>Respond</MenuItem>
-                        <MenuItem value={'Responsibility'}>Responsibility</MenuItem>
-                        <MenuItem value={'Stress'}>Stress</MenuItem>
-                        <MenuItem value={'Stress Management'}>Stress Management</MenuItem>
-                        <MenuItem value={'Supervise'}>Supervise</MenuItem>
-                        <MenuItem value={'Teamwork'}>Teamwork</MenuItem>
-                        <MenuItem value={'Time Critical'}>Time Critical</MenuItem>
-                        <MenuItem value={'Time Management'}>Time Management</MenuItem>
-                        <MenuItem value={'Time Sensitive'}>Time Sensitive</MenuItem>
+                        {skills && skills.map((skill) => (
+                            <MenuItem key={skill.id} value={skill.skill_name}>{skill.skill_name}</MenuItem>
+                        ))}
+
                     </Select>
                     <p>Current Selected Skills:
-                        <br></br>1 {skills[0]}
-                        <br></br>2 {skills[1]}
-                        <br></br>3 {skills[2]}
-                        <br></br>4 {skills[3]}
-                        <br></br>5 {skills[4]}
+                        <br></br>1 {newSkills[0]}
+                        <br></br>2 {newSkills[1]}
+                        <br></br>3 {newSkills[2]}
+                        <br></br>4 {newSkills[3]}
+                        <br></br>5 {newSkills[4]}
                     </p>
                 </div>
                 <Button variant="contained" color="primary" type="Submit">

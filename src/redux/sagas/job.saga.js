@@ -21,21 +21,9 @@ function* addJob(action){
     }
 }
 
-function* fetchSkills(action){
-    console.log('in fetchSkills', action);
-    try {
-        const res = yield axios.get(`/api/job/${action.payload}`);
-        yield put({ type: 'SET_JOB', payload: res.data });
-    } catch (err) {
-        console.log('fetchSkills request failed', err);
-        return;
-    }
-}
-
 function* jobSaga() {
     yield takeLatest('FETCH_JOB', fetchJob);
     yield takeLatest('ADD_JOB', addJob);
-    yield takeLatest('FETCH_SKILLS', fetchSkills);
   }
 
 export default jobSaga;
