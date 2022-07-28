@@ -7,11 +7,14 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Link } from 'react-router-dom';
 import './VeteranPage.css';
 
+
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
 import { ProfileEditPage } from '../ProfileEditPage/ProfileEditPage';
 
+
 function VeteranPage() {
+  
 
 
   return (

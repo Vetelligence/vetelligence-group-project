@@ -27,6 +27,7 @@ import EmployerIntakeForm from '../EmployerIntakeForm/EmployerIntakeForm';
 import AdminLandingPage from '../AdminLandingPage.js/AdminLandingPage';
 
 import VeteranLandingPage from '../VeteranLandingPage/VeteranLandPage';
+import CurrentJob from '../CurrentJob/CurrentJob';
 import './App.css';
 
 function App() {
@@ -168,6 +169,10 @@ function App() {
 
           <Route exact path="/veteran-landing">
             <VeteranLandingPage />
+          </Route>
+
+          <Route exact path="/current-job">
+            <CurrentJob />
           </Route>
 
 
