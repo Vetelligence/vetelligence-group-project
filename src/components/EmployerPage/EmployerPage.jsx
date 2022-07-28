@@ -6,7 +6,8 @@ import { useSelector } from 'react-redux';
 import './EmployerPage.css';
 
 // CUSTOM COMPONENTS
-import RegisterForm from '../AdminRegisterForm/AdminRegisterForm';
+
+import RegisterForm from '../RegisterForm/RegisterForm';
 
 function EmployerPage() {
   const user = useSelector((store) => store.user);

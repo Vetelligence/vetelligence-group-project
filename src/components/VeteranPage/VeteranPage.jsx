@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import './VeteranPage.css';
 
 // CUSTOM COMPONENTS
-import RegisterForm from '../AdminRegisterForm/AdminRegisterForm';
+import RegisterForm from '../RegisterForm/RegisterForm';
 import { ProfileEditPage } from '../ProfileEditPage/ProfileEditPage';
 
 function VeteranPage() {
@@ -36,7 +36,7 @@ function VeteranPage() {
             <Typography>Edit Profile</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <ProfileEditPage />
+            <ProfileEditPage page={'edit'}/>
           </AccordionDetails>
         </Accordion>
         <Accordion>

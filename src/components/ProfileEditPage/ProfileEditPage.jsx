@@ -1,10 +1,10 @@
-
+import RegisterForm from "../RegisterForm/RegisterForm"
 
 export const ProfileEditPage = () => {
 
     return(
         <>
-            This is the profile edit page
+            <RegisterForm page={'edit'}/>
         </>
     )
 }
