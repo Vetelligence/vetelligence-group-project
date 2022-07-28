@@ -8,7 +8,8 @@ import { useDispatch } from 'react-redux';
 import './EmployerPage.css';
 
 // CUSTOM COMPONENTS
-import RegisterForm from '../AdminRegisterForm/AdminRegisterForm';
+
+import RegisterForm from '../RegisterForm/RegisterForm';
 
 function EmployerPage() {
   const dispatch = useDispatch();
