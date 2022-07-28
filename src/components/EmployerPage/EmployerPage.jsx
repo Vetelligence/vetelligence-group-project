@@ -3,14 +3,24 @@ import EditIcon from '@material-ui/icons/Edit';
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import './EmployerPage.css';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../AdminRegisterForm/AdminRegisterForm';
 
 function EmployerPage() {
+  const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const job = useSelector((store) => store.job);
+  console.log(">>>>>>>>>>>>>>>>>", job);
+
+  useEffect(() => {
+    dispatch({
+      type: 'FETCH_JOB'
+    });
+  }, [user]);
 
   return (
     <div className="employerView">
@@ -25,8 +35,8 @@ function EmployerPage() {
         <div className="jobCard">
           <EditIcon/>
           <CancelPresentationIcon/>
-          <p className="jobCardText">Software Engineer</p>
-          <p className="jobCardText">Build amazing apps with emerging technologies.</p>
+          <p className="jobCardText">{job.job_name}</p>
+          <p className="jobCardText">{job.job_description}</p>
         </div>
       </div>
       <Link to="/jobInput"><button className="addJobBtn">Add Job</button></Link>
