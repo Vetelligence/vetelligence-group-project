@@ -25,8 +25,20 @@ function* fetchUser() {
 }
 
 
+function* fetchEmployers(action){
+
+}
+
+function* fetchVeterans(action) {
+
+}
+
+
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('FETCH_EMPLOYERS', fetchEmployers);
+  yield takeLatest('FETCH_VETERANS', fetchVeterans);
 }
 
 export default userSaga;

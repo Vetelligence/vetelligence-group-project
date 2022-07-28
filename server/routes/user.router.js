@@ -14,6 +14,27 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
+// router.get('/:id'){
+//   switch (req.body.userType){
+//     case 'veteran':
+//      const sqlQuery = `
+//       SELECT
+//         user.*,
+//         veterans.mos_id,
+//         veterans.status
+//       FROM "user"
+//       JOIN veterans
+//         ON user.id = veterans.user_id
+//       WHERE user.type = veteran;
+//      `
+//       break;
+    
+//     case 'employer':
+    
+//     break;
+//    }
+// }
+
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted

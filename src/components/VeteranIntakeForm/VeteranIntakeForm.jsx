@@ -15,9 +15,16 @@ function VeteranIntakeForm() {
   const mosData = useSelector(store => store.intake.mosForBranch)
   const [intakeData, setIntakeData] = useState({
     userType: 'veteran',
-    branch: '',
-    rank: '',
-    mos: ''
+      branch: '',
+      mos: '',
+      username:'',
+      password: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone:'',
+      city: '',
+      state: ''
   });
 
   function handleChange(event) {
@@ -25,19 +32,15 @@ function VeteranIntakeForm() {
       ...intakeData,
       [event.target.name]: event.target.value,
     });
+
+    if (event.target.name === 'branch') {
+      dispatch({
+        type: 'FETCH_MOS',
+        payload: { branch: event.target.value }
+      });
+    }
   }
 
-  function handleBranch(event) {
-    setIntakeData({
-      ...intakeData,
-      [event.target.name]: event.target.value,
-    });
-
-    dispatch({
-      type: 'FETCH_MOS',
-      payload: { branch: event.target.value }
-    });
-  }
 
   function submit(event) {
     event.preventDefault();
@@ -51,8 +54,15 @@ function VeteranIntakeForm() {
     setIntakeData({
       userType: 'veteran',
       branch: '',
-      rank: '',
-      mos: ''
+      mos: '',
+      username:'',
+      password: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone:'',
+      city: '',
+      state: ''
     });
 
   }
@@ -65,23 +75,22 @@ function VeteranIntakeForm() {
 
       <br></br>
       <form onSubmit={submit}>
-        <TextField onChange={handleChange} id="outlined-basic" name="username" label="Username" variant="outlined" />
+        <TextField onChange={handleChange} value={intakeData.username}  name="username" label="Username" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} id="outlined-basic" name="password" label="Password" variant="outlined" />
+        <TextField onChange={handleChange} value={intakeData.password}  name="password" label="Password" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} id="outlined-basic" name="firstName" label="First Name" variant="outlined" />
+        <TextField onChange={handleChange} value={intakeData.firstName} name="firstName" label="First Name" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} id="outlined-basic" name="lastName" label="Last Name" variant="outlined" />
+        <TextField onChange={handleChange} value={intakeData.lastName} name="lastName" label="Last Name" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} id="outlined-basic" name="email" label="E-mail" variant="outlined" />
+        <TextField onChange={handleChange} value={intakeData.email} name="email" label="E-mail" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} id="outlined-basic" name="phone" label="Phone" variant="outlined" />
+        <TextField onChange={handleChange} value={intakeData.phone} name="phone" label="Phone" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} id="outlined-basic" name="city" label="City" variant="outlined" />
+        <TextField onChange={handleChange} value={intakeData.city} name="city" label="City" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} id="outlined-basic" name="state" label="State" variant="outlined" />
+        <TextField onChange={handleChange} value={intakeData.state} name="state" label="State" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} id="outlined-basic" name="dischargeDate" label="Discharge Date" variant="outlined" />
 
 
         <FormControl fullWidth>
@@ -92,7 +101,7 @@ function VeteranIntakeForm() {
             value={intakeData.branch}
             label="branch"
             name="branch"
-            onChange={handleBranch}
+            onChange={handleChange}
           >
             <MenuItem value={'Coast Guard'}>Coast Guard</MenuItem>
             <MenuItem value={'Marine Corps'}>Marine Corps</MenuItem>
