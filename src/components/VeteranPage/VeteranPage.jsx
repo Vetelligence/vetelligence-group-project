@@ -9,6 +9,7 @@ import './VeteranPage.css';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../AdminRegisterForm/AdminRegisterForm';
+import { ProfileEditPage } from '../ProfileEditPage/ProfileEditPage';
 
 function VeteranPage() {
 
@@ -35,9 +36,7 @@ function VeteranPage() {
             <Typography>Edit Profile</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              Profile Info We need a GET
-            </Typography>
+            <ProfileEditPage />
           </AccordionDetails>
         </Accordion>
         <Accordion>
