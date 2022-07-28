@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import './EmployerPage.css';
 
-// CUSTOM COMPONENTS
+// This component shows the dashboard for the given logged in Employer/Recruiter
 
 import RegisterForm from '../RegisterForm/RegisterForm';
 
@@ -15,7 +15,6 @@ function EmployerPage() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const job = useSelector((store) => store.job);
-  console.log(">>>>>>>>>>>>>>>>>", job);
 
   useEffect(() => {
     dispatch({

@@ -23,24 +23,50 @@ jobRouter.get('/', (req, res) => {
 });
 
 // POST route for employer to input a job
+// requires an async route as it needs to update the jobs table
+// then it needs to get the Returning property from that post
+// it takes the id created from the post of the job data and
+// adds that to the POST to the job_skills table.
 jobRouter.post ('/', (req, res) => {
     console.log('in POST', req.body);
 
   const sqlQuery = `
-    INSERT INTO job (name, email, phone, city, state, skills)
-    VALUES ($1, $2, $3, $4, $5, $6)`;
+    INSERT INTO jobs (job_name, employer_id, job_description, city, state)
+    VALUES ($1, $2, $3, $4, $5)
+    RETURNING *
+    `;
   const sqlParams = [
     req.body.jobInputData.name,
-    req.body.jobInputData.email,
-    req.body.jobInputData.phone,
+    req.user.id,
+    req.body.jobInputData.description,
     req.body.jobInputData.city,
     req.body.jobInputData.state,
-    req.body.jobInputData.skills,
  ];
+  const sqlQuery2 = `
+    INSERT INTO job_skills (skills_id, job_id)
+    VALUES
+      ($2, $1),
+      ($3, $1),
+      ($4, $1),
+      ($5, $1),
+      ($6, $1);
+  `;
+  const sqlParams2 = [
+    req.body.job_id,
+    req.body.jobInputData.skills[0],
+    req.body.jobInputData.skills[1],
+    req.body.jobInputData.skills[2],
+    req.body.jobInputData.skills[3],
+    req.body.jobInputData.skills[4],
+  ]
   pool.query(sqlQuery, sqlParams)
   .then((results) => {
     console.log('POST is sending', results.rows);
+    pool.query(sqlQuery2, sqlParams2)
     res.sendStatus(201);
+  })
+  .then((results) => {
+
   })
   .catch((err) => {
     console.log('error in post router', err);
