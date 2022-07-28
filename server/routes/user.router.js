@@ -50,6 +50,31 @@ router.post('/register', (req, res, next) => {
     });
 });
 
+router.put('/update/:id', rejectUnauthenticated, (req, res) => {
+  console.log(req.body)
+  const sqlQuery = `
+    UPDATE "user"
+    SET first_name = $1, last_name = $2, email = $3, phone_number = $4, city = $5, state = $6
+    WHERE id = $7
+  `
+  const sqlParams = [
+    req.body.firstName,
+    req.body.lastName, 
+    req.body.email,
+    req.body.phoneNumber,
+    req.body.city,
+    req.body.state,
+    req.user.id
+  ]
+  pool.query(sqlQuery, sqlParams)
+    .then(dbRes => {
+
+    })
+    .catch(err => {
+      console.log('failed to update user', err)
+    })
+})
+
 // Handles login form authenticate/login POST
 // userStrategy.authenticate('local') is middleware that we run on this route
 // this middleware will run our POST if successful
