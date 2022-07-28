@@ -70,8 +70,7 @@ function Nav() {
             </Button>
           </MenuItem>
           {user.id && (
-            <>
-
+            <div>
               <MenuItem>
                 <Button>
                   <Link className="navLink" to="/info">
@@ -84,7 +83,7 @@ function Nav() {
                   <LogOutButton className="navLink" />
                 </Button>
               </MenuItem>
-            </>)}
+            </div>)}
           <MenuItem>
             <Button >
               <Link className="navLink" to="/about">
