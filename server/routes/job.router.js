@@ -2,13 +2,20 @@ const express = require('express');
 const pool = require('../modules/pool');
 const jobRouter = express.Router();
 
-// GET request for all job data to display
+// GET to display all jobs for this employer
 jobRouter.get('/', (req, res) => {
+  let employerID = req.user.id;
   const sqlQuery = `
-    ;`
-  pool.query(sqlQuery)
+    SELECT *
+    FROM jobs
+    WHERE employer_id = $1;  
+  `;
+  const sqlParams = [
+    employerID
+  ]
+  pool.query(sqlQuery, sqlParams)
     .then((results) => {
-        res.send(results.rows)
+        res.send(results.rows[0])
     })
     .catch((err) => {
         console.log('GET failed in job router', err);

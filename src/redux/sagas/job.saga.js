@@ -4,7 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* fetchJob(action){
     console.log('in fetchJob', action);
     try {
-        const res = yield axios.get(`/api/job/${action.payload}`);
+        const res = yield axios.get(`/api/job`);
         yield put({ type: 'SET_JOB', payload: res.data });
     } catch (err) {
         console.log('fetchJob request failed', err);
