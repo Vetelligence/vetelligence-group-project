@@ -21,9 +21,19 @@ function* addJob(action){
     }
 }
 
+function* fetchMatchedCandidates() {
+    try{
+        const res = yield axios.get('/api/job/candidates')
+    }
+    catch(err){
+        console.log('Failed to fetch matched candidates', err)
+    }
+}
+
 function* jobSaga() {
     yield takeLatest('FETCH_JOB', fetchJob);
     yield takeLatest('ADD_JOB', addJob);
+    yield takeLatest('FETCH_MATCHED_CANDIDATES', fetchMatchedCandidates)
   }
 
 export default jobSaga;

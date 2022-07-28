@@ -1,6 +1,7 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const jobRouter = express.Router();
+const {rejectUnauthenticated,} = require('../modules/authentication-middleware');
 
 // GET to display all jobs for this employer
 jobRouter.get('/', (req, res) => {
@@ -15,12 +16,20 @@ jobRouter.get('/', (req, res) => {
   ]
   pool.query(sqlQuery, sqlParams)
     .then((results) => {
-        res.send(results.rows[0])
+        res.send(results.rows)
     })
     .catch((err) => {
         console.log('GET failed in job router', err);
     });
 });
+
+jobRouter.get('/candidates/:id', rejectUnauthenticated, (req, res) => {
+
+  const sqlQuery = `
+    SELECT *
+    FROM 
+  `
+})
 
 // POST route for employer to input a job
 jobRouter.post ('/', (req, res) => {
