@@ -3,16 +3,16 @@ const pool = require('../modules/pool');
 const skillsRouter = express.Router();
 
 //grabs all skills
-skillsRouter.get('/:skills', (req,res) =>{
-    console.log("this is what is being requested:", req.params);
+skillsRouter.get('/', (req,res) =>{
+    // console.log("this is what is being requested:", req.params);
     sqlQuery=`
         SELECT *
         FROM skills
         ORDER BY skills.skill_name;
     `
-    pool.query(sqlQuery, [req.params.skills])
+    pool.query(sqlQuery)
         .then ((results) => {
-            console.log('get skills success', results.rows);
+            // console.log('get skills success', results.rows);
             res.send(results.rows);
         })
         .catch((err) => {
