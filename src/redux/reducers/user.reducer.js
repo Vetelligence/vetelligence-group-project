@@ -12,7 +12,7 @@ const userReducer = (state = {}, action) => {
   }
 };
 
-const employersList = (state= [], action) => {
+const employerList = (state= [], action) => {
   switch (action.type) {
     case 'SET_EMPLOYER_LIST':
       return action.payload;
@@ -40,7 +40,7 @@ const veteranList = (state= [], action) => {
 // state.user
 const usersReducer = combineReducers({
   userReducer,
-  employersList,
+  employerList,
   veteranList
 }) ;
 

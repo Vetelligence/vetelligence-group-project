@@ -26,11 +26,35 @@ function* fetchUser() {
 
 
 function* fetchEmployers(action){
+  try{
+   const employers = yield axios.get(`api/user/employer`);
+   console.log('employer fetch success', employers.data)
+   yield put({
+    type: 'SET_EMPLOYER_LIST',
+    payload: employers.data
+   });
+
+  }
+  catch (err){
+    console.error('error fetching employers', err);
+  }
 
 }
 
 function* fetchVeterans(action) {
+  try {
+    const veterans = yield axios.get(`api/user/veteran`);
+    console.log('veteran fetch success', veterans.data);
+    yield put ({
+      type: 'SET_VETERAN_LIST',
+      payload: veterans.data
+    })
+    
+  }
+  catch (err){
+    console.error('error fetching veterans', err);
 
+  }
 }
 
 
