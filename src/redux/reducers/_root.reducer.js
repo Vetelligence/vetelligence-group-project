@@ -5,6 +5,7 @@ import intake from './intake.reducer';
 import job from './job.reducer';
 import skills from './skills.reducer';
 import currentJob from './currentJob.reducer';
+import admin from './admin.reducer'
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   job,
   skills,
   currentJob,
+  admin
 });
 
 export default rootReducer;
