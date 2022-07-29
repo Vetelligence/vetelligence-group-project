@@ -79,9 +79,7 @@ function Nav() {
                 </Button>
               </MenuItem>
               <MenuItem>
-                <Button>
                   <LogOutButton className="navLink" />
-                </Button>
               </MenuItem>
             </div>)}
           <MenuItem>

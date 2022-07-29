@@ -22,6 +22,9 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import VeteranPage from '../VeteranPage/VeteranPage';
 import EmployerPage from '../EmployerPage/EmployerPage';
 import EmployerJobInput from '../EmployerJobInput/EmployerJobInput';
+import AdminLandingPage from '../AdminLandingPage.js/AdminLandingPage';
+import './App.css';
+
 import VeteranIntakeForm from '../VeteranIntakeForm/VeteranIntakeForm';
 import EmployerIntakeForm from '../EmployerIntakeForm/EmployerIntakeForm';
 import AdminLandingPage from '../AdminLandingPage.js/AdminLandingPage';
@@ -89,6 +92,7 @@ function App() {
             <EmployerJobInput />
           </Route>
 
+
           <Route
             // shows AboutPage at all times (logged in or not)
             exact
@@ -108,6 +112,13 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
+
+          <Route
+            exact
+            path="/admin"
+            >
+              <AdminLandingPage />
+            </Route>
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage

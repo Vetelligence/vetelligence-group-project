@@ -14,6 +14,58 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   res.send(req.user);
 });
 
+router.get('/:users', (req, res) =>{
+  switch (req.params.users){
+    case 'veteran':
+     {const sqlQuery = `
+      SELECT
+        "user".*,
+        veterans.mos_id,
+        veterans.status
+      FROM "user"
+      JOIN veterans
+        ON "user".id = veterans.user_id
+      WHERE "user".user_type = 'veteran';
+     `
+     pool.query(sqlQuery)
+      .then((result) => {
+        console.log('get veterans success', result.rows);
+        res.send(result.rows);
+      })
+      .catch((err) => {
+        console.log('err in get veterans', err);
+        res.sendStatus(500);
+      })
+    }
+      break;
+    
+    case 'employer':
+      {const sqlQuery = `
+      SELECT
+        "user".*,
+        "employer".company,
+        "employer".status
+      FROM "user"
+      JOIN "employer"
+        ON "user".id = employer.user_id
+      WHERE "user".user_type = 'employer';
+     `
+
+     pool.query(sqlQuery)
+     .then((result) => {
+       console.log('get employers success', result.rows);
+       res.send(result.rows);
+     })
+     .catch((err) => {
+       console.log('err in get employers', err);
+       res.sendStatus(500);
+     })
+    }
+    
+    break;
+   }
+})
+
 // Handles POST request with new user data
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
