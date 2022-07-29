@@ -1,48 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
 
-function RegisterForm() {
+
+function RegisterForm({page}) {
   const errors = useSelector((store) => store.errors);
+  const user = useSelector(store => store.user)
   const dispatch = useDispatch();
-  const [userInfo, setUserInfo] = useState({userType: 'admin'})
+  const [userInfo, setUserInfo] = useState({username: '', password: '', email: '', phoneNumber: '', city: '', state: '', firstName: '', lastName: '', userType: 'admin'})
+
+
+  useEffect(() => {
+    if(page === 'edit'){
+      setUserInfo({...userInfo, firstName: user.first_name, lastName: user.last_name, city: user.city, state: user.state, email: user.email, phoneNumber: user.phone_number})
+    }
+  }, [])
+
+
+
 
   const registerUser = (event) => {
     event.preventDefault();
-
-    dispatch({
-      type: 'REGISTER',
-      payload: userInfo
-    });
+    if(page === 'edit'){
+      dispatch({
+        type: 'UPDATE_USER_INFO',
+        payload: userInfo
+      })
+    }
+    else{
+      dispatch({
+        type: 'REGISTER',
+        payload: userInfo
+      });
+    }
   }; // end registerUser
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
-      <h3>Register User</h3>
+      
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
         </h3>
       )}
       <div>
-          <TextField
+          {page ==='edit'? <></>:<TextField
             type="text"
             name="username"
             label="username"
             value={userInfo.username}
             required
             onChange={(event) => setUserInfo({...userInfo, username:event.target.value})}
-          />
+          />}
       </div>
       <div>
-          <TextField
+          {page ==='edit'? <></>:<TextField
             type="password"
             name="password"
             label="password"
             value={userInfo.password}
             required
             onChange={(event) => setUserInfo({...userInfo, password: event.target.value})}
-          />
+          />}
       </div>
       <div>
           <TextField
@@ -105,7 +124,12 @@ function RegisterForm() {
           />
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        {
+         page === 'edit'?  
+         <input className="btn" type="submit" name="submit" value="Update" />
+         :
+         <input className="btn" type="submit" name="submit" value="Register" />
+        }
       </div>
     </form>
   );

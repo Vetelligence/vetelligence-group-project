@@ -75,6 +75,7 @@ function VeteranIntakeForm() {
 
       <br></br>
       <form onSubmit={submit}>
+
         <TextField onChange={handleChange} value={intakeData.username}  name="username" label="Username" variant="outlined" />
         <br></br>
         <TextField onChange={handleChange} value={intakeData.password}  name="password" label="Password" variant="outlined" />
@@ -90,6 +91,7 @@ function VeteranIntakeForm() {
         <TextField onChange={handleChange} value={intakeData.city} name="city" label="City" variant="outlined" />
         <br></br>
         <TextField onChange={handleChange} value={intakeData.state} name="state" label="State" variant="outlined" />
+
         <br></br>
 
 

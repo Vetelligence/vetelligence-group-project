@@ -24,9 +24,14 @@ import EmployerPage from '../EmployerPage/EmployerPage';
 import EmployerJobInput from '../EmployerJobInput/EmployerJobInput';
 import AdminLandingPage from '../AdminLandingPage.js/AdminLandingPage';
 import './App.css';
+
 import VeteranIntakeForm from '../VeteranIntakeForm/VeteranIntakeForm';
 import EmployerIntakeForm from '../EmployerIntakeForm/EmployerIntakeForm';
+import AdminLandingPage from '../AdminLandingPage.js/AdminLandingPage';
 
+import VeteranLandingPage from '../VeteranLandingPage/VeteranLandPage';
+import CurrentJob from '../CurrentJob/CurrentJob';
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -55,12 +60,28 @@ function App() {
             <VeteranPage />
           </Route>
 
+          <ProtectedRoute
+            // shows EmployerPage if logged in
+            exact
+            path="/employer/:id"
+          >
+            {/* {user.user_type === 'Employer' ?
+              // If the user is already logged in, 
+              // redirect to the /employer/:id page
+              <Redirect to="/employer/:id" />
+              :
+              // Otherwise, show the login page
+              <LoginPage />
+            } */}
+            <EmployerPage />
+          </ProtectedRoute>
+
           <Route
             // shows EmployerPage at all times
             exact
             path="/employer"
           >
-            <EmployerPage />
+            <EmployerIntakeForm/>
           </Route>
 
           <Route
@@ -155,6 +176,14 @@ function App() {
 
           <Route exact path="/employer-intake">
             <EmployerIntakeForm />
+          </Route>
+
+          <Route exact path="/veteran-landing">
+            <VeteranLandingPage />
+          </Route>
+
+          <Route exact path="/current-job">
+            <CurrentJob />
           </Route>
 
 

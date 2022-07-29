@@ -1,31 +1,39 @@
 import React from 'react';
-// import EditIcon from '@material-ui/icons/Edit';
+import EditIcon from '@material-ui/icons/Edit';
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import './EmployerPage.css';
+import { JobListItem } from '../JobListItem/JobListItem';
 
-// CUSTOM COMPONENTS
-import RegisterForm from '../AdminRegisterForm/AdminRegisterForm';
+// This component shows the dashboard for the given logged in Employer/Recruiter
+
+import RegisterForm from '../RegisterForm/RegisterForm';
 
 function EmployerPage() {
+  const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
+  const job = useSelector((store) => store.job);
 
+  useEffect(() => {
+    dispatch({
+      type: 'FETCH_JOB'
+    });
+  }, [user]);
 
   return (
     <div className="employerView">
       <div className="profileData">
-        <p>Joe Somebody</p>
-        <p>j.somebody@company.net</p>
-        <p>123-456-7890</p>
-        <p>123 Street Rd, Suite #3, Minneapolis, MN 55123</p>
+        <p>{user.first_name} {user.last_name}</p>
+        <p>{user.phone_number}</p>
+        <p>{user.email}</p>
+        <p>{user.city}, {user.state}</p>
       </div>
       <div className="jobsData">
         <p className="jobsDataText">Current Jobs:</p>
-        <div className="jobCard">
-          {/* <EditIcon/> */}
-          <CancelPresentationIcon/>
-          <p className="jobCardText">Software Engineer</p>
-          <p className="jobCardText">Build amazing apps with emerging technologies.</p>
-        </div>
+        {job[0] && job.map(jobs => <JobListItem key={jobs.id} jobs={jobs}/>)}
       </div>
       <Link to="/jobInput"><button className="addJobBtn">Add Job</button></Link>
       <div className="employeeData">

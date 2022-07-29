@@ -4,13 +4,18 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CurrentJob from '../CurrentJob/CurrentJob';
 import { Link } from 'react-router-dom';
 import './VeteranPage.css';
 
+
 // CUSTOM COMPONENTS
-import RegisterForm from '../AdminRegisterForm/AdminRegisterForm';
+import RegisterForm from '../RegisterForm/RegisterForm';
+import { ProfileEditPage } from '../ProfileEditPage/ProfileEditPage';
+
 
 function VeteranPage() {
+  
 
 
   return (
@@ -19,7 +24,7 @@ function VeteranPage() {
     <div>
         <h4>Welcome, Veterans!</h4>
     
-
+        <br></br>
 
       <Link to="/veteran-intake"> <h4>Sign Up</h4></Link>
     </div>
@@ -35,9 +40,7 @@ function VeteranPage() {
             <Typography>Edit Profile</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              Profile Info We need a GET
-            </Typography>
+            <ProfileEditPage page={'edit'}/>
           </AccordionDetails>
         </Accordion>
         <Accordion>
@@ -49,9 +52,7 @@ function VeteranPage() {
             <Typography>Current Jobs</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              These are the current jobs. We need a GET.
-            </Typography>
+            <CurrentJob />
           </AccordionDetails>
         </Accordion>
         <Accordion>
