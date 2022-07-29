@@ -46,9 +46,11 @@ useEffect(() => {
             </Typography>
             <Typography variant="body2" color="text.secondary">
             {currentJob.job_description}
+            
             </Typography>
           </CardContent>
           <CardActions>
+            Company: {currentJob.company}
             Status: {currentJob.status}
             
           </CardActions>
