@@ -46,6 +46,7 @@ function EmployerJobInput() {
             type: 'ADD_JOB',
             payload: {jobInputData}
         });
+        
     }
 
     useEffect(() => {
