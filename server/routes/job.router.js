@@ -133,4 +133,34 @@ jobRouter.delete('/:id', (req, res) => {
   })
 });
 
+jobRouter.get('/:id', (req, res) => {
+  console.log('made it into Current get');
+
+  const sqlQuery = `
+    SELECT * 
+    FROM "user_jobs"
+    JOIN "jobs"
+    on jobs.id = user_jobs.jobs_id
+    WHERE user_jobs.user_id = $1
+    `;
+  
+  const sqlParams = [
+    req.user.id
+  ]
+
+  
+  pool.query(sqlQuery, sqlParams)
+  //needs to be dbRes, not res. Can't have 2 of the same 
+  .then(dbRes => {
+    console.log('result rows', dbRes.rows)
+
+    res.send(dbRes.rows);
+  })
+  .catch(err => {
+    console.log('ERROR: GET CURRENT', err);
+    res.sendStatus(500);
+  })
+
+})
+
 module.exports = jobRouter;
