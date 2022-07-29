@@ -109,10 +109,11 @@ jobRouter.get('/:id', (req, res) => {
 
   
   pool.query(sqlQuery, sqlParams)
-  .then(res => {
-    console.log('result rows', res.rows)
+  //needs to be dbRes, not res. Can't have 2 of the same 
+  .then(dbRes => {
+    console.log('result rows', dbRes.rows)
 
-    res.send(res.rows);
+    res.send(dbRes.rows);
   })
   .catch(err => {
     console.log('ERROR: GET CURRENT', err);
