@@ -23,7 +23,7 @@ function* addJob(action){
 
 function* fetchMatchedCandidates() {
     try{
-        const res = yield axios.get('/api/job/candidates')
+        const res = yield axios.get('/api/job/candidates/:id')
     }
     catch(err){
         console.log('Failed to fetch matched candidates', err)
