@@ -22,12 +22,11 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import VeteranPage from '../VeteranPage/VeteranPage';
 import EmployerPage from '../EmployerPage/EmployerPage';
 import EmployerJobInput from '../EmployerJobInput/EmployerJobInput';
-import AdminLandingPage from '../AdminLandingPage.js/AdminLandingPage';
+import AdminLandingPage from '../AdminLandingPage/AdminLandingPage';
 import './App.css';
 
 import VeteranIntakeForm from '../VeteranIntakeForm/VeteranIntakeForm';
 import EmployerIntakeForm from '../EmployerIntakeForm/EmployerIntakeForm';
-import AdminLandingPage from '../AdminLandingPage.js/AdminLandingPage';
 
 import VeteranLandingPage from '../VeteranLandingPage/VeteranLandPage';
 import CurrentJob from '../CurrentJob/CurrentJob';
