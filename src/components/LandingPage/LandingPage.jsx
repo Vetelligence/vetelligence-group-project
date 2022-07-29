@@ -3,9 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './LandingPage.css';
 
-// CUSTOM COMPONENTS
-
-
 function LandingPage() {
   const [heading, setHeading] = useState('Welcome');
   const history = useHistory();
@@ -16,15 +13,13 @@ function LandingPage() {
 
   return (
     <div className="container">
-      {/* <h2>{heading}</h2> */}
-
       <div className="grid">
         <div className="grid-col grid-col_8">
           <h2>
             I am a:
           </h2>
 
-          <Link className="linkMainPage" to="/veteran">
+          <Link className="linkMainPage" to="/veteran-landing">
             <p className="mainPageButton">
               Service Member
             </p>
@@ -33,12 +28,6 @@ function LandingPage() {
           <Link className="linkMainPage" to="/employer">
             <p className="mainPageButton">
               Employer / Recruiter
-            </p>
-          </Link>
-
-          <Link className="linkMainPage" to="/about">
-            <p className="mainPageButton">
-              About Vetelligence
             </p>
           </Link>
         </div>

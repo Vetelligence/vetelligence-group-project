@@ -7,8 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-
-
+import { Link } from 'react-router-dom';
 
 function VeteranIntakeForm() {
   const dispatch = useDispatch();
@@ -41,7 +40,6 @@ function VeteranIntakeForm() {
     }
   }
 
-
   function submit(event) {
     event.preventDefault();
     console.log(intakeData);
@@ -64,18 +62,13 @@ function VeteranIntakeForm() {
       city: '',
       state: ''
     });
-
   }
 
   return (
-    <>
-
-      <Button variant="outlined">Back</Button>
-      <br></br>
-
+    <div>
+      <Link to="/veteran-landing"><Button variant="outlined">Back</Button></Link>
       <br></br>
       <form onSubmit={submit}>
-
         <TextField onChange={handleChange} value={intakeData.username}  name="username" label="Username" variant="outlined" />
         <br></br>
         <TextField onChange={handleChange} value={intakeData.password}  name="password" label="Password" variant="outlined" />
@@ -91,10 +84,7 @@ function VeteranIntakeForm() {
         <TextField onChange={handleChange} value={intakeData.city} name="city" label="City" variant="outlined" />
         <br></br>
         <TextField onChange={handleChange} value={intakeData.state} name="state" label="State" variant="outlined" />
-
         <br></br>
-
-
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Branch</InputLabel>
           <Select
@@ -112,10 +102,6 @@ function VeteranIntakeForm() {
             <MenuItem value={'Air Force'}>Air Force</MenuItem>
           </Select>
         </FormControl>
-
-
-
-
         {intakeData.branch && <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">MOS</InputLabel>
           <Select
@@ -127,17 +113,14 @@ function VeteranIntakeForm() {
             onChange={handleChange}
           >
             {mosData.map(mos => <MenuItem key={mos.id} value={mos.id}> {mos.mos} - {mos.name}</MenuItem>)}
-
           </Select>
         </FormControl>
         }
-
         <Button variant="contained" color="primary" type="Submit">
           Submit
         </Button>
       </form>
-
-    </>
+    </div>
   )
 
 

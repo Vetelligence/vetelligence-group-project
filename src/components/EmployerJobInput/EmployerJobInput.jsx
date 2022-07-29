@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './EmployerJobInput.css';
 
 // This component allows an Employer/Recruiter to submit a new job to the app
@@ -56,7 +57,12 @@ function EmployerJobInput() {
     }, []);
 
     return (
-    <div> 
+    <div>
+        <Link to="/">
+            <Button className="btn" variant="outlined" color="primary">
+                Back
+            </Button>
+        </Link>
         <p>Helpful hints: <br></br> You will need the job title, job description, the city and state the job is located, the company name, and 5 skills associated with the job (these are chosen from a drop down). Just pick the closest 5 options from the drop down, they don't need to be exact.</p>  
         <div>
             <p>Job Input Form</p>

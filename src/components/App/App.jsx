@@ -5,14 +5,10 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
-
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
@@ -20,16 +16,12 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import VeteranPage from '../VeteranPage/VeteranPage';
+import VeteranLandingPage from '../VeteranLandingPage/VeteranLandPage';
+import VeteranIntakeForm from '../VeteranIntakeForm/VeteranIntakeForm';
 import EmployerPage from '../EmployerPage/EmployerPage';
 import EmployerJobInput from '../EmployerJobInput/EmployerJobInput';
-import AdminLandingPage from '../AdminLandingPage.js/AdminLandingPage';
-import './App.css';
-
-import VeteranIntakeForm from '../VeteranIntakeForm/VeteranIntakeForm';
 import EmployerIntakeForm from '../EmployerIntakeForm/EmployerIntakeForm';
 import AdminLandingPage from '../AdminLandingPage.js/AdminLandingPage';
-
-import VeteranLandingPage from '../VeteranLandingPage/VeteranLandPage';
 import CurrentJob from '../CurrentJob/CurrentJob';
 import './App.css';
 
