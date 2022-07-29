@@ -12,7 +12,7 @@ import Paper from '@mui/material/Paper';
 
 
 function AdminEmployerTable() {
-    const employerList = useSelector(store => store.user.employerList )
+    const employerList = useSelector(store => store.admin.employerList )
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch({

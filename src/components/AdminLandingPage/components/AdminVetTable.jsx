@@ -12,7 +12,7 @@ import Paper from '@mui/material/Paper';
 
 
 function AdminVetTable () {
-    const veteranList = useSelector(store => store.user.veteranList )
+    const veteranList = useSelector(store => store.admin.veteranList )
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch({
