@@ -137,11 +137,16 @@ jobRouter.get('/:id', (req, res) => {
   console.log('made it into Current get');
 
   const sqlQuery = `
-    SELECT * 
-    FROM "user_jobs"
-    JOIN "jobs"
-    on jobs.id = user_jobs.jobs_id
-    WHERE user_jobs.user_id = $1
+  SELECT jobs.job_description, jobs.job_name, employer.company, user_jobs.status
+  FROM user_jobs
+  JOIN jobs
+  ON user_jobs.jobs_id = jobs.id
+  JOIN "user"
+  ON jobs.employer_id = "user".id
+  JOIN employer
+  ON "user".id = employer.user_id
+  WHERE user_jobs.user_id = $1
+  ;
     `;
   
   const sqlParams = [
