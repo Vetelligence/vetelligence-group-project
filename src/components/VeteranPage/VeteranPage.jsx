@@ -4,6 +4,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import CurrentJob from '../CurrentJob/CurrentJob';
 import { Link } from 'react-router-dom';
 import './VeteranPage.css';
 
@@ -51,9 +52,7 @@ function VeteranPage() {
             <Typography>Current Jobs</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              These are the current jobs. We need a GET.
-            </Typography>
+            <CurrentJob />
           </AccordionDetails>
         </Accordion>
         <Accordion>
