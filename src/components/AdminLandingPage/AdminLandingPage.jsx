@@ -7,8 +7,10 @@ function AdminLandingPage() {
 
     return (
         <>
+        <h2>Employers</h2>
         <AdminEmployerTable />
         <br></br>
+        <h2>Veterans</h2>
         <AdminVetTable />
         </>
     );
