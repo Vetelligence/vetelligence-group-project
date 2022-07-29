@@ -42,7 +42,13 @@ jobRouter.post ('/', (req, res) => {
     req.body.jobInputData.city,
     req.body.jobInputData.state,
  ];
-  const sqlQuery2 = `
+
+  
+  
+  pool.query(sqlQuery, sqlParams)
+  .then((results) => {
+    console.log('POST is sending', results.rows);
+    const sqlQuery2 = `
     INSERT INTO job_skills (skills_id, job_id)
     VALUES
       ($2, $1),
@@ -52,21 +58,21 @@ jobRouter.post ('/', (req, res) => {
       ($6, $1);
   `;
   const sqlParams2 = [
-    req.body.job_id,
+    results.rows[0].id,
     req.body.jobInputData.skills[0],
     req.body.jobInputData.skills[1],
     req.body.jobInputData.skills[2],
     req.body.jobInputData.skills[3],
     req.body.jobInputData.skills[4],
   ]
-  pool.query(sqlQuery, sqlParams)
-  .then((results) => {
-    console.log('POST is sending', results.rows);
-    pool.query(sqlQuery2, sqlParams2)
-    res.sendStatus(201);
-  })
-  .then((results) => {
-
+    const promise = pool.query(sqlQuery2, sqlParams2);
+    
+    promise.then((dbRes) => {
+      res.send(dbRes.rows);
+    });
+    promise.catch((err) => {
+      res.sendStatus(500);
+    });
   })
   .catch((err) => {
     console.log('error in post router', err);
