@@ -9,7 +9,8 @@ jobRouter.get('/', (req, res) => {
   const sqlQuery = `
     SELECT *
     FROM jobs
-    WHERE employer_id = $1;  
+    WHERE employer_id = $1
+    AND date_deleted is null;  
   `;
   const sqlParams = [
     employerID
@@ -111,15 +112,19 @@ jobRouter.put('/:vetID', (req, res) => {
 });
 
 // Delete route to remove a job from the Employer Page
-jobRouter.delete('/:id', (req, res) => {
+jobRouter.put('/remove/:id', (req, res) => {
   const jobID = req.params.id
 
+  const dateDeleted = new Date().toLocaleDateString().toString();
+
   const sqlQuery = `
-    DELETE FROM job
-    WHERE job.id = $1;`
+    UPDATE jobs
+    SET date_deleted = $2
+    WHERE jobs.id = $1;`
 
   const sqlParams = [
     jobID,
+    dateDeleted
   ]
 
   pool.query(sqlQuery, sqlParams)

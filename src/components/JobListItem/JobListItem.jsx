@@ -26,6 +26,7 @@ export const JobListItem = ({jobs}) => {
             type: 'DELETE_FROM_JOB_LIST',
             payload: {id: jobs.id}
         })
+        setOpen(!open)
     }
 
 
@@ -40,8 +41,8 @@ export const JobListItem = ({jobs}) => {
                     open ? 
                     <div className='delete-job-from-list-card'>
                         <h5>You are about to delete:<br></br> {jobs.job_name}</h5>
-                        <Button variant='outlined' sx={{marginRight: 2}}>Delete</Button>
-                        <Button variant='outlined'>Cancel</Button>
+                        <Button onClick={handleDelete} variant='outlined' sx={{marginRight: 2}}>Delete</Button>
+                        <Button onClick={() => setOpen(!open)} variant='outlined'>Cancel</Button>
                     </div>
                     :
                     <></>
