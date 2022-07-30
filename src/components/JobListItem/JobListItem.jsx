@@ -18,34 +18,34 @@ export const JobListItem = ({jobs}) => {
             payload: {id: jobs.id}
         })
     }
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => {
-      setOpen(true);
-    };
-    const handleClose = () => {
-      setOpen(false);
-    };
-    const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        pt: 2,
-        px: 4,
-        pb: 3,
-      };
+    
+    const [open, setOpen] = useState(false)
+
+    const handleDelete = () => {
+        dispatch({
+            type: 'DELETE_FROM_JOB_LIST',
+            payload: {id: jobs.id}
+        })
+    }
+
 
     return(
-        <div className="jobCard">
-            <EditIcon />
-            <Button onClick={handleOpen}><CancelPresentationIcon /></Button>
-          
-
-            <p className="jobCardText" onClick={grabMatchedCandidates}>Job Title: {jobs && jobs.job_name}</p>
-        </div>
+        <>
+            <div className="jobCard">
+                <EditIcon />
+                <Button onClick={() => setOpen(!open)}><CancelPresentationIcon /></Button>
+                <p className="jobCardText" onClick={grabMatchedCandidates}>Job Title: {jobs && jobs.job_name}</p>
+            </div>
+                {
+                    open ? 
+                    <div className='delete-job-from-list-card'>
+                        <h5>You are about to delete:<br></br> {jobs.job_name}</h5>
+                        <Button variant='outlined' sx={{marginRight: 2}}>Delete</Button>
+                        <Button variant='outlined'>Cancel</Button>
+                    </div>
+                    :
+                    <></>
+                }
+        </>
     )
 }
