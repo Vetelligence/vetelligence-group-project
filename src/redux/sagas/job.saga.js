@@ -35,13 +35,25 @@ function* fetchCurrentJob(action){
         console.error('error in fetchCurrentJob', err)
     }
 }
-function* fetchMatchedCandidates() {
+function* fetchMatchedCandidates(action) {
     try{
-        const res = yield axios.get('/api/job/candidates/:id')
+        const res = yield axios.get('/api/job/candidates/'+ action.payload.id)
     }
     catch(err){
         console.log('Failed to fetch matched candidates', err)
 
+    }
+}
+
+function* deleteFromJobList(action) {
+    try{
+        const res = yield axios.put('/api/job/remove/' + action.payload.id)
+        yield put({
+            type: 'FETCH_JOB'
+        })
+    }
+    catch(err){
+        console.log('Failed to delete from job list', err)
     }
 }
 
@@ -50,6 +62,7 @@ function* jobSaga() {
     yield takeLatest('ADD_JOB', addJob);
     yield takeLatest('FETCH_CURRENT_JOB', fetchCurrentJob);
     yield takeLatest('FETCH_MATCHED_CANDIDATES', fetchMatchedCandidates)
+    yield takeLatest('DELETE_FROM_JOB_LIST', deleteFromJobList)
 
   }
 
