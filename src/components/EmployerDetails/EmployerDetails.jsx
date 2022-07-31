@@ -1,7 +1,29 @@
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
+import { useState } from 'react';
 import './EmployerDetails.css';
+import { useParams } from 'react-router-dom';
 
 function EmployerDetails(){
+    const params = useParams();
+
+    const [selected, setSelected] = useState('');
+
+    const handleChange = event => {
+
+        console.log(event.target.value);
+        setSelected(event.target.value);
+
+        dispatchEvent({
+            type: 'SAVE_STATUS',
+            payload: {
+                selected: selected,
+                params: Number(params.id)
+            }
+        }, [params.id])
+        
+    }
+
+    
 
     return (
 
@@ -18,12 +40,14 @@ function EmployerDetails(){
             <p className="employeeCardText">Phone: 123-456-1234</p>
             <p className="employeeCardText">Email: j.snuffy@gmail.com</p>
           </div>
-          <select className="employeeStatus">
-            <option value="matched">Pending</option>
-            <option value="selectedForInterview">Selected to Interview</option>
+          Status: 
+          <select className="employeeStatus" value={selected} onChange={handleChange}>
+            <option value ="">Choose an option</option>
+            <option value="Pending">Pending</option>
+            <option value="SelectedForInterview">Selected to Interview</option>
             <option value="Interviewed">Interviewed</option>
             <option value="Hired">Hired</option>
-            <option value="notConsidered">No Longer Considered</option>
+            <option value="NotConsidered">No Longer Considered</option>
           </select>
         </div>
       </div>
