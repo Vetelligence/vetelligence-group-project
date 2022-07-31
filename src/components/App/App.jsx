@@ -30,6 +30,7 @@ import EmployerIntakeForm from '../EmployerIntakeForm/EmployerIntakeForm';
 
 import VeteranLandingPage from '../VeteranLandingPage/VeteranLandPage';
 import CurrentJob from '../CurrentJob/CurrentJob';
+import EmployerDetails from '../EmployerDetails/EmployerDetails';
 import './App.css';
 
 function App() {
@@ -185,7 +186,9 @@ function App() {
             <CurrentJob />
           </Route>
 
-
+          <Route exact path="/employer-details">
+            <EmployerDetails />
+          </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
