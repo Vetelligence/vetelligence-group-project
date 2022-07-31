@@ -35,9 +35,9 @@ function* fetchCurrentJob(action){
         console.error('error in fetchCurrentJob', err)
     }
 }
-function* fetchMatchedCandidates() {
+function* fetchMatchedCandidates(action) {
     try{
-        const res = yield axios.get('/api/job/candidates/:id')
+        const res = yield axios.get('/api/job/candidates/'+ action.payload.id)
     }
     catch(err){
         console.log('Failed to fetch matched candidates', err)

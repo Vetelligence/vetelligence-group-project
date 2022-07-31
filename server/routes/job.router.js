@@ -30,6 +30,7 @@ jobRouter.get('/candidates/:id', rejectUnauthenticated, (req, res) => {
     SELECT *
     FROM 
   `
+  res.sendStatus(403)
 })
 
 // POST route for employer to input a job

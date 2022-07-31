@@ -33,7 +33,7 @@ export const JobListItem = ({jobs}) => {
     return(
         <>
             <div className="jobCard">
-                <EditIcon />
+                <EditIcon onClick={() => console.log('This is the edit button')} />
                 <Button onClick={() => setOpen(!open)}><CancelPresentationIcon /></Button>
                 <p className="jobCardText" onClick={grabMatchedCandidates}>Job Title: {jobs && jobs.job_name}</p>
             </div>
@@ -41,7 +41,7 @@ export const JobListItem = ({jobs}) => {
                     open ? 
                     <div className='delete-job-from-list-card'>
                         <h5>You are about to delete:<br></br> {jobs.job_name}</h5>
-                        <Button onClick={handleDelete} variant='outlined' sx={{marginRight: 2}}>Delete</Button>
+                        <Button color='error' onClick={handleDelete} variant='outlined' sx={{marginRight: 2}}>Delete</Button>
                         <Button onClick={() => setOpen(!open)} variant='outlined'>Cancel</Button>
                     </div>
                     :
