@@ -45,12 +45,16 @@ function* fetchMatchedCandidates() {
     }
 }
 
+function* saveStatus(){
+    
+}
+
 function* jobSaga() {
     yield takeLatest('FETCH_JOB', fetchJob);
     yield takeLatest('ADD_JOB', addJob);
     yield takeLatest('FETCH_CURRENT_JOB', fetchCurrentJob);
     yield takeLatest('FETCH_MATCHED_CANDIDATES', fetchMatchedCandidates)
-
+    yield takeLatest('SAVE_STATUS', saveStatus )
   }
 
 export default jobSaga;

@@ -13,14 +13,14 @@ function EmployerDetails(){
         console.log(event.target.value);
         setSelected(event.target.value);
 
-        dispatchEvent({
+        dispatch({
             type: 'SAVE_STATUS',
             payload: {
                 selected: selected,
                 params: Number(params.id)
             }
         }, [params.id])
-        
+
     }
 
     
