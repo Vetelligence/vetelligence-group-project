@@ -24,7 +24,7 @@ function LandingPage() {
             I am a:
           </h2>
 
-          <Link className="linkMainPage" to="/veteran">
+          <Link className="linkMainPage" to="/veteran-landing">
             <p className="mainPageButton">
               Service Member
             </p>

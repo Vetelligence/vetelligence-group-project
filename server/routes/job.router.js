@@ -24,6 +24,22 @@ jobRouter.get('/', (req, res) => {
     });
 });
 
+// GET to return top 5 jobs
+jobRouter.get('/veteran-landing', (req, res) => {
+  const sqlQuery = `
+    SELECT *
+    FROM jobs
+    LIMIT 5;  
+  `;
+  pool.query(sqlQuery)
+    .then((results) => {
+      res.send(results.rows)
+    })
+    .catch((err) => {
+      console.log('GET failed in job router', err);
+    });
+});
+
 jobRouter.get('/candidates/:id', rejectUnauthenticated, (req, res) => {
   console.log('This is the candidates payload', req.body)
   console.log('this is the params',req.params.id)
@@ -72,8 +88,6 @@ jobRouter.post ('/', (req, res) => {
     req.body.jobInputData.state,
  ];
 
-  
-  
   pool.query(sqlQuery, sqlParams)
   .then((results) => {
     console.log('POST is sending', results.rows);
@@ -106,7 +120,7 @@ jobRouter.post ('/', (req, res) => {
   .catch((err) => {
     console.log('error in post router', err);
     res.sendStatus(500);
-  })
+  });
 });
 
 // PUT route to update the status on the Vet Page list view
@@ -127,13 +141,12 @@ jobRouter.put('/:vetID', (req, res) => {
   .catch((err) => {
     console.log('error in PUT router', err);
     res.sendStatus(500);
-  })
+  });
 });
 
 // Delete route to remove a job from the Employer Page
 jobRouter.put('/remove/:id', (req, res) => {
   const jobID = req.params.id
-
   const dateDeleted = new Date().toLocaleDateString().toString();
 
   const sqlQuery = `
@@ -154,7 +167,7 @@ jobRouter.put('/remove/:id', (req, res) => {
   .catch(err => {
     console.log(`Error in the server DELETE route with ${err}`);
     res.sendStatus(500);
-  })
+  });
 });
 
 jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
@@ -175,12 +188,12 @@ jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
   GROUP BY jobs.job_description, jobs.job_name, employer.company, jobs.id
   ;
     `;
+
   
   const sqlParams = [
     req.params.id
   ]
 
-  
   pool.query(sqlQuery, sqlParams)
   //needs to be dbRes, not res. Can't have 2 of the same 
   .then(dbRes => {
@@ -191,8 +204,7 @@ jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
   .catch(err => {
     console.log('ERROR: GET CURRENT', err);
     res.sendStatus(500);
-  })
-
-})
+  });
+});
 
 module.exports = jobRouter;

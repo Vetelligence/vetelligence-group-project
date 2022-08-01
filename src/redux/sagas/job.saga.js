@@ -21,6 +21,16 @@ function* addJob(action){
     }
 }
 
+function* fetchTopJobs(action) {
+    try {
+        const res = yield axios.get(`/api/job/veteran-landing`);
+        yield put({ type: 'SET_JOB', payload: res.data });
+    }
+    catch(err) {
+        console.log('Error in Fetch Top Jobs', err)
+        return;
+    }
+}
 
 function* fetchCurrentJob(action){
     console.log('made it into fetchCurrent');
@@ -50,7 +60,6 @@ function* fetchMatchedCandidates(action) {
     }
     catch(err){
         console.log('Failed to fetch matched candidates', err)
-
     }
 }
 
@@ -78,8 +87,7 @@ function* jobSaga() {
     yield takeLatest('FETCH_MATCHED_CANDIDATES', fetchMatchedCandidates)
     yield takeLatest('SAVE_STATUS', saveStatus )
     yield takeLatest('DELETE_FROM_JOB_LIST', deleteFromJobList)
-
-
+    yield takeLatest('FETCH_TOP_JOBS', fetchTopJobs);
   }
 
 export default jobSaga;

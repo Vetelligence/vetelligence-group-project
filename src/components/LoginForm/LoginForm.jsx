@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -26,6 +27,7 @@ function LoginForm() {
 
   return (
     <form className="formPanel" onSubmit={login}>
+      <button><Link to="/home">Back</Link></button>
       <h2>Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">

@@ -5,7 +5,6 @@ const {
 const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
-
 const router = express.Router();
 
 // Handles Ajax request for user information if user is authenticated
@@ -61,7 +60,6 @@ router.get('/:users', (req, res) =>{
        res.sendStatus(500);
      })
     }
-    
     break;
    }
 })
@@ -72,7 +70,6 @@ router.get('/:users', (req, res) =>{
 router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
-
   const queryText = `INSERT INTO "user" (username, password, state, city, user_type, first_name, last_name, email, phone_number)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`;
   pool
