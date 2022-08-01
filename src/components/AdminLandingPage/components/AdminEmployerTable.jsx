@@ -114,7 +114,7 @@ function AdminEmployerTable() {
                             <TableCell align="right">{row.phone}</TableCell>
                             <TableCell align="right">{row.company}</TableCell>
                             <TableCell align="right">{row.status === 'pending' ? <EmpStatusSelect id={row.key} empStatus={row.status}/> : row.status.toUpperCase()}</TableCell>
-                            <TableCell align="right"><AdminDelete id={row.key}/></TableCell>
+                            { row.status === 'pending' && <TableCell align="right"><AdminDelete id={row.key}/></TableCell>}
 
 
                         </TableRow>

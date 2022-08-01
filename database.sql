@@ -18,7 +18,7 @@ CREATE TABLE "user" (
 
 CREATE TABLE employer(
     id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES "user",
+    user_id INT REFERENCES "user"  ON DELETE CASCADE,
     company VARCHAR(1024) NOT NULL,
     status VARCHAR DEFAULT 'Pending'
 );
