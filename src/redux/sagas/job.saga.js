@@ -54,6 +54,10 @@ function* fetchMatchedCandidates(action) {
     }
 }
 
+
+function* saveStatus(){
+    
+}
 function* deleteFromJobList(action) {
     try{
         const res = yield axios.put('/api/job/remove/' + action.payload.id)
@@ -64,6 +68,7 @@ function* deleteFromJobList(action) {
     catch(err){
         console.log('Failed to delete from job list', err)
     }
+
 }
 
 function* jobSaga() {
@@ -71,7 +76,9 @@ function* jobSaga() {
     yield takeLatest('ADD_JOB', addJob);
     yield takeLatest('FETCH_CURRENT_JOB', fetchCurrentJob);
     yield takeLatest('FETCH_MATCHED_CANDIDATES', fetchMatchedCandidates)
+    yield takeLatest('SAVE_STATUS', saveStatus )
     yield takeLatest('DELETE_FROM_JOB_LIST', deleteFromJobList)
+
 
   }
 
