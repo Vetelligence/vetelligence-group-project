@@ -34,6 +34,16 @@ function* updateUserInfo(action) {
   }
 }
 
+function* setEmployerApproved (action) {
+  try{
+    yield axios.put('api/user/employer/status/'+ action.payload.id)
+    yield put ({type: 'FETCH_EMPLOYERS'})
+  }
+  catch(err){
+    console.error('employer approval failed', err)
+  }
+}
+
 
 function* fetchEmployers(action){
   try{
@@ -73,7 +83,8 @@ function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeLatest('FETCH_EMPLOYERS', fetchEmployers);
   yield takeLatest('FETCH_VETERANS', fetchVeterans);
-  yield takeLatest('UPDATE_USER_INFO', updateUserInfo)
+  yield takeLatest('UPDATE_USER_INFO', updateUserInfo);
+  yield takeLatest('SET_EMPLOYER_APPROVED', setEmployerApproved);
 }
 
 export default userSaga;
