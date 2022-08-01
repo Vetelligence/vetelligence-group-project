@@ -10,10 +10,11 @@ function AdminDelete ({id}) {
             payload: {id:id}
         })
     }
-
+    return (
     <Button onClick={deleteEmployer}>
         <DeleteIcon />
     </Button>
+    )
 }
 
 

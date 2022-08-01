@@ -132,8 +132,9 @@ router.put('/employer/status/:id', rejectUnauthenticated, (req,res) => {
   const sqlQuery = `
     UPDATE "employer"
     SET status = 'approved'
+    WHERE id = $1
   `
-  pool.query(sqlQuery)
+  pool.query(sqlQuery ,[req.params.id])
     .then( () => {
       console.log('employer approved');
       res.sendStatus(200);
@@ -144,7 +145,7 @@ router.put('/employer/status/:id', rejectUnauthenticated, (req,res) => {
     })
 });
 
-router.delete('employer/:id', rejectUnauthenticated, (req, res) =>{
+router.delete('/employer/:id', rejectUnauthenticated, (req, res) =>{
   const sqlQuery = `
     DELETE FROM "user" 
     WHERE "id" = $1
