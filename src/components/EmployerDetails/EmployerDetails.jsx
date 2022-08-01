@@ -2,9 +2,12 @@ import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 import { useState } from 'react';
 import './EmployerDetails.css';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 
 function EmployerDetails(){
     const params = useParams();
+    const dispatch = useDispatch();
 
     const [selected, setSelected] = useState('');
 
@@ -42,7 +45,6 @@ function EmployerDetails(){
           </div>
           Status: 
           <select className="employeeStatus" value={selected} onChange={handleChange}>
-            <option value ="">Choose an option</option>
             <option value="Pending">Pending</option>
             <option value="SelectedForInterview">Selected to Interview</option>
             <option value="Interviewed">Interviewed</option>
