@@ -25,19 +25,28 @@ function* addJob(action){
 function* fetchCurrentJob(action){
     console.log('made it into fetchCurrent');
     try{
-        const response = yield axios.get(`/api/job/${action.payload}`)
+        const response = yield axios.get(`/api/job/current-job/${action.payload}`)
         yield put({
             type: 'SET_CURRENT_JOB',
             payload: response.data
+        })
+        yield put({
+            type: 'FETCH_MATCHED_CANDIDATES',
+            payload: response.data.id
         })
     }
     catch(err){
         console.error('error in fetchCurrentJob', err)
     }
 }
+
 function* fetchMatchedCandidates(action) {
     try{
         const res = yield axios.get('/api/job/candidates/'+ action.payload.id)
+        yield put({
+            type: 'SET_MATCHED_CANDIDATES',
+            payload: res.data
+        })
     }
     catch(err){
         console.log('Failed to fetch matched candidates', err)
