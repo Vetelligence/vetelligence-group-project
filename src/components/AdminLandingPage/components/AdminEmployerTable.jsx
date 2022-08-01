@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import EmpStatusSelect from './EmpStatusSelect';
 
 
 
@@ -112,7 +112,7 @@ function AdminEmployerTable() {
                             <TableCell align="right">{row.email}</TableCell>
                             <TableCell align="right">{row.phone}</TableCell>
                             <TableCell align="right">{row.company}</TableCell>
-                            <TableCell align="right">{row.status}</TableCell>
+                            <TableCell align="right"><EmpStatusSelect empStatus={row.status}/></TableCell>
 
                         </TableRow>
                     ))}

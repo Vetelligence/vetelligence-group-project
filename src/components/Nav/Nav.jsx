@@ -53,15 +53,16 @@ function Nav() {
             horizontal: 'left',
           }}
         >
-          <MenuItem>{!user.id && (
-            // If there's no user, show login/registration links
+         {!user.id && ( <MenuItem>
+          {/* // If there's no user, show login/registration links */}
             <Button>
               <Link className="navLink" to="/login">
                 Login
               </Link>
             </Button>
-          )}
+          
           </MenuItem>
+          )}
           <MenuItem >
             <Button>
               <Link className="navLink" to="/user">

@@ -120,12 +120,29 @@ router.put('/update/:id', rejectUnauthenticated, (req, res) => {
   ]
   pool.query(sqlQuery, sqlParams)
     .then(dbRes => {
-
+      res.sendStatus(200);
     })
     .catch(err => {
-      console.log('failed to update user', err)
+      console.log('failed to update user', err);
+      res.sendStatus(500);
     })
 })
+
+router.put('/employer/status/:id', rejectUnauthenticated, (req,res) => {
+  const sqlQuery = `
+    UPDATE "employer"
+    SET status = 'approved'
+  `
+  pool.query(sqlQuery)
+    .then( () => {
+      console.log('employer approved');
+      res.sendStatus(200);
+  })
+    .catch((err) => {
+      console.log('approval update for employer failed', err);
+      res.sendStatus(500);
+    })
+}) 
 
 // Handles login form authenticate/login POST
 // userStrategy.authenticate('local') is middleware that we run on this route
