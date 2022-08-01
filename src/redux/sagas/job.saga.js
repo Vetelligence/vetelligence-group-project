@@ -25,19 +25,28 @@ function* addJob(action){
 function* fetchCurrentJob(action){
     console.log('made it into fetchCurrent');
     try{
-        const response = yield axios.get(`/api/job/${action.payload}`)
+        const response = yield axios.get(`/api/job/current-job/${action.payload}`)
         yield put({
             type: 'SET_CURRENT_JOB',
             payload: response.data
+        })
+        yield put({
+            type: 'FETCH_MATCHED_CANDIDATES',
+            payload: response.data.id
         })
     }
     catch(err){
         console.error('error in fetchCurrentJob', err)
     }
 }
-function* fetchMatchedCandidates() {
+
+function* fetchMatchedCandidates(action) {
     try{
-        const res = yield axios.get('/api/job/candidates/:id')
+        const res = yield axios.get('/api/job/candidates/'+ action.payload.id)
+        yield put({
+            type: 'SET_MATCHED_CANDIDATES',
+            payload: res.data
+        })
     }
     catch(err){
         console.log('Failed to fetch matched candidates', err)
@@ -45,8 +54,21 @@ function* fetchMatchedCandidates() {
     }
 }
 
+
 function* saveStatus(){
     
+}
+function* deleteFromJobList(action) {
+    try{
+        const res = yield axios.put('/api/job/remove/' + action.payload.id)
+        yield put({
+            type: 'FETCH_JOB'
+        })
+    }
+    catch(err){
+        console.log('Failed to delete from job list', err)
+    }
+
 }
 
 function* jobSaga() {
@@ -55,6 +77,9 @@ function* jobSaga() {
     yield takeLatest('FETCH_CURRENT_JOB', fetchCurrentJob);
     yield takeLatest('FETCH_MATCHED_CANDIDATES', fetchMatchedCandidates)
     yield takeLatest('SAVE_STATUS', saveStatus )
+    yield takeLatest('DELETE_FROM_JOB_LIST', deleteFromJobList)
+
+
   }
 
 export default jobSaga;

@@ -9,7 +9,8 @@ jobRouter.get('/', (req, res) => {
   const sqlQuery = `
     SELECT *
     FROM jobs
-    WHERE employer_id = $1;  
+    WHERE employer_id = $1
+    AND date_deleted is null;  
   `;
   const sqlParams = [
     employerID
@@ -24,11 +25,30 @@ jobRouter.get('/', (req, res) => {
 });
 
 jobRouter.get('/candidates/:id', rejectUnauthenticated, (req, res) => {
+  console.log('This is the candidates payload', req.body)
+  console.log('this is the params',req.params.id)
 
   const sqlQuery = `
-    SELECT *
-    FROM 
+  SELECT "user".id, "user".first_name, "user".last_name, "user".phone_number, "user".email, array_agg(skills.skill_name) AS skills
+  FROM "user"
+  JOIN veterans
+  ON "user".id = veterans.user_id
+  JOIN mos_skills
+  ON veterans.mos_id = mos_skills.mos_id
+  JOIN skills
+  ON skills.id = mos_skills.skill_id
+  GROUP BY "user".iD 
+  ;
   `
+  pool.query(sqlQuery)
+    .then(dbRes => {
+      console.log('this is dbres.rows', dbRes.rows)
+      res.send(dbRes.rows)
+    })
+    .catch(err => {
+      res.sendStatus(500)
+      console.log('Failed to get matched candidates')
+    })
 })
 
 // POST route for employer to input a job
@@ -111,15 +131,19 @@ jobRouter.put('/:vetID', (req, res) => {
 });
 
 // Delete route to remove a job from the Employer Page
-jobRouter.delete('/:id', (req, res) => {
+jobRouter.put('/remove/:id', (req, res) => {
   const jobID = req.params.id
 
+  const dateDeleted = new Date().toLocaleDateString().toString();
+
   const sqlQuery = `
-    DELETE FROM job
-    WHERE job.id = $1;`
+    UPDATE jobs
+    SET date_deleted = $2
+    WHERE jobs.id = $1;`
 
   const sqlParams = [
     jobID,
+    dateDeleted
   ]
 
   pool.query(sqlQuery, sqlParams)
@@ -133,24 +157,27 @@ jobRouter.delete('/:id', (req, res) => {
   })
 });
 
-jobRouter.get('/:id', (req, res) => {
+jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
   console.log('made it into Current get');
 
   const sqlQuery = `
-  SELECT jobs.job_description, jobs.job_name, employer.company, user_jobs.status
-  FROM user_jobs
-  JOIN jobs
-  ON user_jobs.jobs_id = jobs.id
+  SELECT jobs.id, jobs.job_description, jobs.job_name, employer.company, array_agg(skills.skill_name) AS skills
+  FROM jobs
   JOIN "user"
   ON jobs.employer_id = "user".id
   JOIN employer
   ON "user".id = employer.user_id
-  WHERE user_jobs.user_id = $1
+  JOIN job_skills
+  ON job_skills.job_id = jobs.id
+  JOIN skills
+  ON skills.id = job_skills.skills_id
+  AND jobs.id = $1
+  GROUP BY jobs.job_description, jobs.job_name, employer.company, jobs.id
   ;
     `;
   
   const sqlParams = [
-    req.user.id
+    req.params.id
   ]
 
   
@@ -159,7 +186,7 @@ jobRouter.get('/:id', (req, res) => {
   .then(dbRes => {
     console.log('result rows', dbRes.rows)
 
-    res.send(dbRes.rows);
+    res.send(dbRes.rows[0]);
   })
   .catch(err => {
     console.log('ERROR: GET CURRENT', err);

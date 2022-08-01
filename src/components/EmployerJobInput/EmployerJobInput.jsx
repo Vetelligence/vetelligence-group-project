@@ -98,9 +98,10 @@ function EmployerJobInput() {
                     <Select
                         labelId="demo-basic-select-label"
                         id="demo-basic-select"
-                        value={jobInputData.skills}
+                        value={0}
                         onChange={handleChange}
                     >
+                        <MenuItem value={0}>...</MenuItem>
                         {skills && skills.map((skill) => (
                             <MenuItem key={skill.id} value={skill.id}>{skill.skill_name}</MenuItem>
                         ))}
