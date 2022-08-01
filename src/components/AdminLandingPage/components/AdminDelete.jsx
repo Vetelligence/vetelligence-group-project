@@ -5,7 +5,10 @@ import {useDispatch} from 'react-redux'
 function AdminDelete ({id}) {
     const dispatch = useDispatch();
     function deleteEmployer (){
-        
+        dispatch({
+            type:'DELETE_EMPLOYER', 
+            payload: {id:id}
+        })
     }
 
     <Button onClick={deleteEmployer}>

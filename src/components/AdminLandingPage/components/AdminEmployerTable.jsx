@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import EmpStatusSelect from './EmpStatusSelect';
+import AdminDelete from './AdminDelete';
 
 
 
@@ -113,6 +114,8 @@ function AdminEmployerTable() {
                             <TableCell align="right">{row.phone}</TableCell>
                             <TableCell align="right">{row.company}</TableCell>
                             <TableCell align="right">{row.status === 'pending' ? <EmpStatusSelect id={row.key} empStatus={row.status}/> : row.status.toUpperCase()}</TableCell>
+                            <TableCell align="right"><AdminDelete id={row.key}/></TableCell>
+
 
                         </TableRow>
                     ))}
