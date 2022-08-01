@@ -117,10 +117,44 @@ router.put('/update/:id', rejectUnauthenticated, (req, res) => {
   ]
   pool.query(sqlQuery, sqlParams)
     .then(dbRes => {
-
+      res.sendStatus(200);
     })
     .catch(err => {
-      console.log('failed to update user', err)
+      console.log('failed to update user', err);
+      res.sendStatus(500);
+    })
+})
+
+router.put('/employer/status/:id', rejectUnauthenticated, (req,res) => {
+  const sqlQuery = `
+    UPDATE "employer"
+    SET status = 'approved'
+    WHERE id = $1
+  `
+  pool.query(sqlQuery ,[req.params.id])
+    .then( () => {
+      console.log('employer approved');
+      res.sendStatus(200);
+  })
+    .catch((err) => {
+      console.log('approval update for employer failed', err);
+      res.sendStatus(500);
+    })
+});
+
+router.delete('/employer/:id', rejectUnauthenticated, (req, res) =>{
+  const sqlQuery = `
+    DELETE FROM "user" 
+    WHERE "id" = $1
+  `
+  pool.query(sqlQuery, [req.params.id])
+    .then(()=>{
+      console.log('employer deleted');
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log('delete employer failed', err);
+      res.send(500);
     })
 })
 

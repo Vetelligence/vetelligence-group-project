@@ -18,9 +18,9 @@ CREATE TABLE "user" (
 
 CREATE TABLE employer(
     id SERIAL PRIMARY KEY,
-    user_id INT REFERENCES "user",
+    user_id INT REFERENCES "user"  ON DELETE CASCADE,
     company VARCHAR(1024) NOT NULL,
-    status VARCHAR DEFAULT 'Pending'
+    status VARCHAR DEFAULT 'pending'
 );
 
 CREATE TABLE jobs(
@@ -63,7 +63,7 @@ CREATE TABLE veterans(
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES "user",
     mos_id INT REFERENCES mos,
-    status VARCHAR(255) DEFAULT 'Looking'
+    status VARCHAR(255) DEFAULT 'looking'
 );
 
 CREATE TABLE user_jobs(
