@@ -29,7 +29,7 @@ useEffect(() => {
     <br></br>
     <br></br>
     <h4>Current Jobs </h4>
-    {currentJobs && currentJobs.map(currentJob => (
+    {currentJobs[0] && currentJobs.map(currentJob => (
       <div key = {currentJob.id}>
 
     <br></br>
