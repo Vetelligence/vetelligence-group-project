@@ -26,9 +26,9 @@ function EmployerPage() {
   return (
     <div className="employerView">
       <div className="profileData">
-        <p>{user.first_name} {user.last_name}</p>
-        <p>{user.phone_number}</p>
-        <p>{user.email}</p>
+        <p>Name: {user.first_name} {user.last_name}</p>
+        <p>Phone: {user.phone_number}</p>
+        <p>Email: {user.email}</p>
         <p>{user.city}, {user.state}</p>
       </div>
       <div className="jobsData">
@@ -36,11 +36,10 @@ function EmployerPage() {
         {job[0] && job.map(jobs => <JobListItem key={jobs.id} jobs={jobs}/>)}
       </div>
       <Link to="/jobInput"><button className="addJobBtn">Add Job</button></Link>
-      <div className="employeeData">
+      {/* <div className="employeeData">
         <p className="employeeDataText">Current Matched Candidates:</p>
         <div className="employeeCard">
           <div className="topCard">
-            <CancelPresentationIcon/>
             <p className="employeeCardText">Name: Joe Snuffy</p>
             <p className="employeeCardText">Skills: Admin, Communication</p>
           </div>
@@ -56,7 +55,7 @@ function EmployerPage() {
             <option value="notConsidered">No Longer Considered</option>
           </select>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

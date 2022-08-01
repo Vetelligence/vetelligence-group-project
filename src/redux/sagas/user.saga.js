@@ -29,8 +29,8 @@ function* updateUserInfo(action) {
     const res = yield axios.put(`/api/user/update/:id`, action.payload)
     yield put({type: 'FETCH_USER'})
   }
-  catch{
-
+  catch(err){
+    console.log('Failed to update user info', err)
   }
 }
 
