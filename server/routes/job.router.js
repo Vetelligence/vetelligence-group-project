@@ -24,6 +24,22 @@ jobRouter.get('/', (req, res) => {
     });
 });
 
+// GET to return top 5 jobs
+jobRouter.get('/veteran-landing', (req, res) => {
+  const sqlQuery = `
+    SELECT *
+    FROM jobs
+    LIMIT 5;  
+  `;
+  pool.query(sqlQuery)
+    .then((results) => {
+      res.send(results.rows)
+    })
+    .catch((err) => {
+      console.log('GET failed in job router', err);
+    });
+});
+
 jobRouter.get('/candidates/:id', rejectUnauthenticated, (req, res) => {
 
   const sqlQuery = `
@@ -54,8 +70,6 @@ jobRouter.post ('/', (req, res) => {
     req.body.jobInputData.state,
  ];
 
-  
-  
   pool.query(sqlQuery, sqlParams)
   .then((results) => {
     console.log('POST is sending', results.rows);
@@ -88,7 +102,7 @@ jobRouter.post ('/', (req, res) => {
   .catch((err) => {
     console.log('error in post router', err);
     res.sendStatus(500);
-  })
+  });
 });
 
 // PUT route to update the status on the Vet Page list view
@@ -109,13 +123,12 @@ jobRouter.put('/:vetID', (req, res) => {
   .catch((err) => {
     console.log('error in PUT router', err);
     res.sendStatus(500);
-  })
+  });
 });
 
 // Delete route to remove a job from the Employer Page
 jobRouter.put('/remove/:id', (req, res) => {
   const jobID = req.params.id
-
   const dateDeleted = new Date().toLocaleDateString().toString();
 
   const sqlQuery = `
@@ -136,7 +149,7 @@ jobRouter.put('/remove/:id', (req, res) => {
   .catch(err => {
     console.log(`Error in the server DELETE route with ${err}`);
     res.sendStatus(500);
-  })
+  });
 });
 
 jobRouter.get('/:id', (req, res) => {
@@ -152,14 +165,12 @@ jobRouter.get('/:id', (req, res) => {
   JOIN employer
   ON "user".id = employer.user_id
   WHERE user_jobs.user_id = $1
-  ;
-    `;
+  ;`;
   
   const sqlParams = [
     req.user.id
   ]
 
-  
   pool.query(sqlQuery, sqlParams)
   //needs to be dbRes, not res. Can't have 2 of the same 
   .then(dbRes => {
@@ -170,8 +181,7 @@ jobRouter.get('/:id', (req, res) => {
   .catch(err => {
     console.log('ERROR: GET CURRENT', err);
     res.sendStatus(500);
-  })
-
-})
+  });
+});
 
 module.exports = jobRouter;

@@ -54,7 +54,7 @@ function App() {
           <Route
             // shows AboutPage at all times (logged in or not)
             exact
-            path="/veteran"
+            path="/veteran/:id"
           >
             <VeteranPage />
           </Route>
@@ -119,13 +119,13 @@ function App() {
               <AdminLandingPage />
             </Route>
 
-          <ProtectedRoute
+          {/* <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/info"
           >
             <InfoPage />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           <Route
             exact
