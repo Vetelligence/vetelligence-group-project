@@ -43,10 +43,16 @@ function* fetchMatchedCandidates() {
         console.log('Failed to fetch matched candidates', err)
 
     }
-}
+}.
 
-function* saveStatus(){
-    
+function* addStatus(action){
+    try{
+        yield axios.post('/api/job', action.payload)
+    }
+    catch(err) {
+        console.error('error is', err)
+    }
+
 }
 
 function* jobSaga() {
@@ -54,7 +60,7 @@ function* jobSaga() {
     yield takeLatest('ADD_JOB', addJob);
     yield takeLatest('FETCH_CURRENT_JOB', fetchCurrentJob);
     yield takeLatest('FETCH_MATCHED_CANDIDATES', fetchMatchedCandidates)
-    yield takeLatest('SAVE_STATUS', saveStatus )
+    yield takeLatest('ADD_STATUS', addStatus )
   }
 
 export default jobSaga;

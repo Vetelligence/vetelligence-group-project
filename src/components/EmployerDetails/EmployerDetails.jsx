@@ -17,12 +17,12 @@ function EmployerDetails(){
         setSelected(event.target.value);
 
         dispatch({
-            type: 'SAVE_STATUS',
+            type: 'ADD_STATUS',
             payload: {
                 selected: selected,
-                params: Number(params.id)
+                id: id
             }
-        }, [params.id])
+        })
 
     }
 
