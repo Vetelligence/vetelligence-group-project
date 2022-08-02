@@ -35,7 +35,7 @@ export const JobListItem = ({jobs}) => {
             <div className="jobCard">
                 {/* <EditIcon onClick={() => console.log('This is the edit button')} /> */}
                 <Button onClick={() => setOpen(!open)}><CancelPresentationIcon /></Button>
-                <p className="jobCardText">Job Title: <Link to={`/employer/job-detail/${jobs.id}`} className='job-name-link'>{jobs && jobs.job_name}</Link></p>
+                <p className="jobCardText">Job Title: <Link to={`/employer/employer-details/${jobs.id}`} className='job-name-link'>{jobs && jobs.job_name}</Link></p>
             </div>
                 {
                     open ? 
