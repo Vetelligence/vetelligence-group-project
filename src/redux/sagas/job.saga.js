@@ -65,7 +65,8 @@ function* fetchMatchedCandidates(action) {
 
 function* addStatus(action){
     try{
-        yield axios.post('/api/job/matched', action.payload)
+        const res = yield axios.post('/api/job/matched', action.payload)
+        yield put({ type: 'SET_STATUS', payload: res.data})
     }
     catch(err) {
         console.error('error is', err)

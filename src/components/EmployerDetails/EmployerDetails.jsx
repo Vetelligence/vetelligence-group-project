@@ -2,12 +2,14 @@ import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 import { useState } from 'react';
 import './EmployerDetails.css';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 function EmployerDetails(){
     const params = useParams();
     const dispatch = useDispatch();
+
+    const status = useSelector(store => store.status);
 
     const [selected, setSelected] = useState('');
 
@@ -15,6 +17,7 @@ function EmployerDetails(){
 
         console.log(event.target.value);
         setSelected(event.target.value);
+
 
         dispatch({
             type: 'ADD_STATUS',
