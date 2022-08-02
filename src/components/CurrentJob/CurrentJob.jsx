@@ -23,46 +23,42 @@ useEffect(() => {
   })
 }, []); 
   
-
   return(
-    <>
-    <br></br>
-    <br></br>
-    <h4>Current Jobs </h4>
-    {currentJobs && currentJobs.map(currentJob => (
-      <div key = {currentJob.id}>
 
-    <br></br>
-    <Card sx={{ maxWidth: 345 }}>
-          {/* <CardMedia
-            component="img"
-            height="140"
-            image=""
-            alt=""
-          /> */}
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-            {currentJob.job_name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-            {currentJob.job_description}
-            
-            </Typography>
-          </CardContent>
-          <CardActions>
-            Company: {currentJob.company}
-            Status: {currentJob.status}
-            
-          </CardActions>
-        </Card>
+    <div>
+      <br></br>
+      <br></br>
+      <h4>Current Jobs </h4>
+      {currentJobs[0] && currentJobs.map(currentJob => (
+        <div key = {currentJob.id}>
 
-        
-        
-        
-      </div>
-    ))}
-    </>
-  )
+      <br></br>
+      <Card sx={{ maxWidth: 345 }}>
+            {/* <CardMedia
+              component="img"
+              height="140"
+              image=""
+              alt=""
+            /> */}
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+              {currentJob.job_name}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+              {currentJob.job_description}
+              
+              </Typography>
+            </CardContent>
+            <CardActions>
+              Company: {currentJob.company}
+              Status: {currentJob.status}
+              
+            </CardActions>
+          </Card>      
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default CurrentJob;

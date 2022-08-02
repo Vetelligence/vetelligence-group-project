@@ -55,7 +55,7 @@ function App() {
           <Route
             // shows AboutPage at all times (logged in or not)
             exact
-            path="/veteran"
+            path="/veteran/:id"
           >
             <VeteranPage />
           </Route>
@@ -120,13 +120,13 @@ function App() {
               <AdminLandingPage />
             </Route>
 
-          <ProtectedRoute
+          {/* <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/info"
           >
             <InfoPage />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           <Route
             exact
@@ -160,14 +160,15 @@ function App() {
             exact
             path="/home"
           >
-            {user.id ?
+            {/* {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
               <Redirect to="/user" />
               :
               // Otherwise, show the Landing page
               <LandingPage />
-            }
+            } */}
+            <LandingPage />
           </Route>
           
           <Route exact path="/veteran-intake">

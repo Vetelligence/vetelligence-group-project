@@ -20,11 +20,11 @@ function LandingPage() {
 
       <div className="grid">
         <div className="grid-col grid-col_8">
-          <h2>
+          <h2 className='landing-page-h2'>
             I am a:
           </h2>
 
-          <Link className="linkMainPage" to="/veteran">
+          <Link className="linkMainPage" to="/veteran-landing">
             <p className="mainPageButton">
               Service Member
             </p>

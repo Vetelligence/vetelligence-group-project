@@ -5,7 +5,6 @@ const {
 const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
-
 const router = express.Router();
 
 // Handles Ajax request for user information if user is authenticated
@@ -61,7 +60,6 @@ router.get('/:users', (req, res) =>{
        res.sendStatus(500);
      })
     }
-    
     break;
    }
 })
@@ -72,7 +70,6 @@ router.get('/:users', (req, res) =>{
 router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
-
   const queryText = `INSERT INTO "user" (username, password, state, city, user_type, first_name, last_name, email, phone_number)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`;
   pool
@@ -120,10 +117,44 @@ router.put('/update/:id', rejectUnauthenticated, (req, res) => {
   ]
   pool.query(sqlQuery, sqlParams)
     .then(dbRes => {
-
+      res.sendStatus(200);
     })
     .catch(err => {
-      console.log('failed to update user', err)
+      console.log('failed to update user', err);
+      res.sendStatus(500);
+    })
+})
+
+router.put('/employer/status/:id', rejectUnauthenticated, (req,res) => {
+  const sqlQuery = `
+    UPDATE "employer"
+    SET status = 'approved'
+    WHERE id = $1
+  `
+  pool.query(sqlQuery ,[req.params.id])
+    .then( () => {
+      console.log('employer approved');
+      res.sendStatus(200);
+  })
+    .catch((err) => {
+      console.log('approval update for employer failed', err);
+      res.sendStatus(500);
+    })
+});
+
+router.delete('/employer/:id', rejectUnauthenticated, (req, res) =>{
+  const sqlQuery = `
+    DELETE FROM "user" 
+    WHERE "id" = $1
+  `
+  pool.query(sqlQuery, [req.params.id])
+    .then(()=>{
+      console.log('employer deleted');
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log('delete employer failed', err);
+      res.send(500);
     })
 })
 

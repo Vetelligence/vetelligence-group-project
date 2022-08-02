@@ -8,10 +8,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
 
-
 function Nav() {
   const user = useSelector((store) => store.user);
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -27,8 +25,6 @@ function Nav() {
         <Link to="/home">
           <img src="./images/Vetelligence-03.svg" className="titleImg" />
         </Link>
-
-
         <Button
           id="demo-positioned-button"
           aria-controls={open ? 'demo-positioned-menu' : undefined}
@@ -53,15 +49,16 @@ function Nav() {
             horizontal: 'left',
           }}
         >
-          <MenuItem>{!user.id && (
-            // If there's no user, show login/registration links
+         {!user.id && ( <MenuItem>
+          {/* // If there's no user, show login/registration links */}
             <Button>
               <Link className="navLink" to="/login">
                 Login
               </Link>
             </Button>
-          )}
+          
           </MenuItem>
+          )}
           <MenuItem >
             <Button>
               <Link className="navLink" to="/user">
@@ -73,13 +70,25 @@ function Nav() {
             <div>
               <MenuItem>
                 <Button>
-                  <Link className="navLink" to="/info">
-                    Info Page
+                  {user.user_type === "Employer" && (
+                  <Link className="navLink" to="/employer/:id">
+                    Dashboard
                   </Link>
+                  )}
+                  {user.user_type === "veteran" && (
+                  <Link className="navLink" to="/veteran/:id">
+                    Dashboard
+                  </Link>
+                  )}
+                  {user.user_type === "admin" && (
+                  <Link className="navLink" to="/admin">
+                    Dashboard
+                  </Link>
+                  )}
                 </Button>
               </MenuItem>
               <MenuItem>
-                  <LogOutButton className="navLink" />
+                <LogOutButton className="navLink" />
               </MenuItem>
             </div>)}
           <MenuItem>
@@ -92,7 +101,6 @@ function Nav() {
         </Menu>
       </div>
     </div>
-
   );
 }
 

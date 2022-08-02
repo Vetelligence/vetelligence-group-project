@@ -7,30 +7,17 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CurrentJob from '../CurrentJob/CurrentJob';
 import { Link } from 'react-router-dom';
 import './VeteranPage.css';
-
-
-// CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
 import { ProfileEditPage } from '../ProfileEditPage/ProfileEditPage';
-
+import { useSelector } from 'react-redux';
 
 function VeteranPage() {
-  
-
+  const user = useSelector((store) => store.user);
 
   return (
-
-    <>
     <div>
-        <h4>Welcome, Veterans!</h4>
-    
-        <br></br>
-
-      <Link to="/veteran-intake"> <h4>Sign Up</h4></Link>
-    </div>
-    
-
-    <div className="accordionBackground">
+      <p>Welcome, {user.username}</p>
+      <div className="accordionBackground">
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -55,22 +42,8 @@ function VeteranPage() {
             <CurrentJob />
           </AccordionDetails>
         </Accordion>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel3a-content"
-            id="panel3a-header"
-          >
-            <Typography>Search Jobs</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
-              Add Search functionality
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
       </div>
-</>
+    </div>
   );
 }
 
