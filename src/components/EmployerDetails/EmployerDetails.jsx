@@ -1,15 +1,23 @@
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './EmployerDetails.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 
+
 function EmployerDetails(){
-    const params = useParams();
+    const {id} = useParams();
     const dispatch = useDispatch();
 
     const [selected, setSelected] = useState('');
+
+    useEffect(() => {
+      dispatch({
+        type: 'FETCH_CURRENT_JOB',
+        payload: id
+      })
+    }, [id])
 
     const handleChange = event => {
 
@@ -31,6 +39,9 @@ function EmployerDetails(){
     return (
 
     <>
+    <div className='job-details-card'>
+
+    </div>
     <div className="employeeData">
         <p className="employeeDataText">Current Matched Candidates:</p>
         <div className="employeeCard">

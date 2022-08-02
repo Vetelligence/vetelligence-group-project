@@ -70,7 +70,7 @@ function Nav() {
             <div>
               <MenuItem>
                 <Button>
-                  {user.user_type === "Employer" && (
+                  {user.user_type === "employer" && (
                   <Link className="navLink" to="/employer/:id">
                     Dashboard
                   </Link>
