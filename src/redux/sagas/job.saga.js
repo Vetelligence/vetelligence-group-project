@@ -65,7 +65,7 @@ function* fetchMatchedCandidates(action) {
 
 function* addStatus(action){
     try{
-        yield axios.post('/api/job/matched', action.payload)
+        yield axios.post('/api/job/matched/', action.payload)
     }
     catch(err) {
         console.error('error is', err)

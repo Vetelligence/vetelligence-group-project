@@ -1,7 +1,5 @@
 const filterVets = (arrOne, arrTwo) => {
     let candidates = []
-    console.log('In the filter vets >>>>>>>>>>>>>', arrOne)
-    console.log('In the filter vets @@@@@@@@@@@@@@', arrTwo)
     firstLoop: 
     for(let vet of arrOne){
         secondLoop:

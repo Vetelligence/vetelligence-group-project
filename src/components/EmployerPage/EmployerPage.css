@@ -82,7 +82,7 @@
 .employeeCard {
     align-items: center;
     padding: 0;
-    margin: 0;
+    margin-bottom: 10px;
     background-color: gray;
     color: #fff;
     border-radius: 5px;
@@ -90,7 +90,8 @@
 
 .topCard {
     display: flex;
-    margin: 0;
+    justify-content: space-around;
+    margin-bottom: 15px;
     align-items: center;
     font-size: 14px;
 }
