@@ -43,17 +43,17 @@ function* fetchMatchedCandidates() {
         console.log('Failed to fetch matched candidates', err)
 
     }
-}.
+}
 
 function* addStatus(action){
     try{
-        yield axios.post('/api/job', action.payload)
+        yield axios.post('/api/job/matched', action.payload)
     }
     catch(err) {
         console.error('error is', err)
     }
-
 }
+
 
 function* jobSaga() {
     yield takeLatest('FETCH_JOB', fetchJob);

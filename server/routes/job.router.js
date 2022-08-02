@@ -168,4 +168,25 @@ jobRouter.get('/:id', (req, res) => {
 
 })
 
+  jobRouter.post('/matched', (req, res) => {
+    const sqlQuery=`
+    INSERT INTO user_jobs
+    (user_id, jobs_id, status)
+    VALUES ($1, $2, $3)
+    ;
+      `
+
+    const sqlParams=[
+      req.body.user_id, req.body.jobs_id, req.body.status
+    ]
+    pool.query(sqlQuery, sqlParams)
+    .then(() => res.sendStatus(201))
+    .catch((err) => {
+      console.log('error in match post', err)
+      res.sendStatus(500);
+    })
+    
+  })
+  
+
 module.exports = jobRouter;
