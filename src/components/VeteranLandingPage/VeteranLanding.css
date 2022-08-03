@@ -1,3 +1,10 @@
 .carousel {
     display: flex;
 }
+
+.carouselItem {
+    background-color: #fff;
+    border: 2px solid #6C63FE;
+    border-radius: 10px;
+    text-align: center;
+}
