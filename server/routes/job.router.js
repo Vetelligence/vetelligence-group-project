@@ -173,6 +173,7 @@ jobRouter.put('/remove/:id', (req, res) => {
 
 jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
   console.log('made it into Current get');
+  console.log(req.params.id)
 
   let currentJobsObj = {job: {}, candidates: []}
 
@@ -238,6 +239,7 @@ jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
     INSERT INTO user_jobs
     (user_id, jobs_id, status)
     VALUES ($1, $2, $3)
+    RETURNING *
     ;
       `
     const updateQuery=`
@@ -261,12 +263,17 @@ jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
       if(updateRes.rows.length === 0){
         pool.query(insertQuery, insertParams)
         .then((dbRes) => {
-          res.sendStatus(201);
+          res.send({id: dbRes.rows[0].jobs_id});
+          return;
         })
         .catch((err)=> {
           res.sendStatus(500);
           console.log('failed in Update Job Status', err);
         })
+      }
+      else{
+        res.send({id: updateRes.rows[0].jobs_id});
+        
       }
     })
 

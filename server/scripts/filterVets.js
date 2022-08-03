@@ -9,7 +9,7 @@ const filterVets = (arrOne, arrTwo, arrThree) => {
                         if(vet.status === 'hired'){
                             break secondLoop;
                         }
-                        if(vet.id === s.user_id && s.status === 'no longer considered'){
+                        if(vet.id === s.user_id && s.status === 'noLongerConsidered'){
                             break secondLoop;
                         }
                         else if(vet.id == s.user_id){

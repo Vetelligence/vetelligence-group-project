@@ -5,14 +5,19 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CurrentJob from '../CurrentJob/CurrentJob';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './VeteranPage.css';
-import RegisterForm from '../RegisterForm/RegisterForm';
 import { ProfileEditPage } from '../ProfileEditPage/ProfileEditPage';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
 
 function VeteranPage() {
   const user = useSelector((store) => store.user);
+  const {id} = useParams();
+  useEffect(() => {
+    
+  },[id])
 
   return (
     <div>

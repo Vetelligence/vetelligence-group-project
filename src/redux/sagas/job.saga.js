@@ -35,7 +35,7 @@ function* fetchTopJobs(action) {
 function* fetchCurrentJob(action){
     console.log('made it into fetchCurrent');
     try{
-        const response = yield axios.get(`/api/job/current-job/${action.payload}`)
+        const response = yield axios.get(`/api/job/current-job/${action.payload.id}`)
         yield put({
             type: 'SET_CURRENT_JOB',
             payload: response.data
@@ -61,7 +61,12 @@ function* fetchMatchedCandidates(action) {
 
 function* addStatus(action){
     try{
-        yield axios.post('/api/job/matched/', action.payload)
+        const res = yield axios.post('/api/job/matched/', action.payload)
+        console.log('This is the add status payload..',action.payload)
+        yield put({
+            type: 'FETCH_CURRENT_JOB',
+            payload: {id: action.payload.jobs_id}
+        })
 
     }
     catch(err) {

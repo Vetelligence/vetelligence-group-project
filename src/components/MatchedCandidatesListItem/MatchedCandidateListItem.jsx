@@ -41,7 +41,7 @@ export const MatchedCandidateListItem = ({vet}) => {
                     <p className="employeeCardText">Email: {vet.email}</p>
                     <p className="employeeCardText">City: {vet.city}</p>
                     <p className="employeeCardText">State: {vet.state}</p>
-                    <VetsJobStatusSelector vet={vet}/>
+                    <VetsJobStatusSelector job={job} vet={vet}/>
                 </div>
                 :<></>
             }
