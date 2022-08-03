@@ -1,12 +1,13 @@
-
+import { useState } from "react"
 
 
 export const VetsJobStatusSelector = ({vet}) => {
+    const [status, setStatus] = useState(vet.status)
 
     return(
         <div>
              Status: 
-                <select className="employeeStatus" value={vet.status} onChange={() => console.log(vet.status)}>
+                <select className="employeeStatus" value={status} onChange={e => setStatus(e.target.value)}>
                     <option value="pending">Pending</option>
                     <option value="selected to interview">Selected to Interview</option>
                     <option value="interviewed">Interviewed</option>

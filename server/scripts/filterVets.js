@@ -6,13 +6,10 @@ const filterVets = (arrOne, arrTwo, arrThree) => {
             for(let jobSkills of arrTwo){
                 if(jobSkills === skill){
                     for(let s of arrThree){
-                        console.log('++++___++__++__', vet.id, s.user_id)
-                        console.log('___+++__++__+_+', s.status)
                         if(vet.status === 'hired'){
                             break secondLoop;
                         }
                         if(vet.id === s.user_id && s.status === 'no longer considered'){
-                            console.log('THIS IS THE S.STATUS OYOYOYOYO', s.status)
                             break secondLoop;
                         }
                         else if(vet.id == s.user_id){
