@@ -174,7 +174,7 @@ jobRouter.put('/remove/:id', (req, res) => {
 jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
   console.log('made it into Current get');
 
-  let currentJobsObj = {job: '', candidates: []}
+  let currentJobsObj = {job: {}, candidates: []}
 
   const jobQuery = `
   SELECT jobs.id, jobs.job_description, jobs.job_name, employer.company, array_agg(skills.skill_name) AS skills
@@ -192,7 +192,7 @@ jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
   `;
 
   const vetQuery = `
-  SELECT "user".id, "user".first_name, "user".last_name, "user".phone_number, "user".email, array_agg(skills.skill_name) AS skills
+  SELECT "user".id, "user".first_name, "user".last_name, "user".phone_number, "user".email, "user".city, "user".state, array_agg(skills.skill_name) AS skills, veterans.status
   FROM "user"
   JOIN veterans
   ON "user".id = veterans.user_id
@@ -200,8 +200,15 @@ jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
   ON veterans.mos_id = mos_skills.mos_id
   JOIN skills
   ON skills.id = mos_skills.skill_id
-  GROUP BY "user".iD ;
+  GROUP BY "user".iD, veterans.status
   `;
+
+  const statusQuery = `
+  SELECT user_id, status
+  FROM user_jobs
+  WHERE jobs_id = $1;
+  
+  `
 
   pool.query(jobQuery, [req.params.id])
   //needs to be dbRes, not res. Can't have 2 of the same 
@@ -211,8 +218,13 @@ jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
     pool.query(vetQuery)
       .then(vetRes => {
         console.log(vetRes.rows)
-        currentJobsObj= {...currentJobsObj, candidates: filterVets(vetRes.rows, currentJobsObj.job.skills)}
-        res.send(currentJobsObj)
+        pool.query(statusQuery, [req.params.id])
+          .then(statusRes => {
+            console.log(statusRes.rows)
+            currentJobsObj= {...currentJobsObj, candidates: filterVets(vetRes.rows, currentJobsObj.job.skills, statusRes.rows)}
+            res.send(currentJobsObj)
+          })
+        // res.send(currentJobsObj)
       })
   })
   .catch(err => {

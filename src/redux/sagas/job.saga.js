@@ -40,10 +40,6 @@ function* fetchCurrentJob(action){
             type: 'SET_CURRENT_JOB',
             payload: response.data
         })
-        yield put({
-            type: 'FETCH_MATCHED_CANDIDATES',
-            payload: response.data.id
-        })
     }
     catch(err){
         console.error('error in fetchCurrentJob', err)
