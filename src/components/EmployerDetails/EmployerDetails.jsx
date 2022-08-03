@@ -19,7 +19,7 @@ function EmployerDetails(){
     useEffect(() => {
       dispatch({
         type: 'FETCH_CURRENT_JOB',
-        payload: id
+        payload: {id: id}
       })
     }, [id])
 
