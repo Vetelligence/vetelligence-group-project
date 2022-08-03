@@ -187,7 +187,7 @@ function App() {
             <CurrentJob />
           </Route>
 
-          <Route exact path="/employer-details">
+          <Route exact path="/employer/employer-details/:id">
             <EmployerDetails />
           </Route>
 

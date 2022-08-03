@@ -2,6 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const jobRouter = express.Router();
 const {rejectUnauthenticated,} = require('../modules/authentication-middleware');
+const filterVets = require('../scripts/filterVets')
 
 // GET to display all jobs for this employer
 jobRouter.get('/', (req, res) => {
@@ -173,7 +174,9 @@ jobRouter.put('/remove/:id', (req, res) => {
 jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
   console.log('made it into Current get');
 
-  const sqlQuery = `
+  let currentJobsObj = {job: '', candidates: []}
+
+  const jobQuery = `
   SELECT jobs.id, jobs.job_description, jobs.job_name, employer.company, array_agg(skills.skill_name) AS skills
   FROM jobs
   JOIN "user"
@@ -185,21 +188,32 @@ jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
   JOIN skills
   ON skills.id = job_skills.skills_id
   AND jobs.id = $1
-  GROUP BY jobs.job_description, jobs.job_name, employer.company, jobs.id
-  ;
-    `;
+  GROUP BY jobs.job_description, jobs.job_name, employer.company, jobs.id;
+  `;
 
-  
-  const sqlParams = [
-    req.params.id
-  ]
+  const vetQuery = `
+  SELECT "user".id, "user".first_name, "user".last_name, "user".phone_number, "user".email, array_agg(skills.skill_name) AS skills
+  FROM "user"
+  JOIN veterans
+  ON "user".id = veterans.user_id
+  JOIN mos_skills
+  ON veterans.mos_id = mos_skills.mos_id
+  JOIN skills
+  ON skills.id = mos_skills.skill_id
+  GROUP BY "user".iD ;
+  `;
 
-  pool.query(sqlQuery, sqlParams)
+  pool.query(jobQuery, [req.params.id])
   //needs to be dbRes, not res. Can't have 2 of the same 
   .then(dbRes => {
     console.log('result rows', dbRes.rows)
-
-    res.send(dbRes.rows[0]);
+    currentJobsObj = {job: dbRes.rows[0]}
+    pool.query(vetQuery)
+      .then(vetRes => {
+        console.log(vetRes.rows)
+        currentJobsObj= {...currentJobsObj, candidates: filterVets(vetRes.rows, currentJobsObj.job.skills)}
+        res.send(currentJobsObj)
+      })
   })
   .catch(err => {
     console.log('ERROR: GET CURRENT', err);
