@@ -3,6 +3,7 @@ import './EmployerDetails.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+
 import { MatchedCandidateListItem } from '../MatchedCandidatesListItem/MatchedCandidateListItem';
 
 function EmployerDetails(){
@@ -10,6 +11,8 @@ function EmployerDetails(){
     const dispatch = useDispatch();
     
     const job = useSelector(store => store.currentJob)
+
+    const status = useSelector(store => store.status);
 
     const [selected, setSelected] = useState('');
 
@@ -24,6 +27,7 @@ function EmployerDetails(){
 
         console.log(event.target.value);
         setSelected(event.target.value);
+
 
         dispatch({
             type: 'ADD_STATUS',
