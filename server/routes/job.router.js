@@ -208,23 +208,46 @@ jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
 });
 
   jobRouter.post('/matched', (req, res) => {
-    const sqlQuery=`
+    const insertQuery=`
     INSERT INTO user_jobs
     (user_id, jobs_id, status)
     VALUES ($1, $2, $3)
     ;
       `
+    const updateQuery=`
+    UPDATE user_jobs
+    SET status = $1
+    WHERE user_id = $2
+    AND jobs_id = $3 
+    RETURNING *
+    `
 
-    const sqlParams=[
+    const updateParams=[
+      req.body.status, req.body.user_id, req.body.jobs_id
+    ]
+
+    const insertParams=[
       req.body.user_id, req.body.jobs_id, req.body.status
     ]
-    pool.query(sqlQuery, sqlParams)
-    .then(() => res.sendStatus(201))
+
+    pool.query(updateQuery, updateParams)
+    .then((updateRes) => {
+      if(updateRes.rows.length === 0){
+        pool.query(insertQuery, insertParams)
+        .then((dbRes) => {
+          res.sendStatus(201);
+        })
+        .catch((err)=> {
+          res.sendStatus(500);
+          console.log('failed in Update Job Status', err);
+        })
+      }
+    })
+
     .catch((err) => {
       console.log('error in match post', err)
       res.sendStatus(500);
     })
-    
   })
   
 
