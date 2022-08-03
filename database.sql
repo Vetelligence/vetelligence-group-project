@@ -63,7 +63,7 @@ CREATE TABLE veterans(
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES "user",
     mos_id INT REFERENCES mos,
-    status VARCHAR(255) DEFAULT 'looking'
+    status VARCHAR(255) DEFAULT 'pending'
 );
 
 CREATE TABLE user_jobs(

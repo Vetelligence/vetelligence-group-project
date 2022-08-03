@@ -41,7 +41,7 @@ function EmployerDetails(){
 
     <>
     <div className='job-details-card'>
-      <h2>{job.job && job.job.company}</h2>
+      {/* <h2>{job.job && job.job.company}</h2>
       <h3>Job Title:</h3>
       <p>{ job.job && job.job.job_name}</p>
       <h3>Job Description:</h3>
@@ -49,12 +49,12 @@ function EmployerDetails(){
       <div className='current-job-skills'>
         <h3>Skills:</h3>
         {job.job && job.job.skills.map(s => <p>{s}</p>)}
-      </div>
+      </div> */}
     </div>
     <div className="employeeData">
         <p className="employeeDataText">Current Matched Candidates:</p>
         <div className="employeeCard">
-          {job.candidates && job.candidates.map(vet => <MatchedCandidateListItem vet={vet}/>)}
+          {job.candidates && job.candidates.map(vet => <MatchedCandidateListItem key={vet.id} vet={vet}/>)}
           {/* Status: 
           <select className="employeeStatus" value={selected} onChange={handleChange}>
             <option value="Pending">Pending</option>
