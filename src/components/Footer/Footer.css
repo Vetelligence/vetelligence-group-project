@@ -1,6 +1,10 @@
 footer {
-  /* margin-top: 25vh; */
-  padding: 20px;
-  text-align: center;
-  height: 5vh
+  display: flex;
+  padding: 10px;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  height: 5vh;
+  background-color: #6C63FE;
+  color: #fff;
 }

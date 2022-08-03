@@ -1,5 +1,18 @@
+.vetLandingPage {
+    background-color: #6C63FE;
+}
+
+.carouselTitle {
+    text-align: center;
+    margin: 0 0 10px 0;
+    color: #fff;
+}
+
 .carousel {
     display: flex;
+    margin: 20px 0 30px 0;
+    justify-content: center;
+    align-items: center;
 }
 
 .carouselItem {
@@ -7,4 +20,33 @@
     border: 2px solid #6C63FE;
     border-radius: 10px;
     text-align: center;
+    width: 80%;
+    padding: 5px;
+    box-shadow: 5px 5px 5px black;
+}
+
+.veteranCopy {
+    padding: 10px;
+    background-color: #fff;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px black;
+}
+
+.titleCopy {
+    font-weight: bold;
+    color: black;
+}
+
+.readyCopy {
+    color: #fff;
+    font-size: 18px;
+}
+
+.vetLandingBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }

@@ -5,15 +5,29 @@ body {
   background-color: #fff;
 }
 
-.grid {
+.landingInfo {
   display: flex;
-  flex: 0 1 auto;
-  /* defaults to 'row' */
-  flex-direction: row;
-  flex-wrap: wrap;
-  /* defaults to 'flex-start' */
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0;
+  margin: -10px 0 40px 0;
+}
+
+.landingInfoTitle {
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  margin: 10px 0 -20px 0;
+  padding: 10px;
+}
+
+.grid {
+  background-color: #6C63FE;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .grid-col {
@@ -58,34 +72,44 @@ body {
 }
 
 .grid-col_8 {
-  display: flexbox;
-  flex-basis: 66.66666667%;
-  max-width: 66.66666667%;
-  margin: 5% -25% 5% 25%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
   align-items: center;
   justify-content: center;
+  background-color: #6C63FE;
 }
 
-.landing-page-h2 {
+.h3-One {
+  margin: 0 0 10px 0;
+  color: #fff;
+}
+
+.landing-page-h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 80%;
-  width: 4em;
-  border-radius: 10px;
-  padding: 4%;
+  color: #fff;
+  padding: 10px;
+  margin: 0;
+}
+
+.theButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .mainPageButton {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid #6C63FE;
   background-color: #fff;
-  border: 1px solid #6C63FE;
-  border-radius: 10px;
-  padding: 35%;
-  margin-left: 0%;
-  margin-right: -174%;
+  border-radius: 20px;
+  padding: 30px;
+  width: 200px;
 }
 
 .linkMainPage {
