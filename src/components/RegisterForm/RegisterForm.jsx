@@ -14,6 +14,7 @@ function RegisterForm({page}) {
     if(page === 'edit'){
       setUserInfo({...userInfo, firstName: user.first_name, lastName: user.last_name, city: user.city, state: user.state, email: user.email, phoneNumber: user.phone_number})
     }
+    console.log('This is page', page)
   }, [])
 
 

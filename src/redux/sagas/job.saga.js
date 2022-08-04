@@ -15,6 +15,7 @@ function* fetchJob(action){
 function* addJob(action){
     try{ 
         yield axios.post('/api/job', action.payload)
+        yield put({type: 'FETCH_CURRENT_JOB', payload: action.payload.userId})
     }
     catch(err){
         console.error('error is', err)
@@ -46,18 +47,6 @@ function* fetchCurrentJob(action){
     }
 }
 
-function* fetchMatchedCandidates(action) {
-    try{
-        const res = yield axios.get('/api/job/candidates/'+ action.payload.id)
-        yield put({
-            type: 'SET_MATCHED_CANDIDATES',
-            payload: res.data
-        })
-    }
-    catch(err){
-        console.log('Failed to fetch matched candidates', err)
-    }
-}
 
 function* addStatus(action){
     try{
@@ -86,14 +75,27 @@ function* deleteFromJobList(action) {
     }
 }
 
+function* fetchVetsJobs() {
+    try{
+        const res = yield axios.get('/api/job/vets-jobs/')
+        yield put({
+            type: 'SET_VETS_JOBS',
+            payload: res.data
+        })
+    }
+    catch(err){
+        console.log('failed to get vets jobs', err)
+    }
+}
+
 function* jobSaga() {
     yield takeLatest('FETCH_JOB', fetchJob);
     yield takeLatest('ADD_JOB', addJob);
     yield takeLatest('FETCH_CURRENT_JOB', fetchCurrentJob);
-    yield takeLatest('FETCH_MATCHED_CANDIDATES', fetchMatchedCandidates)
     yield takeLatest('ADD_STATUS', addStatus )
     yield takeLatest('DELETE_FROM_JOB_LIST', deleteFromJobList)
     yield takeLatest('FETCH_TOP_JOBS', fetchTopJobs);
+    yield takeLatest('FETCH_VETS_JOBS', fetchVetsJobs)
   }
 
 export default jobSaga;

@@ -23,24 +23,6 @@ function EmployerDetails(){
       })
     }, [id])
 
-    const handleChange = event => {
-
-        console.log(event.target.value);
-        setSelected(event.target.value);
-
-
-        dispatch({
-            type: 'ADD_STATUS',
-            payload: {
-                selected: selected,
-                id: id
-            }
-        })
-
-    }
-
-    
-
     return (
 
     <>
@@ -59,14 +41,6 @@ function EmployerDetails(){
         <p className="employeeDataText">Current Matched Candidates:</p>
         <div className="employeeCard">
           {job.candidates && job.candidates.map(vet => <MatchedCandidateListItem key={vet.id} vet={vet}/>)}
-          {/* Status: 
-          <select className="employeeStatus" value={selected} onChange={handleChange}>
-            <option value="Pending">Pending</option>
-            <option value="SelectedForInterview">Selected to Interview</option>
-            <option value="Interviewed">Interviewed</option>
-            <option value="Hired">Hired</option>
-            <option value="NotConsidered">No Longer Considered</option>
-          </select> */}
         </div>
       </div>
     </>
