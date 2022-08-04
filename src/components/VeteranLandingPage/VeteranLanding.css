@@ -1,5 +1,6 @@
 .vetLandingPage {
     background-color: #6C63FE;
+    margin-top: -1px;
 }
 
 .carouselTitle {
@@ -22,7 +23,7 @@
     text-align: center;
     width: 80%;
     padding: 5px;
-    box-shadow: 5px 5px 5px black;
+    box-shadow: 5px 5px 5px #3b378b;
 }
 
 .veteranCopy {
@@ -30,7 +31,7 @@
     background-color: #fff;
     margin: 20px;
     border-radius: 10px;
-    box-shadow: 5px 5px 5px black;
+    box-shadow: 5px 5px 5px #3b378b;
 }
 
 .titleCopy {
@@ -48,5 +49,5 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0;
+    padding-bottom: 30px;
 }
