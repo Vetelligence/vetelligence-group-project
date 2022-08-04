@@ -18,27 +18,16 @@ function VeteranPage() {
   const {id} = useParams();
   useEffect(() => {
     dispatch({
-      type: 'FETCH_USER'
+      type: 'FETCH_VETS_JOBS'
     })
-  },[dispatch])
+  },[])
 
   return (
     <div>
       <p>Welcome, {user.username}</p>
       <div className="accordionBackground">
           <Link to={`/veteran/${user.id}/edit-profile`}>Edit Profile</Link>
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
-          >
-            <Typography>Current Jobs</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
             <CurrentJob />
-          </AccordionDetails>
-        </Accordion>
       </div>
     </div>
   );

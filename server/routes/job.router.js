@@ -255,6 +255,29 @@ jobRouter.post('/matched', (req, res) => {
     res.sendStatus(500);
   })
 })
+
+jobRouter.get('/vets-jobs/', rejectUnauthenticated, (req, res) => {
+
+  const jobQuery = `
+    SELECT jobs.job_description, jobs.job_name, employer.company, user_jobs.status
+    FROM jobs
+    JOIN user_jobs
+    ON user_jobs.jobs_id = jobs.id
+    JOIN "user"
+    ON jobs.employer_id = "user".id
+    JOIN employer
+    ON "user".id = employer.user_id
+    WHERE user_jobs.user_id = $1;
+  `;
+  pool.query(jobQuery, [req.user.id])
+    .then(dbRes => res.send(dbRes.rows))
+    .catch(err => {
+      console.log('failed to get vets jobs', err)
+      res.sendStatus(500)
+    })
+
+
+})
   
 
 module.exports = jobRouter;

@@ -64,13 +64,13 @@ function App() {
 
           {/* Visiting localhost:3000/about will show the about page. */}
 
-          <Route
+          <ProtectedRoute
             // shows AboutPage at all times (logged in or not)
             exact
             path="/veteran/:id"
           >
             <VeteranPage />
-          </Route>
+          </ProtectedRoute>
           <ProtectedRoute exact path='/veteran/:id/edit-profile'>
             <ProfileEditPage />
           </ProtectedRoute>
@@ -99,13 +99,13 @@ function App() {
             <EmployerIntakeForm/>
           </Route>
 
-          <Route
+          <ProtectedRoute
             // shows EmployerPage at all times
             exact
             path="/jobInput"
           >
             <EmployerJobInput />
-          </Route>
+          </ProtectedRoute>
 
 
           <Route
@@ -121,12 +121,12 @@ function App() {
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
 
-          <Route
+          <ProtectedRoute
             exact
             path="/admin"
             >
               <AdminLandingPage />
-            </Route>
+            </ProtectedRoute>
 
           {/* <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
@@ -168,14 +168,6 @@ function App() {
             exact
             path="/home"
           >
-            {/* {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to="/user" />
-              :
-              // Otherwise, show the Landing page
-              <LandingPage />
-            } */}
             <LandingPage />
           </Route>
           
@@ -189,10 +181,6 @@ function App() {
 
           <Route exact path="/veteran-landing">
             <VeteranLandingPage />
-          </Route>
-
-          <Route exact path="/current-job">
-            <CurrentJob />
           </Route>
 
           <Route exact path="/employer/employer-details/:id">

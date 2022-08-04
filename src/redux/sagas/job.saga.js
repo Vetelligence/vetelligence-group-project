@@ -75,6 +75,19 @@ function* deleteFromJobList(action) {
     }
 }
 
+function* fetchVetsJobs() {
+    try{
+        const res = yield axios.get('/api/job/vets-jobs/')
+        yield put({
+            type: 'SET_VETS_JOBS',
+            payload: res.data
+        })
+    }
+    catch(err){
+        console.log('failed to get vets jobs', err)
+    }
+}
+
 function* jobSaga() {
     yield takeLatest('FETCH_JOB', fetchJob);
     yield takeLatest('ADD_JOB', addJob);
@@ -82,6 +95,7 @@ function* jobSaga() {
     yield takeLatest('ADD_STATUS', addStatus )
     yield takeLatest('DELETE_FROM_JOB_LIST', deleteFromJobList)
     yield takeLatest('FETCH_TOP_JOBS', fetchTopJobs);
+    yield takeLatest('FETCH_VETS_JOBS', fetchVetsJobs)
   }
 
 export default jobSaga;

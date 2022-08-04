@@ -1,25 +1,20 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 
 
 function CurrentJob(){
   const dispatch = useDispatch();
-  const params = useParams();
 
-  const currentJobs = useSelector(store => store.currentJob)
+
+  const currentJobs = useSelector(store => store.vetsJobs)
 
 useEffect(() => {
   dispatch({
-    type: 'FETCH_CURRENT_JOB',
-    payload: params.id
+    type: 'FETCH_VETS_JOBS',
   })
 }, []); 
   
@@ -30,9 +25,8 @@ useEffect(() => {
       <br></br>
       <h4>Current Jobs </h4>
       {currentJobs[0] && currentJobs.map(currentJob => (
-        <div key = {currentJob.id}>
-
-      <br></br>
+        <div key={currentJob.id}>
+        {currentJob.status === 'noLongerConsidered' ? <> </> :
       <Card sx={{ maxWidth: 345 }}>
             {/* <CardMedia
               component="img"
@@ -50,11 +44,12 @@ useEffect(() => {
               </Typography>
             </CardContent>
             <CardActions>
-              Company: {currentJob.company}
+              Company: {currentJob.company}<br></br>
               Status: {currentJob.status}
               
             </CardActions>
           </Card>      
+        }
         </div>
       ))}
     </div>

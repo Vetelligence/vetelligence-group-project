@@ -61,7 +61,7 @@ function Nav() {
           )}
           <MenuItem >
             <Button>
-              <Link className="navLink" to="/user">
+              <Link className="navLink" to="/home">
                 Home
               </Link>
             </Button>

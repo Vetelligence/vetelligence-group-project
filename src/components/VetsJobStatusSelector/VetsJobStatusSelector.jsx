@@ -23,7 +23,7 @@ export const VetsJobStatusSelector = ({vet, job}) => {
              Status: 
                 <select className="employeeStatus" value={vet.status} onChange={e => handleStatusChange(e.target.value)}>
                     <option value="pending">Pending</option>
-                    <option value="selected to interview">Selected to Interview</option>
+                    <option value="selectedToInterview">Selected to Interview</option>
                     <option value="interviewed">Interviewed</option>
                     <option value="Hired">Hired</option>
                     <option value="noLongerConsidered">No Longer Considered</option>
