@@ -8,16 +8,14 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useHistory} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function EmployerIntakeForm(){
-
     const history = useHistory();
     const dispatch = useDispatch();
-
     const backButton = () => {
         history.push('/')
     }
-
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [company, setCompany] = useState('');
@@ -48,50 +46,38 @@ function EmployerIntakeForm(){
         dispatch({
             type: 'REGISTER',
             payload: employerInfo
-        })
-
-        
-        
-
+        });
     }
 
     return (
-        <>
-        <Button variant="outlined" onClick={backButton}>Back</Button>
-
-        <form onSubmit={handleSubmit}>
-
-        <TextField label="First Name" variant="outlined" onChange={evt => {setFirstName(evt.target.value)}}/>
-        <br></br>
-        <TextField  label="Last Name" variant="outlined" onChange={evt => {setLastName(evt.target.value)}}/>
-        <br></br>
-        <TextField  label="Company" variant="outlined" onChange={evt => {setCompany(evt.target.value)}}/>
-        <br></br>
-        <TextField  label="E-mail" variant="outlined" onChange={evt => {setEmail(evt.target.value)}}/>
-        <br></br>
-        <TextField  label="Phone Number" variant="outlined" onChange={evt => {setPhoneNumber(evt.target.value)}}/>
-        <br></br>
-        <TextField  label="City" variant="outlined" onChange={evt => {setCity(evt.target.value)}}/>
-        <br></br>
-        <TextField  label="State" variant="outlined" onChange={evt => {setState(evt.target.value)}}/>
-        <br></br>
-        <TextField  label="Username" variant="outlined" onChange={evt => {setUsername(evt.target.value)}}/>
-        <br></br>
-        <TextField  label="Password" variant="outlined" type="password" onChange={evt => {setPassword(evt.target.value)}}/>
-        <br></br>
-
-        <Button variant="contained" color="primary" type="submit">
-            Submit
-        </Button>
-
-
-        </form>
-        
-        </>
-    )
-
+        <div>
+            <Button variant="outlined" onClick={backButton}>Back</Button>
+            <Button variant="outlined"><Link to="/login">Login</Link></Button>
+            <form onSubmit={handleSubmit}>
+                <TextField label="First Name" variant="outlined" onChange={evt => {setFirstName(evt.target.value)}}/>
+                <br></br>
+                <TextField  label="Last Name" variant="outlined" onChange={evt => {setLastName(evt.target.value)}}/>
+                <br></br>
+                <TextField  label="Company" variant="outlined" onChange={evt => {setCompany(evt.target.value)}}/>
+                <br></br>
+                <TextField  label="E-mail" variant="outlined" onChange={evt => {setEmail(evt.target.value)}}/>
+                <br></br>
+                <TextField  label="Phone Number" variant="outlined" onChange={evt => {setPhoneNumber(evt.target.value)}}/>
+                <br></br>
+                <TextField  label="City" variant="outlined" onChange={evt => {setCity(evt.target.value)}}/>
+                <br></br>
+                <TextField  label="State" variant="outlined" onChange={evt => {setState(evt.target.value)}}/>
+                <br></br>
+                <TextField  label="Username" variant="outlined" onChange={evt => {setUsername(evt.target.value)}}/>
+                <br></br>
+                <TextField  label="Password" variant="outlined" type="password" onChange={evt => {setPassword(evt.target.value)}}/>
+                <br></br>
+                <Button variant="contained" color="primary" type="submit">
+                    Submit
+                </Button>
+            </form>  
+        </div>
+    );
 }
-
-
 
 export default EmployerIntakeForm;

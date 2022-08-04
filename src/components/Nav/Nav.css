@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 0 30px;
+  margin: 0;
   background-color: #6C63FE;
   overflow: hidden;
 }
@@ -15,8 +15,8 @@
 .titleImg {
   padding-left: 0px;
   margin: 2%;
-  height: 30%;
-  width: 86%;
+  height: auto;
+  width: 75%;
 }
 
 .navLink {
