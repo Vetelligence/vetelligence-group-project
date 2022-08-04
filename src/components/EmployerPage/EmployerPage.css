@@ -1,16 +1,15 @@
-
-
 .employerView {
-    margin-top: 15%;
+    margin-top: -1px;
+    margin-bottom: -18px;
     background-color: #6C63FE;
-    height: 75vh
+    height: 87vh;
 }
 
 .profileData {
     background-color: #fff;
     width: 78%;
     margin: 0%;
-    margin-top: -14%;
+    padding: 10px;
     margin-left: 6%;
     margin-bottom: 10%;
     border-radius: 10px;

@@ -7,11 +7,14 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { Link } from 'react-router-dom';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { common } from '@material-ui/core/colors';
+import { useHistory } from 'react-router-dom';
 import './VeteranIntakeForm.css';
 
 function VeteranIntakeForm() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const mosData = useSelector(store => store.intake.mosForBranch)
   const [intakeData, setIntakeData] = useState({
     userType: 'veteran',
@@ -26,6 +29,9 @@ function VeteranIntakeForm() {
       city: '',
       state: ''
   });
+  const backButton = () => {
+    history.push("/");
+  }
 
   function handleChange(event) {
     setIntakeData({
@@ -65,11 +71,25 @@ function VeteranIntakeForm() {
     });
   }
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: common.white
+      },
+      secondary: {
+        main: '#6C63FE',
+        darker: '#4EC4DE'
+      }
+    }
+  });
+
   return (
     <div className="intakeForm">
       <div className="theBtns">
         <span className="leftBtn">
-          <Button variant="outlined" className="intakeBackBtn"><Link to="/veteran-landing">Back</Link></Button>
+          <ThemeProvider theme={theme}>
+            <Button variant="contained" style={{ color: common.black }} className="intakeBackBtn" onClick={backButton}>Back</Button>
+          </ThemeProvider>
         </span>
       </div>
       <p>Veterans: submitting this form will grant you access to employers ready to hire you for your skills received while in service. No need to apply to any positions!</p>
@@ -92,7 +112,6 @@ function VeteranIntakeForm() {
         <br></br>
         <TextField onChange={handleChange} value={intakeData.state} name="state" label="State" variant="outlined" />
         <br></br>
-
         <FormControl sx={{width:"194px"}}>
           <InputLabel id="demo-simple-select-label">Branch</InputLabel>
           <Select
@@ -110,8 +129,7 @@ function VeteranIntakeForm() {
             <MenuItem value={'Air Force'}>Air Force</MenuItem>
           </Select>
         </FormControl>
-
-        {intakeData.branch && <FormControl fullWidth>
+        {intakeData.branch && <FormControl sx={{width:"194px"}}>
             <InputLabel id="demo-simple-select-label">MOS</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -127,12 +145,14 @@ function VeteranIntakeForm() {
         }
         <br></br>
         <br></br>
-        <Button variant="contained" color="primary" type="Submit">
-          Submit
-        </Button>
+        <ThemeProvider theme={theme}>
+          <Button variant="contained" color="primary" type="Submit">
+            Submit
+          </Button>
+        </ThemeProvider>
       </form>
     </div>
-  )
+  );
 }
 
 export default VeteranIntakeForm; 
