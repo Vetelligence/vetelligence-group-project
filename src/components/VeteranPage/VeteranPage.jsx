@@ -20,8 +20,8 @@ function VeteranPage() {
   },[id])
 
   return (
-    <div>
-      <p>Welcome, {user.username}</p>
+    <div className="veteranDash">
+      <h4>Welcome, {user.username}</h4>
       <div className="accordionBackground">
         <Accordion>
           <AccordionSummary
