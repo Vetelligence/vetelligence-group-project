@@ -11,13 +11,6 @@ import Box from '@mui/material/Box';
 
 export const JobListItem = ({jobs}) => {
     const dispatch = useDispatch();
-
-    const grabMatchedCandidates = () => {
-        dispatch({
-            type: 'FETCH_MATCHED_CANDIDATES',
-            payload: {id: jobs.id}
-        })
-    }
     
     const [open, setOpen] = useState(false)
 
