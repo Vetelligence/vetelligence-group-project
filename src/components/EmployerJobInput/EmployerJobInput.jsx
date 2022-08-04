@@ -45,7 +45,8 @@ function EmployerJobInput() {
         dispatch({
             type: 'ADD_JOB',
             payload: {jobInputData}
-        }); 
+        });
+        setJobInputData({name: '', description: '', city: '', state: '', skills: []});
     }
 
     useEffect(() => {

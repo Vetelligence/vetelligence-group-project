@@ -16,22 +16,19 @@ function CurrentJob(){
 
   const currentJobs = useSelector(store => store.currentJob)
 
-useEffect(() => {
-  dispatch({
-    type: 'FETCH_CURRENT_JOB',
-    payload: params.id
-  })
-}, []); 
+  useEffect(() => {
+    dispatch({
+      type: 'FETCH_CURRENT_JOB',
+      payload: params.id
+    })
+  }, []); 
   
-  return(
+  return (
 
     <div>
       <br></br>
-      <br></br>
-      <h4>Current Jobs </h4>
       {currentJobs[0] && currentJobs.map(currentJob => (
         <div key = {currentJob.id}>
-
       <br></br>
       <Card sx={{ maxWidth: 345 }}>
             {/* <CardMedia
@@ -46,13 +43,11 @@ useEffect(() => {
               </Typography>
               <Typography variant="body2" color="text.secondary">
               {currentJob.job_description}
-              
               </Typography>
             </CardContent>
             <CardActions>
               Company: {currentJob.company}
               Status: {currentJob.status}
-              
             </CardActions>
           </Card>      
         </div>

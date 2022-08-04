@@ -8,6 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Link } from 'react-router-dom';
+import './VeteranIntakeForm.css';
 
 function VeteranIntakeForm() {
   const dispatch = useDispatch();
@@ -65,12 +66,16 @@ function VeteranIntakeForm() {
   }
 
   return (
-    <div>
-      <Button variant="outlined"><Link to="/veteran-landing">Back</Link></Button>
-      <Button variant="outlined"><Link to="/login">Login</Link></Button>
-      <br></br>
-
-      <form onSubmit={submit}>
+    <div className="intakeForm">
+      <div className="theBtns">
+        <span className="leftBtn">
+          <Button variant="outlined" className="intakeBackBtn"><Link to="/veteran-landing">Back</Link></Button>
+        </span>
+      </div>
+      <p>Veterans: submitting this form will grant you access to employers ready to hire you for your skills received while in service. No need to apply to any positions!</p>
+      <p>Your time in service provided you with skills employers are looking for in new employees. By picking your branch and MOS below, you'll be matched to available openings posted by employers. Employers will then have the ability to contact you for an interview and start the hiring process!</p>
+      <p className="textAlignCenter">Ready to find your next job?</p>
+      <form className="theInputs" onSubmit={submit}>
         <TextField onChange={handleChange} value={intakeData.username}  name="username" label="Username" variant="outlined" />
         <br></br>
         <TextField onChange={handleChange} value={intakeData.password}  name="password" label="Password" variant="outlined" />
@@ -88,7 +93,7 @@ function VeteranIntakeForm() {
         <TextField onChange={handleChange} value={intakeData.state} name="state" label="State" variant="outlined" />
         <br></br>
 
-        <FormControl fullWidth>
+        <FormControl sx={{width:"194px"}}>
           <InputLabel id="demo-simple-select-label">Branch</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -120,6 +125,8 @@ function VeteranIntakeForm() {
             </Select>
           </FormControl>
         }
+        <br></br>
+        <br></br>
         <Button variant="contained" color="primary" type="Submit">
           Submit
         </Button>

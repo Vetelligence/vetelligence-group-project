@@ -54,8 +54,8 @@ function VeteranLandingPage() {
                     <ArrowBackIosIcon style={{ color: common.white }}/>
                 </Button>
                 <div className="carouselItem" key={jobs[0] && jobs[index].id}>
-                    <p>Title: {jobs[0] && jobs[index].job_name}</p>
-                    <p>Description: {jobs[0] && jobs[index].job_description}</p>
+                    <p><strong>Title:</strong> {jobs[0] && jobs[index].job_name}</p>
+                    <p><strong>Description:</strong> {jobs[0] && jobs[index].job_description}</p>
                 </div>
                 <Button
                     onClick={() =>
