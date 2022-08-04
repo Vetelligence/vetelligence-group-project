@@ -41,33 +41,6 @@ jobRouter.get('/veteran-landing', (req, res) => {
     });
 });
 
-jobRouter.get('/candidates/:id', rejectUnauthenticated, (req, res) => {
-  console.log('This is the candidates payload', req.body)
-  console.log('this is the params',req.params.id)
-
-  const sqlQuery = `
-  SELECT "user".id, "user".first_name, "user".last_name, "user".phone_number, "user".email, array_agg(skills.skill_name) AS skills
-  FROM "user"
-  JOIN veterans
-  ON "user".id = veterans.user_id
-  JOIN mos_skills
-  ON veterans.mos_id = mos_skills.mos_id
-  JOIN skills
-  ON skills.id = mos_skills.skill_id
-  GROUP BY "user".iD 
-  ;
-  `
-  pool.query(sqlQuery)
-    .then(dbRes => {
-      console.log('this is dbres.rows', dbRes.rows)
-      res.send(dbRes.rows)
-    })
-    .catch(err => {
-      res.sendStatus(500)
-      console.log('Failed to get matched candidates')
-    })
-})
-
 // POST route for employer to input a job
 // requires an async route as it needs to update the jobs table
 // then it needs to get the Returning property from that post
@@ -234,54 +207,54 @@ jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
   });
 });
 
-  jobRouter.post('/matched', (req, res) => {
-    const insertQuery=`
-    INSERT INTO user_jobs
-    (user_id, jobs_id, status)
-    VALUES ($1, $2, $3)
-    RETURNING *
-    ;
-      `
-    const updateQuery=`
-    UPDATE user_jobs
-    SET status = $1
-    WHERE user_id = $2
-    AND jobs_id = $3 
-    RETURNING *
+jobRouter.post('/matched', (req, res) => {
+  const insertQuery=`
+  INSERT INTO user_jobs
+  (user_id, jobs_id, status)
+  VALUES ($1, $2, $3)
+  RETURNING *
+  ;
     `
+  const updateQuery=`
+  UPDATE user_jobs
+  SET status = $1
+  WHERE user_id = $2
+  AND jobs_id = $3 
+  RETURNING *
+  `
 
-    const updateParams=[
-      req.body.status, req.body.user_id, req.body.jobs_id
-    ]
+  const updateParams=[
+    req.body.status, req.body.user_id, req.body.jobs_id
+  ]
 
-    const insertParams=[
-      req.body.user_id, req.body.jobs_id, req.body.status
-    ]
+  const insertParams=[
+    req.body.user_id, req.body.jobs_id, req.body.status
+  ]
 
-    pool.query(updateQuery, updateParams)
-    .then((updateRes) => {
-      if(updateRes.rows.length === 0){
-        pool.query(insertQuery, insertParams)
-        .then((dbRes) => {
-          res.send({id: dbRes.rows[0].jobs_id});
-          return;
-        })
-        .catch((err)=> {
-          res.sendStatus(500);
-          console.log('failed in Update Job Status', err);
-        })
-      }
-      else{
-        res.send({id: updateRes.rows[0].jobs_id});
-        
-      }
-    })
-
-    .catch((err) => {
-      console.log('error in match post', err)
-      res.sendStatus(500);
-    })
+  pool.query(updateQuery, updateParams)
+  .then((updateRes) => {
+    if(updateRes.rows.length === 0){
+      pool.query(insertQuery, insertParams)
+      .then((dbRes) => {
+        res.send({id: dbRes.rows[0].jobs_id});
+        return;
+      })
+      .catch((err)=> {
+        res.sendStatus(500);
+        console.log('failed in Update Job Status', err);
+      })
+    }
+    else{
+      res.send({id: updateRes.rows[0].jobs_id});
+      
+    }
   })
+
+  .catch((err) => {
+    console.log('error in match post', err)
+    res.sendStatus(500);
+  })
+})
   
 
 module.exports = jobRouter;

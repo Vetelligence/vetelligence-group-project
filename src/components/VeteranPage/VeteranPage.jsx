@@ -8,33 +8,25 @@ import CurrentJob from '../CurrentJob/CurrentJob';
 import { Link, useParams } from 'react-router-dom';
 import './VeteranPage.css';
 import { ProfileEditPage } from '../ProfileEditPage/ProfileEditPage';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 
 function VeteranPage() {
+  const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const {id} = useParams();
   useEffect(() => {
-    
-  },[id])
+    dispatch({
+      type: 'FETCH_USER'
+    })
+  },[dispatch])
 
   return (
     <div>
       <p>Welcome, {user.username}</p>
       <div className="accordionBackground">
-        <Accordion>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            <Typography>Edit Profile</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <ProfileEditPage page={'edit'}/>
-          </AccordionDetails>
-        </Accordion>
+          <Link to={`/veteran/${user.id}/edit-profile`}>Edit Profile</Link>
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}

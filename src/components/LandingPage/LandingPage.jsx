@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import './LandingPage.css';
 
 // CUSTOM COMPONENTS
 
 
 function LandingPage() {
+  const user = useSelector(store => store.user)
   const [heading, setHeading] = useState('Welcome');
   const history = useHistory();
 
@@ -43,17 +44,32 @@ function LandingPage() {
             I am a:
           </h3>
           <div className="theButtons">
+          { user.id && user.user_type === 'veteran'? 
+          <Link className="linkMainPage" to={`/veteran/${user.id}`}>
+          <p className="mainPageButton">
+            Service Member
+          </p>
+        </Link>
+          :
           <Link className="linkMainPage" to="/veteran-landing">
             <p className="mainPageButton">
               Service Member
             </p>
           </Link>
-
+          }
+          { user.id && user.user_type === 'employer' ?
+           <Link className="linkMainPage" to={`/employer/${user.id}`}>
+           <p className="mainPageButton">
+             Recruiter / Employer
+           </p>
+         </Link>
+          :
           <Link className="linkMainPage" to="/employer">
             <p className="mainPageButton">
               Recruiter / Employer
             </p>
           </Link>
+          }
           </div>
         </div>
         {/* <div className="grid-col grid-col_4">

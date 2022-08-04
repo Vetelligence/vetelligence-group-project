@@ -7,14 +7,16 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './EmployerJobInput.css';
 
 // This component allows an Employer/Recruiter to submit a new job to the app
 function EmployerJobInput() {
+    const history = useHistory();
     const dispatch = useDispatch();
+    const user = useSelector(store => store.user)
     const skills = useSelector((store) => store.skills);
-    const [jobInputData, setJobInputData] = useState({name: '', description: '', city: '', state: '', skills: []});
+    const [jobInputData, setJobInputData] = useState({name: '', description: '', city: '', state: '', skills: [], userId: user.id});
     const [newSkills, setNewSkills] = useState('');
 
     const handleChange = (evt) => {
@@ -46,6 +48,7 @@ function EmployerJobInput() {
             type: 'ADD_JOB',
             payload: {jobInputData}
         }); 
+        history.push(`/employer/${user.id}`)
     }
 
     useEffect(() => {
@@ -98,9 +101,10 @@ function EmployerJobInput() {
                         <Select
                             labelId="demo-basic-select-label"
                             id="demo-basic-select"
-                            value={jobInputData.skills}
+                            value={0}
                             onChange={handleChange}
                         >
+                            <MenuItem value={0}>...</MenuItem>
                             {skills && skills.map((skill) => (
                                 <MenuItem key={skill.id} value={skill.id}>{skill.skill_name}</MenuItem>
                             ))}

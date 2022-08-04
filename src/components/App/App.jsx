@@ -25,6 +25,7 @@ import './App.css';
 
 import VeteranIntakeForm from '../VeteranIntakeForm/VeteranIntakeForm';
 import EmployerIntakeForm from '../EmployerIntakeForm/EmployerIntakeForm';
+import { ProfileEditPage } from '../ProfileEditPage/ProfileEditPage';
 
 import VeteranLandingPage from '../VeteranLandingPage/VeteranLandPage';
 import CurrentJob from '../CurrentJob/CurrentJob';
@@ -70,6 +71,9 @@ function App() {
           >
             <VeteranPage />
           </Route>
+          <ProtectedRoute exact path='/veteran/:id/edit-profile'>
+            <ProfileEditPage />
+          </ProtectedRoute>
 
           <ProtectedRoute
             // shows EmployerPage if logged in

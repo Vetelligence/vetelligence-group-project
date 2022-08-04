@@ -15,6 +15,7 @@ function* fetchJob(action){
 function* addJob(action){
     try{ 
         yield axios.post('/api/job', action.payload)
+        yield put({type: 'FETCH_CURRENT_JOB', payload: action.payload.userId})
     }
     catch(err){
         console.error('error is', err)
