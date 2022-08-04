@@ -1,0 +1,26 @@
+.intakeForm {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.textAlignCenter {
+    text-align: center;
+}
+
+.theInputs {
+    text-align: center;
+}
+
+.leftBtn {
+    display: flex;
+    justify-content: left;
+    text-decoration: none;
+}
+
+.intakeBackBtn {
+    width: 20px;
+    text-decoration: none;
+    color: black;
+}

@@ -8,8 +8,6 @@ import Typography from '@mui/material/Typography';
 
 function CurrentJob(){
   const dispatch = useDispatch();
-
-
   const currentJobs = useSelector(store => store.vetsJobs)
 
 useEffect(() => {
@@ -18,12 +16,10 @@ useEffect(() => {
   })
 }, []); 
   
-  return(
+  return (
 
     <div>
       <br></br>
-      <br></br>
-      <h4>Current Jobs </h4>
       {currentJobs[0] && currentJobs.map(currentJob => (
         <div key={currentJob.id}>
         {currentJob.status === 'noLongerConsidered' ? <> </> :
@@ -40,13 +36,11 @@ useEffect(() => {
               </Typography>
               <Typography variant="body2" color="text.secondary">
               {currentJob.job_description}
-              
               </Typography>
             </CardContent>
             <CardActions>
               Company: {currentJob.company}<br></br>
               Status: {currentJob.status}
-              
             </CardActions>
           </Card>      
         }

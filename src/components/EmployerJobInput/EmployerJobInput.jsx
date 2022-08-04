@@ -49,6 +49,8 @@ function EmployerJobInput() {
             payload: {jobInputData}
         }); 
         history.push(`/employer/${user.id}`)
+        });
+        setJobInputData({name: '', description: '', city: '', state: '', skills: []});
     }
 
     useEffect(() => {

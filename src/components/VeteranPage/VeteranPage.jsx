@@ -23,8 +23,8 @@ function VeteranPage() {
   },[])
 
   return (
-    <div>
-      <p>Welcome, {user.username}</p>
+    <div className="veteranDash">
+      <h4>Welcome, {user.username}</h4>
       <div className="accordionBackground">
           <Link to={`/veteran/${user.id}/edit-profile`}>Edit Profile</Link>
             <CurrentJob />
