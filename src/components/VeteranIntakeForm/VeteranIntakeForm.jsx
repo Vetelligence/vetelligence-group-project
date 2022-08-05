@@ -65,7 +65,7 @@ function VeteranIntakeForm() {
       firstName: '',
       lastName: '',
       email: '',
-      phone:'',
+      phoneNumber:'',
       city: '',
       state: ''
     });
@@ -73,6 +73,22 @@ function VeteranIntakeForm() {
       history.push(`/veteran/${user.id}`)
     }, 250)
   }
+
+  function autoFill() {
+    console.log("working");
+    setIntakeData({
+      userType: 'veteran',
+      branch: '',
+      mos: '',
+      username:'courtneyazar',
+      password: '123',
+      firstName: 'Courtney',
+      lastName: 'Azar',
+      email: 'TheCourtney@aol.net',
+      phoneNumber:'123-456-7890',
+      city: 'Minneapolis',
+      state: 'MN'
+  })}
 
   const theme = createTheme({
     palette: {
@@ -97,7 +113,7 @@ function VeteranIntakeForm() {
       </div>
       <p>Veterans: submitting this form will grant you access to employers ready to hire you for your skills received while in service. No need to apply to any positions!</p>
       <p>Your time in service provided you with skills employers are looking for in new employees. By picking your branch and MOS below, you'll be matched to available openings posted by employers. Employers will then have the ability to contact you for an interview and start the hiring process!</p>
-      <p className="textAlignCenter">Ready to find your next job?</p>
+      <p className="textAlignCenter" onClick={autoFill}>Ready to find your next job?</p>
       <form className="theInputs" onSubmit={submit}>
         <TextField onChange={handleChange} value={intakeData.username}  name="username" label="Username" variant="outlined" />
         <br></br>
