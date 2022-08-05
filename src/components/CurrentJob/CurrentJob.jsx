@@ -5,7 +5,6 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-
 function CurrentJob(){
   const dispatch = useDispatch();
   const currentJobs = useSelector(store => store.vetsJobs)
@@ -17,7 +16,6 @@ useEffect(() => {
 }, []); 
   
   return (
-
     <div>
       <br></br>
       <br></br>

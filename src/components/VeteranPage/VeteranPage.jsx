@@ -1,26 +1,40 @@
 import React from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CurrentJob from '../CurrentJob/CurrentJob';
 import { Link, useParams } from 'react-router-dom';
 import './VeteranPage.css';
-import { ProfileEditPage } from '../ProfileEditPage/ProfileEditPage';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-
+import Button from '@mui/material/Button';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { common } from '@material-ui/core/colors';
 
 function VeteranPage() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const {id} = useParams();
+  const editButton = () => {
+    history.push(`/veteran/${user.id}/edit-profile`);
+  }
+
   useEffect(() => {
     dispatch({
       type: 'FETCH_VETS_JOBS'
     })
-  },[])
+  },[]);
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: common.white
+      },
+      secondary: {
+        main: '#6C63FE',
+        darker: '#4EC4DE'
+      }
+    }
+  });
 
   return (
     <div className="veteranDash">
@@ -33,8 +47,10 @@ function VeteranPage() {
       </div>
       <br></br>
       <div className="accordionBackground">
-          <Link to={`/veteran/${user.id}/edit-profile`}>Edit Profile</Link>
-            <CurrentJob />
+      <ThemeProvider theme={theme}>
+        <Button className="employerDetailsBackBtn" variant="contained" onClick={editButton}>Edit Profile</Button>
+      </ThemeProvider>
+      <CurrentJob/>
       </div>
     </div>
   );
