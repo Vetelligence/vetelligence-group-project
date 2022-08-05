@@ -2,6 +2,12 @@
     margin: 20px;
 }
 
+.matchedCandidateDropDown {
+    display: flex;
+    padding: 5px;
+    align-items: center;
+}
+
 .job-details-card {
     display: block;
     margin: 20px;
