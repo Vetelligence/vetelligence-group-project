@@ -27,7 +27,7 @@ export const MatchedCandidateListItem = ({vet}) => {
     const matchSkills = matchedSkills();
 
     return(
-        <div className="">
+        <div>
             <div className="topCard">
                 {opened? <ArrowDropUpIcon onClick={() => setOpened(!opened)}/> : <ArrowDropDownIcon onClick={() => setOpened(!opened)}/>}
                 <p className="employeeCardText">Name: {vet.first_name} {vet.last_name}</p> 

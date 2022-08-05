@@ -15,6 +15,7 @@ import './VeteranIntakeForm.css';
 function VeteranIntakeForm() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const user = useSelector(store => store.user)
   const mosData = useSelector(store => store.intake.mosForBranch)
   const [intakeData, setIntakeData] = useState({
     userType: 'veteran',
@@ -25,7 +26,7 @@ function VeteranIntakeForm() {
       firstName: '',
       lastName: '',
       email: '',
-      phone:'',
+      phoneNumber:'',
       city: '',
       state: ''
   });
@@ -69,6 +70,9 @@ function VeteranIntakeForm() {
       city: '',
       state: ''
     });
+    setTimeout(() => {
+      history.push(`/veteran/${user.id}`)
+    }, 250)
   }
 
   const theme = createTheme({
@@ -98,7 +102,7 @@ function VeteranIntakeForm() {
       <form className="theInputs" onSubmit={submit}>
         <TextField onChange={handleChange} value={intakeData.username}  name="username" label="Username" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} value={intakeData.password}  name="password" label="Password" variant="outlined" />
+        <TextField onChange={handleChange} value={intakeData.password} type="password"  name="password" label="Password" variant="outlined" />
         <br></br>
         <TextField onChange={handleChange} value={intakeData.firstName} name="firstName" label="First Name" variant="outlined" />
         <br></br>
@@ -106,7 +110,7 @@ function VeteranIntakeForm() {
         <br></br>
         <TextField onChange={handleChange} value={intakeData.email} name="email" label="E-mail" variant="outlined" />
         <br></br>
-        <TextField onChange={handleChange} value={intakeData.phone} name="phone" label="Phone" variant="outlined" />
+        <TextField onChange={handleChange} value={intakeData.phoneNumber} name="phoneNumber" label="Phone" variant="outlined" />
         <br></br>
         <TextField onChange={handleChange} value={intakeData.city} name="city" label="City" variant="outlined" />
         <br></br>

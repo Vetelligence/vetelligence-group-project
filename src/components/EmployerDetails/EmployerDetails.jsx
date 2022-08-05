@@ -34,7 +34,7 @@ function EmployerDetails(){
       <p>{job.job && job.job.job_description}</p>
       <div className='current-job-skills'>
         <h3>Skills:</h3>
-        {job.job && job.job.skills.map(s => <p className='details-skills'>{s}</p>)}
+        {job.job && job.job.skills.map(s => <p key={s} className='details-skills'>{s}</p>)}
       </div>
     </div>
     <div className="employeeData">
