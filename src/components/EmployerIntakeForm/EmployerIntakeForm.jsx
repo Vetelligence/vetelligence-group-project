@@ -5,7 +5,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { common } from '@material-ui/core/colors';
 import { useHistory} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 function EmployerIntakeForm(){
     const history = useHistory();
