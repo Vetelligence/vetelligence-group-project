@@ -42,6 +42,7 @@ router.get('/:users', (req, res) =>{
       {const sqlQuery = `
       SELECT
         "user".*,
+        "employer".id,
         "employer".company,
         "employer".status
       FROM "user"

@@ -15,7 +15,7 @@ router.get('/:branch', (req,res) =>{
     `
     pool.query(sqlQuery, [req.params.branch])
         .then ((results) => {
-            console.log('get mos success', results.rows);
+            // console.log('get mos success', results.rows);
             res.send(results.rows);
         })
         .catch((err) => {

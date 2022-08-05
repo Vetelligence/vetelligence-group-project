@@ -29,7 +29,8 @@ CREATE TABLE jobs(
     employer_id INT REFERENCES "user",
     job_description VARCHAR,
     city VARCHAR,
-    state VARCHAR
+    state VARCHAR,
+    date_deleted DATE
 );
 
 

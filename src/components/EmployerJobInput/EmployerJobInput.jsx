@@ -48,8 +48,9 @@ function EmployerJobInput() {
             type: 'ADD_JOB',
             payload: {jobInputData}
         }); 
-        history.push(`/employer/${user.id}`)
-        });
+        setTimeout(() => {
+            history.push(`/employer/${user.id}`)
+        }, 250)
         setJobInputData({name: '', description: '', city: '', state: '', skills: []});
     }
 

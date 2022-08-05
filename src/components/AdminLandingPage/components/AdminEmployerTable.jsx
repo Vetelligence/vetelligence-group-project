@@ -14,6 +14,7 @@ import AdminDelete from './AdminDelete';
 
 function AdminEmployerTable() {
     const employerList = useSelector(store => store.admin.employerList )
+    console.log('This is employer list',employerList)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch({
