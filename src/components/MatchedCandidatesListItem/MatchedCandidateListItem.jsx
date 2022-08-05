@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import { VetsJobStatusSelector } from "../VetsJobStatusSelector/VetsJobStatusSelector";
-import './MatchedCandidateListItem.css'
+// import './MatchedCandidateListItem.css'
 
 export const MatchedCandidateListItem = ({vet}) => {
     const [opened, setOpened] = useState(false)

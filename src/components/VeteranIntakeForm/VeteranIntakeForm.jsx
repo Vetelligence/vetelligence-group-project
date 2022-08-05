@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -126,11 +125,11 @@ function VeteranIntakeForm() {
             name="branch"
             onChange={handleChange}
           >
+            <MenuItem value={'Air Force'}>Air Force</MenuItem>
+            <MenuItem value={'Army'}>Army</MenuItem>
             <MenuItem value={'Coast Guard'}>Coast Guard</MenuItem>
             <MenuItem value={'Marine Corps'}>Marine Corps</MenuItem>
             <MenuItem value={'Navy'}>Navy</MenuItem>
-            <MenuItem value={'Army'}>Army</MenuItem>
-            <MenuItem value={'Air Force'}>Air Force</MenuItem>
           </Select>
         </FormControl>
         {intakeData.branch && <FormControl sx={{width:"194px"}}>

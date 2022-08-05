@@ -5,13 +5,13 @@ const {
     rejectUnauthenticated,
   } = require('../modules/authentication-middleware');
 
-
-  //grabs all mos data form specific branch
+//grabs all mos data form specific branch
 router.get('/:branch', (req,res) =>{
     console.log(req.params.branch)
     sqlQuery=`
         SELECT * FROM "mos"
         WHERE branch = $1
+        ORDER BY mos
     `
     pool.query(sqlQuery, [req.params.branch])
         .then ((results) => {
@@ -23,7 +23,5 @@ router.get('/:branch', (req,res) =>{
             res.sendStatus(500);
         })
 } )
-
-
 
 module.exports = router;
