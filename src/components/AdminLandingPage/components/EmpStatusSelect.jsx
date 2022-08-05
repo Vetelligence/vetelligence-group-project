@@ -3,6 +3,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import {useDispatch} from 'react-redux';
 
+// This component controls the approval status and drop down options for Employer Status.
 function EmpStatusSelect ({empStatus, id}) {
   const dispatch = useDispatch();
 
@@ -28,11 +29,5 @@ function EmpStatusSelect ({empStatus, id}) {
     </FormControl>
   );
 }
-
-
-
-
-
-
 
 export default EmpStatusSelect

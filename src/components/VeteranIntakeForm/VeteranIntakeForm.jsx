@@ -11,6 +11,7 @@ import { common } from '@material-ui/core/colors';
 import { useHistory } from 'react-router-dom';
 import './VeteranIntakeForm.css';
 
+//This component allows Vetarans to register a new Veteran account.
 function VeteranIntakeForm() {
   const dispatch = useDispatch();
   const history = useHistory();

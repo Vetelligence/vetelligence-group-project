@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 import {useHistory } from 'react-router-dom';
 import './EmployerJobInput.css';
 
-// This component allows an Employer/Recruiter to submit a new job to the app
+// This component allows an Employer/Recruiter to submit a new job to the app while logged in.
 function EmployerJobInput() {
     const history = useHistory();
     const dispatch = useDispatch();

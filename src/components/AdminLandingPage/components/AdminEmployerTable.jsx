@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,11 +7,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { common } from '@material-ui/core/colors';
 import EmpStatusSelect from './EmpStatusSelect';
 import AdminDelete from './AdminDelete';
 
-
-
+//This component holds the Employer table data on the Admin Page.
+//This page connects to EmpStatusSelect.jsx for the Employer status drop down.
+//This page also connects to the AdminDelete.jsx for the delete button option.
 function AdminEmployerTable() {
     const employerList = useSelector(store => store.admin.employerList )
     console.log('This is employer list',employerList)
@@ -33,10 +36,8 @@ function AdminEmployerTable() {
             company: employer.company,
             status: employer.status,
             key: employer.id
-
         }
     })
-
 
     const headCells = [
         {
@@ -89,14 +90,24 @@ function AdminEmployerTable() {
         }
     ];
 
-
+    const theme = createTheme({
+        palette: {
+          primary: {
+            main: common.black
+          },
+          secondary: {
+            main: '#6C63FE',
+            darker: '#4EC4DE'
+          }
+        }
+      });
 
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ maxWidth: 650 }} size="small" aria-label="a dense table">
+        <TableContainer component={Paper} sx={{ minWidth: 200 }} className="employerTable">
+            <Table sx={{ minWidth: 200 }} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
-                        {headCells.map(cell => <TableCell key={cell.id} align="right">{cell.label} </TableCell>)}
+                        {headCells.map(cell => <TableCell key={cell.id} align="left">{cell.label} </TableCell>)}
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -108,26 +119,20 @@ function AdminEmployerTable() {
                             <TableCell component="th" scope="row">
                                 {row.firstName}
                             </TableCell>
-                            <TableCell align="right">{row.lastName}</TableCell>
-                            <TableCell align="right">{row.city}</TableCell>
-                            <TableCell align="right">{row.state}</TableCell>
-                            <TableCell align="right">{row.email}</TableCell>
-                            <TableCell align="right">{row.phone}</TableCell>
-                            <TableCell align="right">{row.company}</TableCell>
-                            <TableCell align="right">{row.status === 'pending' ? <EmpStatusSelect id={row.key} empStatus={row.status}/> : row.status.toUpperCase()}</TableCell>
-                            { row.status === 'pending' && <TableCell align="right"><AdminDelete id={row.key}/></TableCell>}
-
-
+                            <TableCell align="left">{row.lastName}</TableCell>
+                            <TableCell align="left">{row.city}</TableCell>
+                            <TableCell align="left">{row.state}</TableCell>
+                            <TableCell align="left">{row.email}</TableCell>
+                            <TableCell align="left">{row.phone}</TableCell>
+                            <TableCell align="left">{row.company}</TableCell>
+                            <TableCell align="left">{row.status === 'pending' ? <EmpStatusSelect id={row.key} empStatus={row.status}/> : row.status.toUpperCase()}</TableCell>
+                            { row.status === 'pending' && <TableCell align="right"><ThemeProvider theme={theme}><AdminDelete id={row.key}/></ThemeProvider></TableCell>}
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
         </TableContainer>
     );
-
 }
-
-
-
 
 export default AdminEmployerTable

@@ -1,10 +1,11 @@
-import { useState } from "react"
 import { useDispatch } from "react-redux"
 
-
+//This component allows an Employer to update the job status for a matched Veteran.
+//If the job status is pending it will not be visible to the Veteran.
+//As soon as an Employer updates the status, it will become visible to the selected
+//Veteran.
 export const VetsJobStatusSelector = ({vet, job}) => {
     const dispatch = useDispatch();
-    // const [status, setStatus] = useState(vet.status)
 
     const handleStatusChange = e => {
         console.log('thi is job', job)
@@ -29,5 +30,5 @@ export const VetsJobStatusSelector = ({vet, job}) => {
                     <option value="noLongerConsidered">No Longer Considered</option>
                 </select>
         </div>
-    )
+    );
 }

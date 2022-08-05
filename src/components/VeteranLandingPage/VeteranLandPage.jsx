@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import './VeteranLanding.css'
 
+//This is the main landing page for Veterans accessible to any Veteran not logged in.
 function VeteranLandingPage() {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -22,9 +23,7 @@ function VeteranLandingPage() {
         })
       }, [index]); 
 
-    function Login() {
-        history.push('/veteran-intake');
-    }
+    function Login() {history.push('/veteran-intake');}
 
     const theme = createTheme({
         palette: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import './AboutPage.css';
 
-
+// The About Page shows info about Vetelligence for all users whether logged in or not.
 function AboutPage() {
   return (
     <div className="aboutContainer">

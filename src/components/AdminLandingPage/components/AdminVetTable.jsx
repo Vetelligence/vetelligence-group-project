@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -6,19 +6,18 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-
 import Paper from '@mui/material/Paper';
 
-
-
+//This component holds the Veteran Table data for the Admin Page.
 function AdminVetTable () {
-    const veteranList = useSelector(store => store.admin.veteranList )
+    const veteranList = useSelector(store => store.admin.veteranList);
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch({
             type: 'FETCH_VETERANS',
-        })
-    }, [])
+        });
+    }, []);
 
     const rows = veteranList.map((veteran) => {
         return {
@@ -33,8 +32,7 @@ function AdminVetTable () {
             key: veteran.id
 
         }
-    })
-
+    });
 
     const headCells = [
         {
@@ -87,14 +85,12 @@ function AdminVetTable () {
         }
     ];
 
-
-
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ maxWidth: 650 }} size="small" aria-label="a dense table">
+        <TableContainer component={Paper} className="vetTable" sx={{ minWidth: 200 }}>
+            <Table sx={{ minWidth: 200 }} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
-                        {headCells.map(cell => <TableCell key={cell.id} align="right">{cell.label} </TableCell>)}
+                        {headCells.map(cell => <TableCell key={cell.id} align="left">{cell.label} </TableCell>)}
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -106,24 +102,19 @@ function AdminVetTable () {
                             <TableCell component="th" scope="row">
                                 {row.firstName}
                             </TableCell>
-                            <TableCell align="right">{row.lastName}</TableCell>
-                            <TableCell align="right">{row.city}</TableCell>
-                            <TableCell align="right">{row.state}</TableCell>
-                            <TableCell align="right">{row.email}</TableCell>
-                            <TableCell align="right">{row.phone}</TableCell>
-                            <TableCell align="right">{row.mos}</TableCell>
-                            <TableCell align="right">{row.status}</TableCell>
-
+                            <TableCell align="left">{row.lastName}</TableCell>
+                            <TableCell align="left">{row.city}</TableCell>
+                            <TableCell align="left">{row.state}</TableCell>
+                            <TableCell align="left">{row.email}</TableCell>
+                            <TableCell align="left">{row.phone}</TableCell>
+                            <TableCell align="left">{row.mos}</TableCell>
+                            <TableCell align="left">{row.status}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
             </Table>
         </TableContainer>
     );
-
 }
-
-
-
 
 export default AdminVetTable

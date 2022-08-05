@@ -9,6 +9,9 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { common } from '@material-ui/core/colors';
 
+//This component is the main dash view for a logged in Veteran.
+//This page will display profile info and current jobs the Veteran
+//has been matched with based on MOS skills.
 function VeteranPage() {
   const history = useHistory();
   const dispatch = useDispatch();

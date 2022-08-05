@@ -6,12 +6,11 @@ import { common } from '@material-ui/core/colors';
 import { useHistory} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+//This page allows a new employer (not logged in) to create an account
 function EmployerIntakeForm(){
     const history = useHistory();
     const dispatch = useDispatch();
-    const backButton = () => {
-        history.push('/')
-    }
+    const backButton = () => {history.push('/')};
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [company, setCompany] = useState('');
@@ -36,7 +35,6 @@ function EmployerIntakeForm(){
             password: password,
             userType: userType,
         }
-
         evt.preventDefault();
 
         dispatch({

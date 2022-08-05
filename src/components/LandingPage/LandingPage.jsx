@@ -1,19 +1,13 @@
-import React, { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './LandingPage.css';
 
-// CUSTOM COMPONENTS
-
-
+//This is the main landing page for the app and is visible to all users
+//whether logged in or not. The links at the bottom will take users to
+//either their dash (if logged in), or to an intake form to create an account.
 function LandingPage() {
   const user = useSelector(store => store.user)
-  const [heading, setHeading] = useState('Welcome');
-  const history = useHistory();
-
-  const onLogin = (event) => {
-    history.push('/login');
-  };
 
   return (
     <div className="container">

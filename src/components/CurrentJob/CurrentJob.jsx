@@ -5,6 +5,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
+//This component is viewable from the VeteranPage.jsx.
+//This component displays all current jobs for the logged in Veteran.
 function CurrentJob(){
   const dispatch = useDispatch();
   const currentJobs = useSelector(store => store.vetsJobs)
@@ -24,12 +26,6 @@ useEffect(() => {
         <div key={currentJob.id}>
         {currentJob.status === 'noLongerConsidered' ? <> </> :
       <Card sx={{ maxWidth: 345 }}>
-            {/* <CardMedia
-              component="img"
-              height="140"
-              image=""
-              alt=""
-            /> */}
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
               {currentJob.job_name}

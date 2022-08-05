@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
 
+//Allows all users to login to one main login form.
+//This component is connected to the LoginPage.jsx.
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
