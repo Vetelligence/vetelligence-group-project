@@ -78,6 +78,10 @@ function EmployerJobInput() {
         }
     });
 
+    function autoFillJob() {
+        setJobInputData({name: 'Data Analyst', description: 'Utilize common data structures to analyze data.', city: 'Minneapolis', state: 'MN', skills: []});
+    }
+
     return (
         <div className="jobInputForm">
             <ThemeProvider theme={theme}>
@@ -85,7 +89,7 @@ function EmployerJobInput() {
             </ThemeProvider>
             <p>Helpful hints: <br></br> You will need the job title, job description, the city and state the job is located, the company name, and 5 skills associated with the job (these are chosen from a drop down). Just pick the closest 5 options from the drop down, they don't need to be exact.</p>  
             <div>
-                <p>Job Input Form</p>
+                <p onClick={autoFillJob}>Job Input Form</p>
                 <form onSubmit={handleSubmit}>
                     <div className="inputFields">
                         <TextField
