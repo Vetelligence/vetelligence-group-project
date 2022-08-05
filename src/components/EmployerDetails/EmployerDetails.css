@@ -1,12 +1,33 @@
-.middleCard {
+.employerDetailsPage {
+    margin: 20px;
+}
+
+.job-details-card {
     display: block;
-    margin: 0;
-    align-items: center;
+    margin: 20px;
+    text-align: left;
     font-size: 14px;
 }
 
+.employerDetailsTitle {
+    text-align: left;
+    margin-bottom: -2px;
+}
 
-.job-details-card{
-    padding-left: 5vh;
+.employeeDetailsData {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.employeeCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 310px;
+}
+
+.matchedCandidateText {
+    text-align: center;
 }

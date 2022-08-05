@@ -3,11 +3,13 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { common } from '@material-ui/core/colors';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import {useHistory } from 'react-router-dom';
 import './EmployerJobInput.css';
 
 // This component allows an Employer/Recruiter to submit a new job to the app
@@ -54,15 +56,33 @@ function EmployerJobInput() {
         setJobInputData({name: '', description: '', city: '', state: '', skills: []});
     }
 
+    const backButton = () => {
+        history.push('/employer/:id')
+    }
+
     useEffect(() => {
         dispatch({
             type: 'FETCH_SKILLS'
         });
     }, []);
 
+    const theme = createTheme({
+        palette: {
+          primary: {
+            main: common.white
+          },
+          secondary: {
+            main: '#6C63FE',
+            darker: '#4EC4DE'
+          }
+        }
+    });
+
     return (
-        <div>
-            <Button variant="contained" color="primary" className="backBtn"><Link to="/employer/:id">Back</Link></Button> 
+        <div className="jobInputForm">
+            <ThemeProvider theme={theme}>
+                <Button variant="contained" className="backBtn" onClick={backButton}>Back</Button> 
+            </ThemeProvider>
             <p>Helpful hints: <br></br> You will need the job title, job description, the city and state the job is located, the company name, and 5 skills associated with the job (these are chosen from a drop down). Just pick the closest 5 options from the drop down, they don't need to be exact.</p>  
             <div>
                 <p>Job Input Form</p>
@@ -120,9 +140,11 @@ function EmployerJobInput() {
                             <br></br>5 {newSkills[4]}
                         </p>
                     </div>
-                    <Button variant="contained" color="primary" type="Submit">
-                        Submit
-                    </Button>
+                    <ThemeProvider theme={theme}>
+                        <Button variant="contained" color="primary" type="Submit">
+                            Submit
+                        </Button>
+                    </ThemeProvider>
                 </form>
             </div>
         </div> 

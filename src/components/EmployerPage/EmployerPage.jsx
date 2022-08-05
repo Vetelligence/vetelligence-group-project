@@ -1,13 +1,10 @@
 import React from 'react';
-import EditIcon from '@material-ui/icons/Edit';
-import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import './EmployerPage.css';
 import { JobListItem } from '../JobListItem/JobListItem';
-import RegisterForm from '../RegisterForm/RegisterForm';
 
 // This component shows the dashboard for the given logged in Employer/Recruiter
 function EmployerPage() {
@@ -23,6 +20,8 @@ function EmployerPage() {
 
   return (
     <div className="employerView">
+      <br></br>
+      <br></br>
       <div className="profileData">
         <p>Name: {user.first_name} {user.last_name}</p>
         <p>Phone: {user.phone_number}</p>
