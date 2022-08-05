@@ -3,3 +3,15 @@
     margin: 20px;
     height: 80vh;
 }
+
+.profileInfo {
+    margin: 10px;
+    padding: 10px;
+    background-color: #6C63FE;
+    box-shadow: 5px 5px 5px #2c296b;
+    border-radius: 10px;
+}
+
+.profileText {
+    color: #fff;
+}

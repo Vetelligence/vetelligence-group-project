@@ -24,7 +24,14 @@ function VeteranPage() {
 
   return (
     <div className="veteranDash">
-      <h4>Welcome, {user.username}</h4>
+      <h2>Welcome, {user.username}</h2>
+      <div className="profileInfo">
+        <p className="profileText">Profile Info</p>
+        <p className="profileText">Name: {user.first_name} {user.last_name}</p>
+        <p className="profileText">Phone: {user.phone_number}</p>
+        <p className="profileText">Email: {user.email}</p>
+      </div>
+      <br></br>
       <div className="accordionBackground">
           <Link to={`/veteran/${user.id}/edit-profile`}>Edit Profile</Link>
             <CurrentJob />
