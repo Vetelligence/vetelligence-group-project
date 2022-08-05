@@ -25,7 +25,7 @@ COPY public."user" (id, username, password, state, city, user_type, first_name, 
 2	Theresa	$2a$10$WBMb2/yBUkKvV6P4WmA/6uqw6lfjwgCdnzerjCSxn.IeyujashjV6	Minnesota	Minneapolis	veteran	Theresa	Perry	theresaPerry@theresaPerry.com	612 555 5555
 3	Norma	$2a$10$cG0seei9e1qsJHFmNbteiuMzYfDTYab3.Rc/ayG6oZsw7Ct5S.zQa	MN	Carlton	veteran	Norma	Griffin	normaGriffin@normaGriffin.com	218 555 5555
 4	Sharon	$2a$10$QrfkQM8yYqpRV921q18fSO9DqWdQCKUcM6qrycjEVn.hm6nHbYgGy	FL	Miami	veteran	Sharon	Rodriguez	sharonRodriguez@sharonRodriguez.com	715 555 5555
-5	Virginia	$2a$10$chjDvPEhe.hfCUr1zGSgjuL9Z7WbvPv8IfKvnaBkTvv56lbN9f.Ua	KS	Bakers Field	veteran	Virginia	Baker	virginiaBaker@virginiaBaker.com	715 555 5555
+5	Virginia	$2a$10$chjDvPEhe.hfCUr1zGSgjuL9Z7WbvPv8IfKvnaBkTvv56lbN9f.Ua	MN	Minneapolis	veteran	Virginia	Baker	virginiaBaker@virginiaBaker.com	715 555 5555
 6	gcontractor	$2a$10$FD.PCqTyPjyAJSq1AA34d.1qeYiMLMrF1sTeXGE.eEjglNb.a81R2	Minnesota	Minneapolis	employer	Katherine 	Wood	generalcontractors@generalContractors.org	555 555 5555
 8	sefamily	$2a$10$e6NHJ/fLGTZdJ7ZH8GFj9OcM9aYCdoKhJG.monzKSbnkAU.eKOAPa	MN	Saginaw	employer	Sean	Hall	softwareEngineerFamily@softwareEngineerFamily.com	555 555 5555
 10	salesshop	$2a$10$WwbEAIMu5AwOmGvtrualfupOG5vvav6MEiqfH4i5ETbOspaJNOTg2	MO	Kansas City	employer	Ashley	Robinson	salesShop@salesshop.com	555 666 7777

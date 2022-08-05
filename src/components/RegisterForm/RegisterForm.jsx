@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@mui/material/TextField';
+import { useHistory, Link } from 'react-router-dom';
 
 
 function RegisterForm({page}) {
+  const history = useHistory();
   const errors = useSelector((store) => store.errors);
   const user = useSelector(store => store.user)
   const dispatch = useDispatch();
@@ -38,6 +40,8 @@ function RegisterForm({page}) {
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
+      {/* <button className='btn' onClick={() => history.push(`/veteran/${user.id}`)}>back</button> */}
+      {page === 'edit'? <Link to={`/veteran/${user.id}`}>Back</Link> : <></>}
       
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
@@ -127,7 +131,10 @@ function RegisterForm({page}) {
       <div>
         {
          page === 'edit'?  
+         <>
          <input className="btn" type="submit" name="submit" value="Update" />
+         <button className='btn' onClick={() => history.push(`/veteran/${user.id}`)}>Cancel</button>
+         </>
          :
          <input className="btn" type="submit" name="submit" value="Register" />
         }

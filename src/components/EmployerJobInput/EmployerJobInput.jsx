@@ -62,7 +62,7 @@ function EmployerJobInput() {
 
     return (
         <div>
-            <Button variant="contained" color="primary" className="backBtn"><Link to="/employer/:id">Back</Link></Button> 
+            <Button variant="contained" color="primary" className="backBtn"><Link to={`/employer/${user.id}`}>Back</Link></Button> 
             <p>Helpful hints: <br></br> You will need the job title, job description, the city and state the job is located, the company name, and 5 skills associated with the job (these are chosen from a drop down). Just pick the closest 5 options from the drop down, they don't need to be exact.</p>  
             <div>
                 <p>Job Input Form</p>

@@ -2,17 +2,19 @@ import { useState, useEffect } from 'react';
 import './EmployerDetails.css';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 
 import { MatchedCandidateListItem } from '../MatchedCandidatesListItem/MatchedCandidateListItem';
 
 function EmployerDetails(){
+  const history = useHistory()
     const {id} = useParams();
     const dispatch = useDispatch();
     
     const job = useSelector(store => store.currentJob)
 
-    const status = useSelector(store => store.status);
+    const user = useSelector(store => store.user);
 
     const [selected, setSelected] = useState('');
 
@@ -26,6 +28,7 @@ function EmployerDetails(){
     return (
 
     <>
+    <button className='btn' onClick={() => history.push(`/employer/${user.id}`)}>back</button>
     <div className='job-details-card'>
       <h2>{job.job && job.job.company}</h2>
       <h3>Job Title:</h3>
