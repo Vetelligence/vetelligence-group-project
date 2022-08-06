@@ -41,7 +41,7 @@ function VeteranPage() {
 
   return (
     <div className="veteranDash">
-      <h2>Welcome, {user.username}</h2>
+      <h2>Welcome, {user.first_name}</h2>
       <div className="profileInfo">
         <p className="profileText">Profile Info</p>
         <p className="profileText">Name: {user.first_name} {user.last_name}</p>
@@ -50,10 +50,10 @@ function VeteranPage() {
       </div>
       <br></br>
       <div className="accordionBackground">
-      <ThemeProvider theme={theme}>
-        <Button className="employerDetailsBackBtn" variant="contained" onClick={editButton}>Edit Profile</Button>
-      </ThemeProvider>
-      <CurrentJob/>
+        <ThemeProvider theme={theme}>
+          <Button className="employerDetailsBackBtn" variant="contained" onClick={editButton}>Edit Profile</Button>
+        </ThemeProvider>
+        <CurrentJob/>
       </div>
     </div>
   );

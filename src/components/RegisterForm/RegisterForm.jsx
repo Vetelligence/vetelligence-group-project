@@ -28,7 +28,8 @@ function RegisterForm({page}) {
       dispatch({
         type: 'UPDATE_USER_INFO',
         payload: userInfo
-      })
+      });
+      history.push(`/veteran/${user.id}`);
     }
     else{
       dispatch({
@@ -39,7 +40,7 @@ function RegisterForm({page}) {
   }; // end registerUser
 
   const backButton = () => {
-    history.push(`/veteran/${user.id}`)
+    history.push(`/veteran/${user.id}`);
   }
 
   const theme = createTheme({
@@ -55,10 +56,14 @@ function RegisterForm({page}) {
   });
 
   return (
-    <div>
-      <ThemeProvider theme={theme}>
-        <Button className="employerDetailsBackBtn" variant="contained" onClick={backButton}>Back</Button>
-      </ThemeProvider>
+    <div className="editPage">
+      <br></br>
+      <br></br>
+      <div className="backButton">
+        <ThemeProvider theme={theme}>
+          <Button className="employerDetailsBackBtn" variant="contained" onClick={backButton}>Back</Button>
+        </ThemeProvider>
+      </div>
       <form className="formPanel" onSubmit={registerUser}>
         {errors.registrationMessage && (
           <h3 className="alert" role="alert">
@@ -145,10 +150,13 @@ function RegisterForm({page}) {
               onChange={(event) => setUserInfo({...userInfo, state: event.target.value})}
             />
         </div>
+        <br></br>
         <div>
           {
           page === 'edit'?  
-          <input className="btn" type="submit" name="submit" value="Update" />
+          <ThemeProvider theme={theme}>
+            <Button className="btn" variant="contained" type="submit" value="Update">Update</Button>
+          </ThemeProvider>
           :
           <input className="btn" type="submit" name="submit" value="Register" />
           }

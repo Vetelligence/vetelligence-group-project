@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { common } from '@material-ui/core/colors';
+import './LoginForm.css';
 
 //Allows all users to login to one main login form.
 //This component is connected to the LoginPage.jsx.
@@ -9,7 +13,9 @@ function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
+  const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const login = (event) => {
     event.preventDefault();
@@ -27,9 +33,27 @@ function LoginForm() {
     }
   }; // end login
 
+  const backButton = () => {
+    history.push(`/`);
+  }
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: common.white
+      },
+      secondary: {
+        main: '#6C63FE',
+        darker: '#4EC4DE'
+      }
+    }
+  });
+
   return (
     <form className="formPanel" onSubmit={login}>
-      <button><Link to="/home">Back</Link></button>
+      <ThemeProvider theme={theme}>
+        <Button className="employerDetailsBackBtn" variant="contained" onClick={backButton}>Back</Button>
+      </ThemeProvider>
       <h2>Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
@@ -61,7 +85,9 @@ function LoginForm() {
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+        <ThemeProvider theme={theme}>
+          <Button className="loginBtn" variant="contained" type="submit" onClick={login}>Submit</Button>
+        </ThemeProvider>
       </div>
     </form>
   );
