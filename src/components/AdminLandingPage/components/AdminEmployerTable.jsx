@@ -40,7 +40,7 @@ function AdminEmployerTable() {
     const headCells = [
         {
             id: 'firstName',
-            numeric: false,
+            numeric: true,
             disablePadding: true,
             label: 'First',
         },
@@ -91,7 +91,7 @@ function AdminEmployerTable() {
 
 
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} sx={{width:'90%'}}>
             <Table sx={{ maxWidth: 650 }} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
@@ -114,7 +114,7 @@ function AdminEmployerTable() {
                             <TableCell align="right">{row.phone}</TableCell>
                             <TableCell align="right">{row.company}</TableCell>
                             <TableCell align="right">{row.status === 'pending' ? <EmpStatusSelect id={row.key} empStatus={row.status}/> : row.status.toUpperCase()}</TableCell>
-                            { row.status === 'pending' && <TableCell align="right"><AdminDelete id={row.key}/></TableCell>}
+                            { row.status === 'ending' && <TableCell align="right"><AdminDelete id={row.key}/></TableCell>}
 
 
                         </TableRow>

@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const mosRouter = require('./routes/mos.router');
 const jobRouter = require('./routes/job.router');
 const skillsRouter = require('./routes/skills.router');
+const profileImgRouter = require('./routes/profileImage.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/api/mos', mosRouter);
 app.use('/api/job', jobRouter);
 app.use('/api/skills', skillsRouter);
+app.use('/api/profileImage', profileImgRouter)
 
 // Serve static files
 app.use(express.static('build'));

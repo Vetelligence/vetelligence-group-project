@@ -7,7 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-
+import ImageUpload from '../ImageUploadView/ImageUpload'
 
 
 function VeteranIntakeForm() {
@@ -137,6 +137,7 @@ function VeteranIntakeForm() {
         </Button>
       </form>
 
+        <ImageUpload />
     </>
   )
 

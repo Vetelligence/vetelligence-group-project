@@ -34,6 +34,23 @@ function* updateUserInfo(action) {
   }
 }
 
+function* updateProfilePicture(action){
+  try{
+      const  url  = yield axios.get('/api/profileImage')
+       
+      console.log(url);
+
+      yield axios.put(url.data, action.payload, {
+        headers:{ "ContentType": "multipart/form-data"}
+      })
+        .then(res => console.log(res));
+  }
+
+  catch (err) {
+    console.error('err in uploading file', err)
+  }
+}
+
 function* setEmployerApproved (action) {
   try{
     yield axios.put('api/user/employer/status/'+ action.payload.id)
@@ -95,6 +112,7 @@ function* userSaga() {
   yield takeLatest('UPDATE_USER_INFO', updateUserInfo);
   yield takeLatest('SET_EMPLOYER_APPROVED', setEmployerApproved);
   yield takeLatest('DELETE_EMPLOYER', deleteEmployer);
+  yield takeLatest('UPDATE_PROFILE_PICTURE', updateProfilePicture);
 }
 
 export default userSaga;
