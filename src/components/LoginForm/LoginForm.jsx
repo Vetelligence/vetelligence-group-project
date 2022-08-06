@@ -50,46 +50,50 @@ function LoginForm() {
   });
 
   return (
-    <form className="formPanel" onSubmit={login}>
+    <div className="loginPage">
+      <br></br>
+      <br></br>
       <ThemeProvider theme={theme}>
-        <Button className="employerDetailsBackBtn" variant="contained" onClick={backButton}>Back</Button>
+        <Button className="loginPageBackBtn" variant="contained" onClick={backButton}>Back</Button>
       </ThemeProvider>
-      <h2>Login</h2>
-      {errors.loginMessage && (
-        <h3 className="alert" role="alert">
-          {errors.loginMessage}
-        </h3>
-      )}
-      <div>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            required
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <ThemeProvider theme={theme}>
-          <Button className="loginBtn" variant="contained" type="submit" onClick={login}>Submit</Button>
-        </ThemeProvider>
-      </div>
-    </form>
+      <form className="formPanel" onSubmit={login}>
+        <h2>Login</h2>
+        {errors.loginMessage && (
+          <h3 className="alert" role="alert">
+            {errors.loginMessage}
+          </h3>
+        )}
+        <div>
+          <label htmlFor="username">
+            Username:
+            <input
+              type="text"
+              name="username"
+              required
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <label htmlFor="password">
+            Password:
+            <input
+              type="password"
+              name="password"
+              required
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </label>
+        </div>
+        <div>
+          <ThemeProvider theme={theme}>
+            <Button className="loginBtn" variant="contained" type="submit" onClick={login}>Submit</Button>
+          </ThemeProvider>
+        </div>
+      </form>
+    </div>
   );
 }
 
