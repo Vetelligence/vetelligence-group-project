@@ -1,4 +1,16 @@
-.loginBtn {
-    background-color: #fff;
-    color: black;
+.loginPage {
+    background-color: #6C63FE;
+}
+
+.formPanel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 5px 5px 5px black;
+}
+
+.loginPageBackBtn {
+    display: flex;
+    justify-content: flex-start;
 }
