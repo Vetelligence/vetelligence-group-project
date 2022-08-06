@@ -77,9 +77,9 @@ function VeteranLandingPage() {
             <div className="vetLandingBtn">
                 <p className="readyCopy">Ready to find a job?</p>
                 <ThemeProvider theme={theme}>
-                <Button className="vetLandingBtn" variant="contained" onClick={Login}>
-                    Login / Create Account
-                </Button>
+                    <Button className="vetLandingBtn" variant="contained" onClick={Login}>
+                        Login / Create Account
+                    </Button>
                 </ThemeProvider>
             </div>
         </div>

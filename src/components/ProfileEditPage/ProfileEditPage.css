@@ -1,0 +1,22 @@
+.editPage {
+    display: flex;
+    flex-direction: column;
+    margin-top: -1px;
+    height: 86vh;
+    background-color: #6C63FE;
+}
+
+.backButton {
+    margin-left: 45px;
+}
+
+.formPanel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #fff;
+    width: 300px;
+    margin-top: 20px;
+}
