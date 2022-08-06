@@ -6,6 +6,8 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { common } from '@material-ui/core/colors';
 
+//Veteran profile edit component connected to the ProfileEditPage.jsx
+//This component allows Veterans to edit their profile info.
 function RegisterForm({page}) {
   const history = useHistory();
   const errors = useSelector((store) => store.errors);

@@ -1,30 +1,34 @@
 .employerView {
-    margin-top: -1px;
-    margin-bottom: -18px;
+    display: flex;
+    flex-direction: column;
     background-color: #6C63FE;
     height: 87vh;
+}
+
+.employerViewBoxes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .profileData {
     background-color: #fff;
     width: 78%;
-    margin: 0%;
-    padding: 10px;
-    margin-left: 6%;
-    margin-bottom: 10%;
+    margin: 10px;
+    padding: 20px;
     border-radius: 10px;
-    padding: 5%;
     text-align: left;
 }
 
 .jobsData {
+    display: flex;
+    flex-direction: column;
     background-color: #fff;
     width: 78%;
-    margin: 0%;
-    margin-left: 6%;
-    margin-bottom: 10%;
+    margin: 10px;
+    padding: 20px;
     border-radius: 10px;
-    padding: 5%;
     text-align: center;
     height: 35vh;
     overflow: auto;
@@ -50,6 +54,7 @@
     display: flex;
     flex-direction: inherit;
     align-items: center;
+    justify-content: flex-start;
     padding: 0;
     background-color: gray;
     color: #fff;
@@ -62,15 +67,10 @@
     padding: 2px;
 }
 
-.addJobBtn {
+.addJobButtonDiv {
     display: flex;
-    background-color: gray;
-    color: #fff;
-    border-color: #fff;
-    border-radius: 5px;
-    margin-left: 75%;
-    margin-top: -25px;
-    margin-bottom: 4%;
+    justify-content: flex-end;
+    margin: 10px 40px 0 0;
 }
 
 .employeeDataText {
@@ -119,5 +119,4 @@
 
 .job-name-link{
     color: white;
-    /* text-decoration:underline; */
 }

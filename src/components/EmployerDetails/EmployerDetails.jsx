@@ -8,6 +8,9 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { common } from '@material-ui/core/colors';
 
+//This component brings the logged in Employer to a detail page of one of their posted jobs.
+//This page connects to the MatchedCandidateListItem.jsx to display matched candidates
+//and allows Employers to change the Veteran Job Status.
 function EmployerDetails() {
   const history = useHistory();
   const {id} = useParams();

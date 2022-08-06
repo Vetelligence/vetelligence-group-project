@@ -6,9 +6,12 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { common } from '@material-ui/core/colors';
 
+//This component connects to EmployerPage.jsx
+//This component allows an Employer to click a detailed view of each job or delete a job.
 export const JobListItem = ({jobs}) => {
     const dispatch = useDispatch();
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false);
+
     const handleDelete = () => {
         dispatch({
             type: 'DELETE_FROM_JOB_LIST',

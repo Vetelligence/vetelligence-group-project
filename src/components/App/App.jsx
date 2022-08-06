@@ -5,14 +5,10 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
-
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 import AboutPage from '../AboutPage/AboutPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -22,19 +18,17 @@ import EmployerPage from '../EmployerPage/EmployerPage';
 import EmployerJobInput from '../EmployerJobInput/EmployerJobInput';
 import AdminLandingPage from '../AdminLandingPage/AdminLandingPage';
 import './App.css';
-
 import VeteranIntakeForm from '../VeteranIntakeForm/VeteranIntakeForm';
 import EmployerIntakeForm from '../EmployerIntakeForm/EmployerIntakeForm';
 import { ProfileEditPage } from '../ProfileEditPage/ProfileEditPage';
-
 import VeteranLandingPage from '../VeteranLandingPage/VeteranLandPage';
-import CurrentJob from '../CurrentJob/CurrentJob';
 import EmployerDetails from '../EmployerDetails/EmployerDetails';
 import './App.css';
 
+//The App.jsx holds the routes to all the available views on the App.
+//The Protected Routes are only accessible to logged in users with correct permissions.
 function App() {
   const dispatch = useDispatch();
-
   const user = useSelector(store => store.user);
 
   useEffect(() => {
@@ -80,14 +74,6 @@ function App() {
             exact
             path="/employer/:id"
           >
-            {/* {user.user_type === 'Employer' ?
-              // If the user is already logged in, 
-              // redirect to the /employer/:id page
-              <Redirect to="/employer/:id" />
-              :
-              // Otherwise, show the login page
-              <LoginPage />
-            } */}
             <EmployerPage />
           </ProtectedRoute>
 
@@ -106,7 +92,6 @@ function App() {
           >
             <EmployerJobInput />
           </ProtectedRoute>
-
 
           <Route
             // shows AboutPage at all times (logged in or not)
@@ -128,14 +113,7 @@ function App() {
               <AdminLandingPage />
             </ProtectedRoute>
 
-          {/* <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
-          >
-            <InfoPage />
-          </ProtectedRoute> */}
-
+          {/* Main login route for all users */}
           <Route
             exact
             path="/login"
@@ -150,6 +128,8 @@ function App() {
             }
           </Route>
 
+          {/* Only the Admin will have the registration option. Everyone else will need
+          to create an account from the intake forms for either Employers or Vets. */}
           <Route
             exact
             path="/registration"
@@ -164,6 +144,7 @@ function App() {
             }
           </Route>
 
+          {/* All users start on the main home page */}
           <Route
             exact
             path="/home"
@@ -171,18 +152,25 @@ function App() {
             <LandingPage />
           </Route>
           
-          <Route exact path="/veteran-intake">
-            <VeteranIntakeForm />
-          </Route>
-
-          <Route exact path="/employer-intake">
-            <EmployerIntakeForm />
-          </Route>
-
+          {/* Vetarans that click on the "Service member" link will be directed here */}
           <Route exact path="/veteran-landing">
             <VeteranLandingPage />
           </Route>
 
+          {/* Veterans that have not logged in will be directed to the intake form
+          to create an account before continuing to the Vet landing page */}
+          <Route exact path="/veteran-intake">
+            <VeteranIntakeForm />
+          </Route>
+
+          {/* Employers that are not logged in will start at the intake form to create
+          an account before continuing to the employer details page */}
+          <Route exact path="/employer-intake">
+            <EmployerIntakeForm />
+          </Route>
+
+          {/* This is the Employer main landing page. Employers that are logged in will
+          be routed here from the "Employer/Recruiter" button on the main landing page. */}
           <Route exact path="/employer/employer-details/:id">
             <EmployerDetails />
           </Route>

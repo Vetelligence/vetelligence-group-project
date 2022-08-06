@@ -8,6 +8,10 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
 
+//Main Nav connected to all pages through the Header.
+//Depending on whether the user is logged in, and based
+//on the type of user, different Nav options are available
+//or hidden.
 function Nav() {
   const user = useSelector((store) => store.user);
   const [anchorEl, setAnchorEl] = React.useState(null);
