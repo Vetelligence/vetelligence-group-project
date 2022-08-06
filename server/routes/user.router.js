@@ -19,11 +19,13 @@ router.get('/:users', (req, res) =>{
      {const sqlQuery = `
       SELECT
         "user".*,
-        veterans.mos_id,
+        mos.mos,
         veterans.status
       FROM "user"
       JOIN veterans
         ON "user".id = veterans.user_id
+      JOIN "mos"
+        ON "veterans".mos_id = mos.id
       WHERE "user".user_type = 'veteran';
      `
      pool.query(sqlQuery)
