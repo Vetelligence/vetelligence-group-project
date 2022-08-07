@@ -4,12 +4,13 @@ import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { common } from '@material-ui/core/colors';
 import { useHistory} from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 //This page allows a new employer (not logged in) to create an account
 function EmployerIntakeForm(){
     const history = useHistory();
     const dispatch = useDispatch();
+    const user = useSelector(store => store.user)
     const backButton = () => {history.push('/')};
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -41,6 +42,9 @@ function EmployerIntakeForm(){
             type: 'REGISTER',
             payload: employerInfo
         });
+        setTimeout(() => {
+            history.push(`/employer/${user.id}`)
+        }, 250)
     }
 
     const theme = createTheme({

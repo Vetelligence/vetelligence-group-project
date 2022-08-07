@@ -22,6 +22,7 @@ useEffect(() => {
       <br></br>
       <br></br>
       <h3>Current Jobs:</h3>
+      {!currentJobs[0] ? <h5>Thank you for registering to Vetelligence,<br></br> you'll be connected with employers soon!</h5>: <></>}
       {currentJobs[0] && currentJobs.map(currentJob => (
         <div key={currentJob.id}>
         {currentJob.status === 'noLongerConsidered' ? <> </> :
