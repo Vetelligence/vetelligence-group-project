@@ -1,6 +1,6 @@
 import AdminEmployerTable from "./components/AdminEmployerTable";
 import AdminVetTable from "./components/AdminVetTable";
-import './AdminLandingPage.css'
+import './AdminLandingPage.css';
 
 // This component is only accessible to a logged in Admin.
 // This page displays all employers and their status (this can be edited by an Admin).
