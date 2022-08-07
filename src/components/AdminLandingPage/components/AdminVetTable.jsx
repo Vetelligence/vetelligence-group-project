@@ -27,7 +27,7 @@ function AdminVetTable () {
             state: veteran.state,
             email: veteran.email,
             phone: veteran.phone_number,
-            mos: veteran.mos_id,
+            mos: veteran.mos,
             status: veteran.status,
             key: veteran.id
 
