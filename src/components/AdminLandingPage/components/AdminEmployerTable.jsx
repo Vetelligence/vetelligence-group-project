@@ -104,7 +104,7 @@ function AdminEmployerTable() {
 
     return (
         <TableContainer component={Paper} sx={{ minWidth: 200 }} className="employerTable">
-            <Table sx={{ minWidth: 200 }} size="small" aria-label="a dense table">
+            <Table sx={{ minWidth: 200 }} size="small" stickyHeader aria-label="a dense table, sticky table">
                 <TableHead>
                     <TableRow>
                         {headCells.map(cell => <TableCell key={cell.id} align="left">{cell.label} </TableCell>)}
