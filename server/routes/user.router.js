@@ -44,7 +44,7 @@ router.get('/:users', (req, res) =>{
       {const sqlQuery = `
       SELECT
         "user".*,
-        "employer".id,
+        "employer".id AS employer_id,
         "employer".company,
         "employer".status
       FROM "user"
@@ -132,7 +132,7 @@ router.put('/employer/status/:id', rejectUnauthenticated, (req,res) => {
   const sqlQuery = `
     UPDATE "employer"
     SET status = 'approved'
-    WHERE id = $1
+    WHERE user_id = $1
   `
   pool.query(sqlQuery ,[req.params.id])
     .then( () => {
@@ -146,6 +146,8 @@ router.put('/employer/status/:id', rejectUnauthenticated, (req,res) => {
 });
 
 router.delete('/employer/:id', rejectUnauthenticated, (req, res) =>{
+
+  console.log('This is the ID we\'re sending over', req.params.id)
   const sqlQuery = `
     DELETE FROM "user" 
     WHERE "id" = $1
@@ -157,7 +159,7 @@ router.delete('/employer/:id', rejectUnauthenticated, (req, res) =>{
     })
     .catch((err) => {
       console.log('delete employer failed', err);
-      res.send(500);
+      res.sendStatus(500);
     })
 })
 

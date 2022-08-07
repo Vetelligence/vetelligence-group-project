@@ -14,6 +14,7 @@ function EmpStatusSelect ({empStatus, id}) {
     })
   }
 
+
   return (
     <FormControl variant="standard" sx={{ m: 1, minWidth: 70}}>
       <Select

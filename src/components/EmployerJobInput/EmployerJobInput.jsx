@@ -79,7 +79,7 @@ function EmployerJobInput() {
     });
 
     function autoFillJob() {
-        setJobInputData({name: 'Data Analyst', description: 'Utilize common data structures to analyze data.', city: 'Minneapolis', state: 'MN', skills: []});
+        setJobInputData({...jobInputData, name: 'Data Analyst', description: 'Utilize common data structures to analyze data.', city: 'Minneapolis', state: 'MN'});
     }
 
     return (
