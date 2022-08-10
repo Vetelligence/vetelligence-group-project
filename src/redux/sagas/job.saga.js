@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
+//Fetch job displays all jobs on the app, some logic provided links jobs to veterans based on skills.
 function* fetchJob(action){
     console.log('in fetchJob', action);
     try {
@@ -12,6 +13,7 @@ function* fetchJob(action){
     }
 }
 
+//Add job POSTs a job to the job table - added by Employers
 function* addJob(action){
     try{ 
         yield axios.post('/api/job', action.payload)
@@ -22,6 +24,7 @@ function* addJob(action){
     }
 }
 
+//Finds the top 5 jobs on the website to display on the Veteran Dash for visitors to get excited to create an account
 function* fetchTopJobs(action) {
     try {
         const res = yield axios.get(`/api/job/veteran-landing`);
@@ -33,6 +36,7 @@ function* fetchTopJobs(action) {
     }
 }
 
+//Fetches the current job for employers viewing their dashboard
 function* fetchCurrentJob(action){
     console.log('made it into fetchCurrent');
     try{
@@ -47,7 +51,7 @@ function* fetchCurrentJob(action){
     }
 }
 
-
+//POST to allow employers to update the Veteran Job status
 function* addStatus(action){
     try{
         const res = yield axios.post('/api/job/matched/', action.payload)
@@ -56,13 +60,13 @@ function* addStatus(action){
             type: 'FETCH_CURRENT_JOB',
             payload: {id: action.payload.jobs_id}
         })
-
     }
     catch(err) {
         console.error('error is', err)
     }
 }
 
+//Delete Route to delete a job from the jobs table
 function* deleteFromJobList(action) {
     try{
         const res = yield axios.put('/api/job/remove/' + action.payload.id)
@@ -75,6 +79,7 @@ function* deleteFromJobList(action) {
     }
 }
 
+//GETs the jobs associated with a veteran by ID
 function* fetchVetsJobs() {
     try{
         const res = yield axios.get('/api/job/vets-jobs/')

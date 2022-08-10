@@ -1,3 +1,4 @@
+//Holds all jobs on the app
 const jobReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_JOB':

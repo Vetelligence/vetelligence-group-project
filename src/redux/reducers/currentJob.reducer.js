@@ -1,3 +1,4 @@
+//Holds current jobs for employers
 const currentJobReducer = (state = {}, action) => {
     switch (action.type) {
         case 'SET_CURRENT_JOB':

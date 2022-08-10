@@ -1,7 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-//GET for skills
+//GET for all skills on the skills table
 function*  fetchSkills (action) {
     try{
       const response = yield axios.get('/api/skills');

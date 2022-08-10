@@ -1,3 +1,4 @@
+//Holds the veteran job status
 const statusReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_STATUS':
