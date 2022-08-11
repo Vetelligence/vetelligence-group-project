@@ -9,14 +9,25 @@ We **STRONGLY** recommend following these instructions carefully. It's a lot, an
 Before you get started, make sure you have the following software installed on your computer:
 
 - [Node.js](https://nodejs.org/en/)
-- [PostrgeSQL](https://www.postgresql.org/)
+- [PostrgeSQL 14.2](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
 
 ## Create database and table
 
 To create your Database and tables, run the below lines of code in Node.js:
 
-npm run db-up
+npm run db-up,
+
+or 
+
+--Create the database
+createdb vetelligence
+
+--Setup your tables
+psql -d vetelligence -f database.sql
+
+--Add all the data in
+psql -d vetelligence -f dump.sql
 
 ## Development Setup Instructions
 
@@ -45,7 +56,7 @@ Then make sure `Launch Program` is selected from the dropdown, then click the gr
 
 Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
 
-- Start postgres if not running already by using `brew services start postgresql`
+- Start postgres if not running already install postgres 14.2 (https://postgresapp.com/)
 - Run `npm start`
 - Navigate to `localhost:5000`
 
@@ -109,9 +120,3 @@ Main Routes:
 ## Update Components
 
 Each component is heavily commented with what it does, what other components it's connected to and the basics of how the component works. The database can be edited using all front end and end user inputs on the app. For developers the db can be edited in Postico or by editing the SQL queries from the router assosciated with the component to update.
-
-# Debugging
-
-All errors with the database can be fixed through Postico or via the routes associated with the query.
-The store/state for all components is held in the Redux Reducers, GET/PUT/POST routes are used to modify or add data.
-Sagas hold the 
