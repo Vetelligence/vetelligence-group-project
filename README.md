@@ -21,12 +21,15 @@ npm run db-up,
 or 
 
 --Create the database
+
 createdb vetelligence
 
 --Setup your tables
+
 psql -d vetelligence -f database.sql
 
 --Add all the data in
+
 psql -d vetelligence -f dump.sql
 
 ## Development Setup Instructions
