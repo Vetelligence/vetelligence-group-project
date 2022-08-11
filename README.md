@@ -16,14 +16,7 @@ Before you get started, make sure you have the following software installed on y
 
 To create your Database and tables, run the below lines of code in Node.js:
 
---Create the database
-createdb vetelligence
-
---Setup your tables
-psql -d vetelligence -f database.sql
-
---Add all the data in
-psql -d vetelligence -f dump.sql
+npm run db-up
 
 ## Development Setup Instructions
 
