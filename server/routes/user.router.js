@@ -7,7 +7,7 @@ const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
-// Handles Ajax request for user information if user is authenticated
+// Handles request for user information if user is authenticated
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)
   res.send(req.user);
@@ -102,6 +102,7 @@ router.post('/register', (req, res, next) => {
     });
 });
 
+//PUT route to update veteran profile data
 router.put('/update/:id', rejectUnauthenticated, (req, res) => {
   console.log(req.body)
   const sqlQuery = `
@@ -126,8 +127,9 @@ router.put('/update/:id', rejectUnauthenticated, (req, res) => {
       console.log('failed to update user', err);
       res.sendStatus(500);
     })
-})
+});
 
+//PUT route to update the employer status on the Admin dashboard
 router.put('/employer/status/:id', rejectUnauthenticated, (req,res) => {
   const sqlQuery = `
     UPDATE "employer"
@@ -145,8 +147,8 @@ router.put('/employer/status/:id', rejectUnauthenticated, (req,res) => {
     })
 });
 
+//Delete route to remove an employer by ID from the Admin dashboard
 router.delete('/employer/:id', rejectUnauthenticated, (req, res) =>{
-
   console.log('This is the ID we\'re sending over', req.params.id)
   const sqlQuery = `
     DELETE FROM "user" 

@@ -21,6 +21,5 @@ export default function* rootSaga() {
     intakeSaga(),
     jobSaga(),
     skillsSaga(),
-
   ]);
 } 

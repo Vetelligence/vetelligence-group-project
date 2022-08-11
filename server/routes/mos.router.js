@@ -5,7 +5,7 @@ const {
     rejectUnauthenticated,
   } = require('../modules/authentication-middleware');
 
-//grabs all mos data form specific branch
+//grabs all mos data for a specific military branch
 router.get('/:branch', (req,res) =>{
     console.log(req.params.branch)
     sqlQuery=`
@@ -15,7 +15,6 @@ router.get('/:branch', (req,res) =>{
     `
     pool.query(sqlQuery, [req.params.branch])
         .then ((results) => {
-            // console.log('get mos success', results.rows);
             res.send(results.rows);
         })
         .catch((err) => {

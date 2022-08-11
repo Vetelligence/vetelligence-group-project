@@ -24,6 +24,7 @@ function* fetchUser() {
   }
 }
 
+//Allows veterans to update their profile data
 function* updateUserInfo(action) {
   try{
     const res = yield axios.put(`/api/user/update/:id`, action.payload)
@@ -34,6 +35,7 @@ function* updateUserInfo(action) {
   }
 }
 
+//Allows admin to change the employer status to approved
 function* setEmployerApproved (action) {
   try{
     yield axios.put('api/user/employer/status/'+ action.payload.id)
@@ -44,6 +46,7 @@ function* setEmployerApproved (action) {
   }
 }
 
+//Allows admin to delete an employer from the app
 function* deleteEmployer (action) {
   try {
     yield axios.delete('api/user/employer/'+ action.payload.id);
@@ -53,7 +56,7 @@ function* deleteEmployer (action) {
     console.error('employer delete failed', err);
   }}
 
-
+//GET route to display employers for the admin
 function* fetchEmployers(action){
   try{
    const employers = yield axios.get(`api/user/employer`);
@@ -62,14 +65,13 @@ function* fetchEmployers(action){
     type: 'SET_EMPLOYER_LIST',
     payload: employers.data
    });
-
   }
   catch (err){
     console.error('error fetching employers', err);
   }
-
 }
 
+//Get route to display all veterans on the page for the admin
 function* fetchVeterans(action) {
   try {
     const veterans = yield axios.get(`api/user/veteran`);
@@ -78,15 +80,11 @@ function* fetchVeterans(action) {
       type: 'SET_VETERAN_LIST',
       payload: veterans.data
     })
-    
   }
   catch (err){
     console.error('error fetching veterans', err);
-
   }
 }
-
-
 
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);

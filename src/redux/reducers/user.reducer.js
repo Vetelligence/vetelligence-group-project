@@ -1,5 +1,4 @@
-
-
+//Holds all user data
 const userReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_USER':
@@ -10,9 +9,5 @@ const userReducer = (state = {}, action) => {
       return state;
   }
 };
-
-
-
-
 
 export default userReducer;

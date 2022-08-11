@@ -144,6 +144,7 @@ jobRouter.put('/remove/:id', (req, res) => {
   });
 });
 
+//GET route for all current jobs for a specific Employer, displays job and veterans with similar skills
 jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
   console.log('made it into Current get');
   console.log(req.params.id)
@@ -151,41 +152,39 @@ jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
   let currentJobsObj = {job: {}, candidates: []}
 
   const jobQuery = `
-  SELECT jobs.id, jobs.job_description, jobs.job_name, employer.company, array_agg(skills.skill_name) AS skills
-  FROM jobs
-  JOIN "user"
-  ON jobs.employer_id = "user".id
-  JOIN employer
-  ON "user".id = employer.user_id
-  JOIN job_skills
-  ON job_skills.job_id = jobs.id
-  JOIN skills
-  ON skills.id = job_skills.skills_id
-  AND jobs.id = $1
-  GROUP BY jobs.job_description, jobs.job_name, employer.company, jobs.id;
+    SELECT jobs.id, jobs.job_description, jobs.job_name, employer.company, array_agg(skills.skill_name) AS skills
+    FROM jobs
+    JOIN "user"
+    ON jobs.employer_id = "user".id
+    JOIN employer
+    ON "user".id = employer.user_id
+    JOIN job_skills
+    ON job_skills.job_id = jobs.id
+    JOIN skills
+    ON skills.id = job_skills.skills_id
+    AND jobs.id = $1
+    GROUP BY jobs.job_description, jobs.job_name, employer.company, jobs.id;
   `;
 
   const vetQuery = `
-  SELECT "user".id, "user".first_name, "user".last_name, "user".phone_number, "user".email, "user".city, "user".state, array_agg(skills.skill_name) AS skills, veterans.status
-  FROM "user"
-  JOIN veterans
-  ON "user".id = veterans.user_id
-  JOIN mos_skills
-  ON veterans.mos_id = mos_skills.mos_id
-  JOIN skills
-  ON skills.id = mos_skills.skill_id
-  GROUP BY "user".iD, veterans.status
+    SELECT "user".id, "user".first_name, "user".last_name, "user".phone_number, "user".email, "user".city, "user".state, array_agg(skills.skill_name) AS skills, veterans.status
+    FROM "user"
+    JOIN veterans
+    ON "user".id = veterans.user_id
+    JOIN mos_skills
+    ON veterans.mos_id = mos_skills.mos_id
+    JOIN skills
+    ON skills.id = mos_skills.skill_id
+    GROUP BY "user".iD, veterans.status
   `;
 
   const statusQuery = `
-  SELECT user_id, status
-  FROM user_jobs
-  WHERE jobs_id = $1;
-  
+    SELECT user_id, status
+    FROM user_jobs
+    WHERE jobs_id = $1;
   `
 
   pool.query(jobQuery, [req.params.id])
-  //needs to be dbRes, not res. Can't have 2 of the same 
   .then(dbRes => {
     console.log('result rows', dbRes.rows)
     currentJobsObj = {job: dbRes.rows[0]}
@@ -198,7 +197,6 @@ jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
             currentJobsObj= {...currentJobsObj, candidates: filterVets(vetRes.rows, currentJobsObj.job.skills, statusRes.rows)}
             res.send(currentJobsObj)
           })
-        // res.send(currentJobsObj)
       })
   })
   .catch(err => {
@@ -207,27 +205,28 @@ jobRouter.get('/current-job/:id', rejectUnauthenticated, (req, res) => {
   });
 });
 
+//POST route to match veterans to jobs with similar skills
 jobRouter.post('/matched', (req, res) => {
   const insertQuery=`
-  INSERT INTO user_jobs
-  (user_id, jobs_id, status)
-  VALUES ($1, $2, $3)
-  RETURNING *
+    INSERT INTO user_jobs
+    (user_id, jobs_id, status)
+    VALUES ($1, $2, $3)
+    RETURNING *
   ;
     `
   const updateQuery=`
-  UPDATE user_jobs
-  SET status = $1
-  WHERE user_id = $2
-  AND jobs_id = $3 
-  RETURNING *
+    UPDATE user_jobs
+    SET status = $1
+    WHERE user_id = $2
+    AND jobs_id = $3 
+    RETURNING *
   `
 
-  const updateParams=[
+  const updateParams = [
     req.body.status, req.body.user_id, req.body.jobs_id
   ]
 
-  const insertParams=[
+  const insertParams = [
     req.body.user_id, req.body.jobs_id, req.body.status
   ]
 
@@ -249,15 +248,14 @@ jobRouter.post('/matched', (req, res) => {
       
     }
   })
-
   .catch((err) => {
     console.log('error in match post', err)
     res.sendStatus(500);
   })
 })
 
+//GET route to display jobs by Veteran id, displays only to logged in Veterans
 jobRouter.get('/vets-jobs/', rejectUnauthenticated, (req, res) => {
-
   const jobQuery = `
     SELECT jobs.job_description, jobs.job_name, employer.company, user_jobs.status
     FROM jobs
@@ -275,9 +273,6 @@ jobRouter.get('/vets-jobs/', rejectUnauthenticated, (req, res) => {
       console.log('failed to get vets jobs', err)
       res.sendStatus(500)
     })
-
-
 })
   
-
 module.exports = jobRouter;

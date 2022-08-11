@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+//Filters MOSs by military branch
 const mosForBranch = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOS':
@@ -11,9 +12,6 @@ const mosForBranch = (state = [], action) => {
     }
 }
 
-
-
 export default combineReducers({
     mosForBranch
-  });
-  
+}); 

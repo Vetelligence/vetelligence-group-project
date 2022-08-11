@@ -1,3 +1,4 @@
+//Stores all skills
 const skillsReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_SKILLS':
